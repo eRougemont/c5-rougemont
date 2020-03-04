@@ -1,6 +1,8 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
-$this->inc('elements/header.php'); ?>
+$this->inc('elements/header.php');
+$basename = basename($c->getCollectionPath());
+?>
 
 <main>
   <div>
@@ -16,8 +18,7 @@ $this->inc('elements/header.php'); ?>
 
 
 				<div class="col-4">
-          <img src=""/>
-          <?php  echo $c->getCollectionName(); echo "<br/>". $c->getCollectionPath();  ?>
+          <img src="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/<?php  echo $basename; ?>_couv.jpg/full/350,/0/default.jpg"/>
         </div>
 
 				<div class="col-8">
