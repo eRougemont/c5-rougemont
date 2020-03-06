@@ -5,7 +5,7 @@ $this->inc('elements/header_top.php');
 <header id="header">
     <div class="container">
         <div class="row">
-            <div class="col3 logo">
+            <div class="col-3 logo">
 							<div id="portrait">
 								<a href="">
 									<img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>

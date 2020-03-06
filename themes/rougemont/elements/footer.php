@@ -1,6 +1,6 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied."); ?>
 
-<footer>
+<footer id="footer">
 	<div class="logos bkg-black">
 		<div class="container">
 			<div class="row pad-top-xxl pad-bottom-xxl">
@@ -39,15 +39,12 @@
 					<div class="col-3">
 						<h5>Soutiens financiers</h5>
 						<ul>
-							<!-- <li><a href="">Aaaaaa</a></li>
-							<li><a href="">Aaaaaa</a></li>
-							<li><a href="">Aaaaaa</a></li> -->
-							<li><a href="">Fondation privée genevoise</a></li>
-							<li><a href="">Mme François Demole</a></li>
-							<li><a href="">Fondation Jan Michalski</a></li>
-							<li><a href="">Fondation UBS pour la culture </a></li>
-							<li><a href="">Fondation Ernst et Lucie Schmidheiny </a></li>
-							<li><a href="">Fondation de famille Sandoz</a></li>
+							<li>Fondation privée genevoise</li>
+							<li>Mme François Demole</li>
+							<li>Fondation Jan Michalski</li>
+							<li>Fondation UBS pour la culture</li>
+							<li>Fondation Ernst et Lucie Schmidheiny</li>
+							<li>Fondation de famille Sandoz</li>
 						</ul>
 					</div>
 					<div class="col-3">
@@ -67,17 +64,13 @@
 						</p>
 					</div>
 					<div class="col-3">
-						<!-- <a href="" >
-							<img src="img/icon/twitter.svg" alt="Twitter Rougemont 2.0">
-						</a> -->
-						<h5>Xxxxxxxx x xxx</h5>
+						<h5>Partenaires</h5>
 						<ul>
-							<li><a href="">Xxxxx x xxx x xxx</a></li>
-							<li><a href="">Xxxxxxx x xxx x xxx</a></li>
-							<li><a href="">Xxxxxxxx x xxx</a></li>
-							<li><a href="">Xxxxxxx x xxx x xxx</a></li>
-							<li><a href="">Xxxxxxxx</a></li>
-							<li><a href="">Xxxxxxx x xxx x xxx</a></li>
+              <li>GSI de l’Université de Genève</li>
+              <li>BPU de Neuchâtel</li>
+              <li>Centre européen de la culture</li>
+              <li>Bibliothèque de l’IHEID</li>
+              <li>Archives de la RTS</li>
 						</ul>
             <div id="loginout"><?php  echo Core::make('helper/navigation')->getLogInOutLink()?></div>
 					</div>
