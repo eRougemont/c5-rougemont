@@ -8,71 +8,70 @@ $booktitle = $parent->getCollectionName();
 ?>
 
 <header id="header" class="shrinkable">
-    <div class="container">
-        <div class="row">
-            <div class="col-3 logo">
-							<div id="portrait">
-								<a href="">
-									<img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
-									<span>
-										L'intégrale de
-										<br/>Denis de Rougemont<br/>
-										en libre accès
-									</span>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 logo">
+				<div id="portrait">
+					<a href="">
+						<img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
+						<span>
+							L'intégrale de
+							<br/>Denis de Rougemont<br/>
+							en libre accès
+						</span>
 
-								</a>
-							</div>
+					</a>
+				</div>
+      </div>
+      <div class="col-9">
+				<div class="row">
+					<div class="col-12 flex flex-right search-form-container">
+            <?php
+            $a = new GlobalArea('Header Search');
+            $a->display();
+            ?>
+					</div>
+					<div class="col-12 headnav">
+            <?php
+            $a = new GlobalArea('Header Navigation');
+            $a->display();
+            ?>
+					</div>
+          <div class="col-11 headmeta">
+            <a href="."><h1><?php print($booktitle); ?></h1></a>
+            <h2><?php print($c->getCollectionName()); ?></h2>
+            <div class="prevnext">
+              <?php $prevnext->display($c); ?>
             </div>
-            <div class="col-9">
-								<div class="row">
-									<div class="col-12 flex flex-right search-form-container">
-                    <?php
-                    $a = new GlobalArea('Header Search');
-                    $a->display();
-                    ?>
-									</div>
-									<div class="col-12 headnav">
-                <?php
-                $a = new GlobalArea('Header Navigation');
-                $a->display();
-                ?>
-									</div>
-                  <div class="col-11 livre-titre-et-chapitre">
-                    <h1><a href="../"><?php print($booktitle); ?></a></h1>
-                    <h2><?php print($c->getCollectionName()); ?></h2>
-                    <div class="prevnext">
-                      <?php $prevnext->display($c); ?>
-                    </div>
-                  </div>
-                  <div class="col-1 go-to-top-of-page">
-                    <a href="#">
-                      <i class="fas fa-arrow-up"></i>
-                      Début
-                    </a>
-                  </div>
+          </div>
+          <div class="col-1 gotop">
+            <a href="#">
+              <i class="fas fa-arrow-up"></i>
+              Début
+            </a>
+          </div>
 
-								</div>
-
-							</div>
-        </div>
+				</div>
+			</div>
     </div>
+  </div>
 </header>
 
 
-<main>
+<main class="liseuse">
   <div class="container">
-    <div class="row">
-      <div class="col-3 bkg-color-brightest auto-scroll pad-top-l pad-bottom-l">
+    <div id="viewport">
+      <aside class="bkg-color-brightest toclocal" id="sidebar">
         <?php
-           $a = new Area('liseuse_sommaire');
-           $a->display($c);
+          $a = new Area('Sidebar');
+          $a->display($c);
         ?>
-      </div>
-      <div class="col-9">
-        <h1 class="custom-1"><?php print($booktitle); ?></h1>
+      </aside>
+      <div class="" id="text">
+        <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
         <?php
            $prevnext->display($c);
-           $a = new Area('liseuse_texte');
+           $a = new Area('Main');
            $a->display($c);
         ?>
       </div>

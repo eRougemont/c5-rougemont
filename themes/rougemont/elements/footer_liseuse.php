@@ -40,19 +40,6 @@
 	</div>
 </footer>
 
-<script>
-// When the user scrolls down 50px from the top of the document, resize the header's font size
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  console.log("scrollFunction");
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-  	 // document.getElementById("header").style.fontSize = "30px";
-  	 $("header.shrinkable").removeClass("shrinked");
-  	 $("header.shrinkable").addClass("shrinked");
-  } else {
-  	 $("header.shrinkable").removeClass("shrinked");
-  }
-}
-</script>
+<script src="<?php  echo $view->getThemePath()?>/js/rougemont.js">//</script>
+<script>Teinte.init("#text")</script>
 <?php  $this->inc('elements/footer_bottom.php');?>

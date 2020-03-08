@@ -103,8 +103,7 @@ blockquote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialog
 
 /* html5 default, in alphabetic order */
 a:target, mark:target, b.mark:target {
-  border-bottom: 3px #CCCCCC solid;
-  background-color: #FFFFEE;
+  background-color: #EEE;
   border-radius-top-left: 0;
 }
 
