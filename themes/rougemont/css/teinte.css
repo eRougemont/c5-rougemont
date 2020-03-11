@@ -97,7 +97,7 @@ tt, pre {
   font-family: "FreeSans", "DejaVu Sans", "Lucida Sans Unicode", "Arial Unicode MS", sans-serif
 }
 
-blockquote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li, .justify, div.note, aside.note, div.stage {
+blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li, .justify, div.note, aside.note, div.stage {
   text-align: justify;
 }
 
@@ -175,14 +175,14 @@ b, strong {
   font-weight: bolder;
 }
 
-blockquote {
+blockquote.quote {
   margin: 1.5em 0em 1.5em 3rem;
   line-height: 130%;
   font-size: 92%;
   padding: 0;
 }
 
-blockquote p, blockquote div.p {
+blockquote.quote .p {
   text-indent: 2em;
 }
 
@@ -431,19 +431,19 @@ kbd {
   font-variant: small-caps;
 }
 
-li p {
+li.item p.p {
   margin: 0;
 }
 
-li pre {
+li.item pre {
   margin: 0;
 }
 
-li blockquote {
+li.item blockquote.quote {
   margin: 1em 0 1em 0;
 }
 
-li blockquote p {
+li.item blockquote.quote .p {
   text-indent: 2em;
 }
 
@@ -822,7 +822,7 @@ li.bibl {
 }
 
 /* like li.witness */
-blockquote .bibl {
+blockquote.quote .bibl {
   text-align: right;
   margin-top: 1ex;
   line-height: 110%;
@@ -884,11 +884,12 @@ ul.castList {
 .cb, .pb, .ed {
   background-color: rgba(255, 255, 255, 0.6);
   padding: 1px 2px 1px 2px;
-  position: absolute;
-  left: -4rem;
   text-align: right;
-  width: 3.5rem;
   /* float: right; problèmes dans les tableaux */
+}
+
+article > .pb, section > .pb {
+  float: right;
 }
 
 a.pb {
@@ -1275,7 +1276,7 @@ p.label, div.label {
   font-size: 105%;
 }
 
-blockquote .label {
+blockquote.quote .label {
   margin: 1ex 0 0.5ex 2em;
   text-align: left;
 }
@@ -1359,7 +1360,7 @@ div.note, aside.note {
   font-size: 16px;
 }
 
-.note blockquote {
+.note blockquote.quote {
   margin: 1ex 0em 1ex 2em;
 }
 
@@ -1469,7 +1470,7 @@ div.salute, p.salute {
   margin-bottom: 0.6ex;
 }
 
-.sp blockquote {
+.sp blockquote.quote {
   margin-left: 2rem;
   font-style: italic;
 }
@@ -2545,7 +2546,7 @@ dl.xml dt {
     font-size: 11pt;
   }
 
-  blockquote {
+  blockquote.quote {
     margin-left: 1rem;
     margin-right: 0;
   }

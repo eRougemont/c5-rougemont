@@ -9,16 +9,20 @@ $basename = basename($c->getCollectionPath());
     <div class="container">
     	<div class="row">
 
+        <a href="<?php echo $basename; ?>/1" style="display: block;">
 				<div class="col-12 marg-top-xl marg-bottom-xl" id="chapo">
           <?php
              $a = new Area('livre_chapo');
              $a->display($c);
           ?>
 				</div>
+      </a>
 
 
 				<div class="col-4">
+				  <a href="<?php echo $basename; ?>/1">
           <img src="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/<?php  echo $basename; ?>_couv.jpg/full/350,/0/default.jpg"/>
+          </a>
         </div>
 
 				<div class="col-8">
@@ -56,6 +60,7 @@ $basename = basename($c->getCollectionPath());
   		</div>
   	</div>
   </div>
+
 </main>
 
 <?php   $this->inc('elements/footer.php'); ?>

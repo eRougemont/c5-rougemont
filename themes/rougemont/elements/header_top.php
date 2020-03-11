@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <?php  Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : '')); ?>
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/teinte.css" />
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/all.css" />
@@ -10,8 +10,10 @@
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/rougemont.css" />
 
     <script src="<?php  echo $view->getThemePath()?>/js/bootstrap.min.js">//</script>
-
+    <!--
+<?php echo dirname($c->getCollectionPath()); ?>
+    -->
   </head>
 <body>
 
-<div class="<?php  echo $c->getPageWrapperClass()?>">
+<div id="" class="<?php  echo $c->getPageWrapperClass()?>">
