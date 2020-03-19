@@ -75,7 +75,7 @@ $booktitle = $parent->getCollectionName();
           ?>
         </div>
       </aside>
-      <div class="col-8" id="text">
+      <div class="col-8 text" id="text">
         <?php
           $prevnext = new GlobalArea('prev_next');
           $prevnext->display($c);

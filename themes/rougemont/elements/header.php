@@ -18,7 +18,7 @@ $this->inc('elements/header_top.php');
         </div>
       </div>
       <div class="col-9">
-        <div class="search-form-container">
+        <div class="search">
           <?php
             $a = new GlobalArea('Header Search');
             $a->display();

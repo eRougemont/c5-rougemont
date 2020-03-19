@@ -26,7 +26,7 @@
 				</div>
 				<div class="col rts">
 					<a href="">
-						<img src="<?php  echo $view->getThemePath()?>/img/rts.gif" alt="Radio Télévision Suisse (logo)">
+						<img src="<?php  echo $view->getThemePath()?>/img/rts-archives.gif" alt="Radio Télévision Suisse (logo)">
 					</a>
 				</div>
 			</div>

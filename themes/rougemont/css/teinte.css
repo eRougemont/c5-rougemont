@@ -97,7 +97,8 @@ tt, pre {
   font-family: "FreeSans", "DejaVu Sans", "Lucida Sans Unicode", "Arial Unicode MS", sans-serif
 }
 
-blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li, .justify, div.note, aside.note, div.stage {
+blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li,
+.justify, div.note, aside.note, div.stage {
   text-align: justify;
 }
 
@@ -112,30 +113,26 @@ section:target {
   border-left: none;
 }
 
-a:target {}
-
-a {
+article a {
   background-color: transparent;
   text-decoration: none;
   color: #339;
 }
 
-a:hover {
+article a:hover {
   background-color: rgba(255, 255, 255, 0.3);
   color: #000;
   border-bottom-color: inherit;
   text-decoration: none;
 }
 
-a:active, a:hover {
+article a:active, article a:hover {
   outline: 0;
 }
 
 a img {
   border: none;
 }
-
-a:visited {}
 
 nav a {
   border-bottom: none;
@@ -332,7 +329,6 @@ figure h2 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  clear: both;
   -webkit-hyphens: none !important;
   adobe-hyphenate: none;
   -moz-hyphens: none;
@@ -417,11 +413,6 @@ i i, i em, em i, em em {
   font-style: normal;
 }
 
-img {
-  max-width: 100%;
-  border: 0;
-}
-
 p img {
   vertical-align: top;
 }
@@ -431,7 +422,13 @@ kbd {
   font-variant: small-caps;
 }
 
-li.item p.p {
+li.item {
+  line-height: 120%;
+  margin-top: 0.5ex;
+  margin-bottom: 0.5ex;
+}
+
+li.item p {
   margin: 0;
 }
 
@@ -439,12 +436,12 @@ li.item pre {
   margin: 0;
 }
 
-li.item blockquote.quote {
-  margin: 1em 0 1em 0;
+li.item blockquote {
+  margin: 1rem 0 1rem 0;
 }
 
-li.item blockquote.quote .p {
-  text-indent: 2em;
+li.item blockquote p {
+  text-indent: 2rem;
 }
 
 legend {
@@ -561,6 +558,7 @@ optgroup {
 
 p.p, div.p, .dialogue li {
   margin: 0;
+  text-align: justify;
   line-height: 150%;
 }
 
@@ -640,7 +638,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-button {
+button.but {
   overflow: visible;
 }
 
@@ -648,7 +646,7 @@ button, select {
   text-transform: none;
 }
 
-button, html input[type="button"], input[type="reset"], input[type="submit"], .button {
+button.but, input[type="button"].but, input[type="reset"].but, input[type="submit"].but, .but, .button {
   -webkit-appearance: button;
   cursor: pointer;
   display: inline;
@@ -666,7 +664,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"], .b
 }
 
 
-button[disabled], html input[disabled] {
+button[disabled].but {
   cursor: default;
 }
 
@@ -777,6 +775,7 @@ h1.act, h2.act, h1.castList, h2.castList {
   line-height: 140%;
   text-indent: 0;
   font-size: 85%;
+  text-align: justify
 }
 
 p.argument {
@@ -791,6 +790,7 @@ p.argument {
 
 .availability {
   margin: 2em 0;
+  text-align: justify;
 }
 
 /* .back p, .front p {text-indent: 0;} no indent in paratext */
@@ -822,7 +822,7 @@ li.bibl {
 }
 
 /* like li.witness */
-blockquote.quote .bibl {
+blockquote .bibl {
   text-align: right;
   margin-top: 1ex;
   line-height: 110%;
@@ -915,7 +915,7 @@ a.pb:hover {
 a.ed, a.pb {}
 
 a.facs {
-  float: left;
+  float: right;
   margin-right: 0;
   margin-left: -1em;
   z-index: 2;
@@ -973,18 +973,27 @@ aside .docDate {
 
 .editionStmt {}
 
+.epigraph {
+  text-align: right;
+  margin: 2rem 0 2rem 0;
+}
+
+.epigraph p.p {
+  text-align: right;
+  font-style: italic;
+}
+
+.epigraph .p i,
+.epigraph .p em {
+  font-style: normal;
+}
+
 .entry>* {
   margin-left: 2em;
 }
 
 .entry>.form {
   margin-left: 0;
-}
-
-li.item {
-  line-height: 120%;
-  margin-top: 0.5ex;
-  margin-bottom: 0.5ex;
 }
 
 .fileDesc, .fileDesc>p {
@@ -999,33 +1008,6 @@ li.item {
 .fileDesc>.titleStmt {
   text-align: center;
   margin: 0 0 5em 0;
-}
-
-.titlePart {
-  font-size: 200%;
-  margin-top: 1em;
-}
-
-.titlePart.sub {
-  font-style: italic;
-  margin-top: 0em;
-}
-
-.titleStmt>p {
-  text-align: center;
-  text-indent: 0;
-}
-
-.titleStmt h1 {
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.titleStmt div {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
 }
 
 .fileDesc>.editionStmt, .fileDesc>.publicationStmt, .fileDesc>.sourceDesc {
@@ -1087,6 +1069,12 @@ p dfn.gloss, div.gloss {
   font-size: small;
   background-color: #F3F3F3;
   text-indent: 0;
+}
+
+li.item {
+  line-height: 120%;
+  margin-top: 0.5ex;
+  margin-bottom: 0.5ex;
 }
 
 div.l {
@@ -1346,6 +1334,7 @@ div.note, aside.note {
   line-height: 115%;
   margin: 1px 0 1em 0;
   clear: both;
+  text-align: justify;
 }
 
 .note:target {
@@ -1360,7 +1349,7 @@ div.note, aside.note {
   font-size: 16px;
 }
 
-.note blockquote.quote {
+.note blockquote {
   margin: 1ex 0em 1ex 2em;
 }
 
@@ -1470,7 +1459,7 @@ div.salute, p.salute {
   margin-bottom: 0.6ex;
 }
 
-.sp blockquote.quote {
+.sp blockquote {
   margin-left: 2rem;
   font-style: italic;
 }
@@ -1511,6 +1500,7 @@ section>div.stage i, section>div.stage em {
 }
 
 div.stage {
+  text-align: justify;
   line-height: 120%;
 }
 
@@ -1653,6 +1643,33 @@ i .title, .i .title {
   margin-top: 1em;
 }
 
+.titlePart {
+  font-size: 200%;
+  margin-top: 1em;
+}
+
+.titlePart.sub {
+  font-style: italic;
+  margin-top: 0em;
+}
+
+.titleStmt>p {
+  text-align: center;
+  text-indent: 0;
+}
+
+.titleStmt h1 {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.titleStmt div {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
 .trailer {
   font-style: italic;
   text-align: center;
@@ -1766,6 +1783,7 @@ span.center {
 }
 
 .dialogue li {
+  text-align: justify;
   margin-top: 0;
   margin-bottom: 0;
 }

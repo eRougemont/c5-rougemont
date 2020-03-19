@@ -8,8 +8,6 @@
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/all.css" />
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/rougemont.css" />
-
-    <script src="<?php  echo $view->getThemePath()?>/js/bootstrap.min.js">//</script>
     <!--
 <?php echo dirname($c->getCollectionPath()); ?>
     -->

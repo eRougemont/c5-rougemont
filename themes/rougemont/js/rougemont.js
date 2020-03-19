@@ -22,18 +22,43 @@ Teinte = function() {
       toc.style.width = toc.offsetWidth+"px";
       window.addEventListener('scroll', Teinte.tocFix);
     }
-    var text = document.querySelector(selector);
-    if (!text) return;
-    var width = getComputedStyle(text).width;
-    noteBot = document.createElement("div");
-    noteBot.id = "notebot";
-    noteBot.style.display = "none";
-    noteBot.style.width = width;
-    text.appendChild(noteBot);
-    window.addEventListener('resize', Teinte.resize);
-    window.addEventListener('load', Teinte.scrollAnchor);
-    window.addEventListener('hashchange', Teinte.scrollAnchor);
-    window.addEventListener('scroll', Teinte.scrollPage);
+    var text = document.querySelector("#text");
+    if (text) {
+      var width = getComputedStyle(text).width;
+      noteBot = document.createElement("div");
+      noteBot.id = "notebot";
+      noteBot.style.display = "none";
+      noteBot.style.width = width;
+      text.appendChild(noteBot);
+      window.addEventListener('resize', Teinte.resize);
+      window.addEventListener('load', Teinte.scrollAnchor);
+      window.addEventListener('hashchange', Teinte.scrollAnchor);
+      window.addEventListener('scroll', Teinte.scrollPage);
+    }
+    var links = document.querySelectorAll(".slider-nav a");
+    for (var i = 0, max = links.length; i < max; i++) {
+      let a = links[i];
+      let id = a.hash;
+      if (!id) return;
+      if (id[0] == "#") id = id.substring(1);
+      let ref = document.getElementById(id);
+      if (!ref) continue;
+      a.ref = ref;
+      a.onclick = Teinte.sliderClick;
+    }
+    
+  }
+  
+  function sliderClick(e)
+  {
+    let ref = this.ref;
+    ref.parentNode.scrollLeft = ref.offsetLeft;
+    let last = this.parentNode.lastLink; 
+    if (last) last.className = last.className.replace(/ *\bselected\b */g, "");
+    this.className += " selected";
+    this.parentNode.lastLink = this;
+    e.preventDefault();
+    return false; // stop propagation
   }
 
   /**
@@ -167,5 +192,9 @@ Teinte = function() {
     scrollPage:scrollPage,
     resize:resize,
     tocFix:tocFix,
+    sliderClick:sliderClick,
   };
 }();
+
+
+
