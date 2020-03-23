@@ -71,6 +71,7 @@ body, html {
 }
 
 /* fonts */
+/*
 body {
   font-size: 16px;
   font-family: Georgia, "Bitstream Vera Serif", Times, serif;
@@ -96,6 +97,7 @@ tt, pre {
 .dingbat {
   font-family: "FreeSans", "DejaVu Sans", "Lucida Sans Unicode", "Arial Unicode MS", sans-serif
 }
+*/
 
 blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li,
 .justify, div.note, aside.note, div.stage {

@@ -156,7 +156,7 @@ body {
 }
 
 .icon-size-xxl i {
-  font-size: 3em;
+  font-size: 3rem;
 }
 .icon-size-xxl img {
   width: 60px;
@@ -409,16 +409,16 @@ body {
   text-align: center;
 }
 
-h1, h3 {
+
+h1 {
   font-family: utopia-regular;
-  font-weight: normal;
+  font-size: 2rem;
   padding: 0;
-  /* line-height: initial !important; */
 }
 
 h2 {
   font-family: "firasans-regular";
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: normal;
   text-align: left;
   line-height: initial;
@@ -426,9 +426,13 @@ h2 {
   padding: 0;
 }
 
-h1 {
-  font-size: 2rem;
+h3 {
+  font-family: "utopia-regular";
+  font-weight: normal;
+  font-size: 1.2rem;
+  padding: 0;
 }
+
 
 h4, h5, h6 {
   font-family: firasans-regular;
@@ -450,24 +454,29 @@ h5 {
 .slider {
   overflow-y: hidden;
   overflow-x: scroll;
-  white-space: nowrap;
   padding: 1rem;
   position: relative;
+  display: flex;
+  height: 400px;
+  align-content: flex-start ;
 }
 
 .slider h2 {
-  margin: 0;
-  display: inline-block;
-  transform-origin: bottom right;
-  transform: rotate(-90deg);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  text-align: right;
+  border-left: 2px #FFFFFF solid;
+  padding-bottom: 2rem;
   color: rgb(255, 255, 255, 1);
   font-weight: bold;
+  flex: 0 0 2rem;
 }
 
 .slider a {
-  display: inline-block;
+  display: block;
   vertical-align: top;
-  width: 210px;
+  width: 220px;
+  flex: 0 0 220px;
   text-align: center;
   padding-top: 1rem;
   text-decoration: none;
@@ -488,7 +497,8 @@ h5 {
 }
 
 .slider a time.date {
-  display: inline-block;
+  display: block;
+  text-align: center;
 }
 
 .slider span.publisher {
@@ -592,7 +602,7 @@ form {
 time, address {
   color: #888;
   margin: 0;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   text-align: center;
   font-family: utopia-regular;
   display: block;
@@ -633,7 +643,7 @@ img.img-round {
 }
 .livres a h5 {
   color: black;
-  font-size: 1em;
+  font-size: 1rem;
   text-align: center;
   margin: 10px 0 0 0 !important;
 }
@@ -645,9 +655,15 @@ img.img-round {
   text-align: center;
 }
 
-.pb {
-  right: 5px;
-  left: initial;
+a.pb {
+  font-size: 80%;
+  font-stretch: 70%;
+  font-family: sans-serif;
+}
+
+article > .pb, section > .pb {
+  position: absolute;
+  right: 15px;
 }
 
 .auto-scroll {
@@ -842,10 +858,7 @@ a.media-thumbnail .icon {
   max-width: inherit;
 }
 #text {
-  width: 60%;
-  float: right;
-  position: relative;
-  color: #000;
+  padding-left: 2rem;
 }
 #notebot {
   border-top: rgba(200, 200, 200, 0.2) 5px solid;
@@ -855,19 +868,48 @@ a.media-thumbnail .icon {
   margin-left: -15px;
   padding: 0.2rem 15px 0.2rem 15px;
 }
+
+.col-sidebar {
+  background-color: #eee; /* bkg-color-brightest */
+}
+.col-sidebar,
 div.toclocal {
   padding: 1rem 0 1rem 1rem;
+}
+
+/** toc livre */
+.toclocal li.chapter > ul {
+  display: none;
+}
+.toclocal.all li.chapter > ul {
+  display: block;
+}
+
+
+div.toclocal {
   line-height: 1.2;
 }
+
+.col-sidebar a,
+.toclocal a {
+  color: #000;
+}
+.toclocal a {
+  display: block;
+}
+
+.toclocal a.visible,
+.col-sidebar li.nav-selected > a {
+  color: #dd0000;
+}
+
+
 div.toclocal li {
-  padding: 0.1rem 0 0.1rem 0;
+  padding: 0.1rem 0 0.1rem 0.5rem;
 }
 .toclocal a {
   color: black;
   display: block;
-}
-.toclocal a.visible {
-  color: #dd0000;
 }
 
 .toclocal a:hover {
@@ -972,7 +1014,7 @@ a.btn.btn-plain-dark:hover, button.btn.btn-plain-dark:hover, input[type=submit].
   color: white;
   background-color: #dd0000;
   padding: 3px 7px;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   width: 100%;
   display: inline-block;
   text-align: center;
@@ -1052,6 +1094,9 @@ a.btn.btn-plain-dark:hover, button.btn.btn-plain-dark:hover, input[type=submit].
 div.text {
   font-size: 110%;
 }
+div.text .note {
+  font-size: 0.9rem;
+}
 main.liseuse {
   padding-top: 240px;
 }
@@ -1064,11 +1109,11 @@ header.shrinkable h1, header.shrinkable h2 {
   text-align: left !important;
 }
 header.shrinkable h1 {
-  font-size: 1.4em;
+  font-size: 1.4rem;
   padding: 5px 0 2px 0;
 }
 header.shrinkable h2 {
-  font-size: 1.1em;
+  font-size: 1.1rem;
   padding: 2px 0 5px 0px;
 }
 #header #breadcrumb {
@@ -1128,17 +1173,17 @@ header.shrinkable .gotop a i {
 }
 
 #portrait {
-  height: 170px;
+  height: 175px;
   position: relative;
   display: block;
   background-image: url("../img/ddr-portrait.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right 0;
+  background-position: right;
 }
 #portrait a {
   color: black !important;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   width: 100%;
   display: block;
 }
@@ -1180,9 +1225,6 @@ header.shrinkable .gotop a i {
 .headnav li.nav-selected a, .headnav li.nav-path-selected a {
   border-bottom: 1px solid white;
 }
-.col-sidebar li.nav-selected > a {
-  color: #000;
-}
 
 .headnav ul li a {
   display: block;
@@ -1191,11 +1233,21 @@ header.shrinkable .gotop a i {
 }
 
 #footer {
-  background-color: black;
   text-align: left;
   position: relative;
   z-index: 10;
-  margin: 2rem 0 0 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+#footer a {
+  color: #ccc;
+  text-decoration: underline;
+}
+#footer h5 {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 15px 0;
 }
 #footer-small {
   color: #ccc;
@@ -1227,22 +1279,7 @@ header.shrinkable .gotop a i {
 #footer nav div {
   padding: 10px 0;
 }
-#footer nav div .container .row [class*=col-] {
-  color: #888;
-}
-#footer nav div .container .row [class*=col-] h5 {
-  font-size: 1.1rem;
-  margin: 15px 0;
-}
-#footer nav div .container .row [class*=col-] p {
-  font-size: 0.9rem !important;
-  color: #ccc !important;
-}
-#footer nav div .container .row [class*=col-] a {
-  color: #ccc !important;
-  font-size: 0.9rem !important;
-  text-decoration: underline !important;
-}
+
 #footer nav div .container .row [class*=col-] a:hover {
   opacity: 0.7;
 }
@@ -1300,7 +1337,7 @@ header.shrinkable .gotop a i {
   height: 30px;
   color: black !important;
   background-color: #aa0000 !important;
-  font-size: 2em;
+  font-size: 2rem;
   text-shadow: none;
   border: none !important;
   line-height: 0;
@@ -1310,7 +1347,7 @@ header.shrinkable .gotop a i {
   background-color: #880000 !important;
 }
 .search .magnifying-glass {
-  font-size: 1em;
+  font-size: 1rem;
   position: absolute;
   display: block;
   top: 6px;
@@ -1322,7 +1359,9 @@ header.shrinkable .gotop a i {
   border: none;
 }
 
-
+#bib_chapo img {
+  border-radius: 100%;
+}
 
 nav.covers {
   position: relative;
@@ -1363,7 +1402,7 @@ nav.covers a .date {
 }
 
 /** limiter les images dans une colonne */
-.col-content img {
+.col-content img, .row img {
   width: 100%;
 }
 
@@ -1399,4 +1438,16 @@ div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry
 div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail,
 div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail img {
     width: 100%;
+}
+
+ul.pagination li {
+  margin-left: 0.5rem;
+}
+ul.pagination li a {
+  display: block;
+  padding: 0 1rem;
+  border: 1px solid transparent;
+}
+ul.pagination li a:hover {
+  border-color: #CCCCCC;
 }

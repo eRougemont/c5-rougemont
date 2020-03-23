@@ -1,5 +1,4 @@
 
-
 Teinte = function() {
   var lastScrollY = 0;
   var noterefs = document.querySelectorAll('a.noteref');
@@ -15,12 +14,14 @@ Teinte = function() {
     shrinkable = document.querySelector("header.shrinkable");
     if (shrinkable) {
       window.addEventListener('scroll', Teinte.shrink);
+      shrink();
     }
-    toc = document.getElementById("toc");
+    toc = document.querySelector("#sidebar .toclocal");
     if (toc) {
       tocScroll = top(toc) - 30;
       toc.style.width = toc.offsetWidth+"px";
       window.addEventListener('scroll', Teinte.tocFix);
+      tocFix();
     }
     var text = document.querySelector("#text");
     if (text) {
@@ -34,6 +35,7 @@ Teinte = function() {
       window.addEventListener('load', Teinte.scrollAnchor);
       window.addEventListener('hashchange', Teinte.scrollAnchor);
       window.addEventListener('scroll', Teinte.scrollPage);
+      scrollPage();
     }
     var links = document.querySelectorAll(".slider-nav a");
     for (var i = 0, max = links.length; i < max; i++) {
@@ -46,14 +48,14 @@ Teinte = function() {
       a.ref = ref;
       a.onclick = Teinte.sliderClick;
     }
-    
+
   }
-  
+
   function sliderClick(e)
   {
     let ref = this.ref;
     ref.parentNode.scrollLeft = ref.offsetLeft;
-    let last = this.parentNode.lastLink; 
+    let last = this.parentNode.lastLink;
     if (last) last.className = last.className.replace(/ *\bselected\b */g, "");
     this.className += " selected";
     this.parentNode.lastLink = this;
@@ -83,7 +85,7 @@ Teinte = function() {
   {
     var text = noteBot.parentNode;
     noteBot.style.width = getComputedStyle(text).width;
-    toc.style.width = getComputedStyle(toc.parentNode).width;
+    if (toc) toc.style.width = getComputedStyle(toc.parentNode).width;
   };
 
   function isVisible(elem)
@@ -98,7 +100,6 @@ Teinte = function() {
   };
   function tocFix()
   {
-    if (!tocFix) return;
     if (document.body.scrollTop > tocScroll || document.documentElement.scrollTop > tocScroll) {
       if (toc.className.match(/\bscrolled\b/));
     	else toc.className += " scrolled";
@@ -185,7 +186,8 @@ Teinte = function() {
     if(!count) noteBot.style.display = "none";
     else noteBot.style.display = "";
   };
-  return{
+
+  return {
     init:init,
     shrink:shrink,
     scrollAnchor:scrollAnchor,
@@ -195,6 +197,3 @@ Teinte = function() {
     sliderClick:sliderClick,
   };
 }();
-
-
-

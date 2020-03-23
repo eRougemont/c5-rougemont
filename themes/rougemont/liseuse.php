@@ -87,4 +87,4 @@ $booktitle = $parent->getCollectionName();
     </div>
   </div>
 </main>
-<?php   $this->inc('elements/footer_liseuse.php'); ?>
+<?php   $this->inc('elements/footer.php'); ?>

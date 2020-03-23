@@ -119,4 +119,4 @@ $basename = basename($c->getCollectionPath());
 <script>Teinte.init()</script>
 
 
-<?php   $this->inc('elements/footer.php'); ?>
+<?php   $this->inc('elements/footer_accueil.php'); ?>
