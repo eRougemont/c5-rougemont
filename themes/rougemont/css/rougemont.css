@@ -710,24 +710,6 @@ a.link-disabled {
   transition: background-color 400ms, color 400ms, opacity 400ms, transform 400ms, border-bottom 400ms;
 }
 
-form input[type=text] {
-  border: none;
-  padding: 5px;
-  background-color: #ccc;
-  color: #222;
-}
-form input[type=text]:placeholder {
-  color: #444;
-}
-form input[type=submit] {
-  background-color: #888;
-  border-radius: 0%;
-  border: none;
-}
-form input[type=submit]:hover {
-  background-color: #aaa;
-  cursor: pointer;
-}
 
 .flex, #footer .logos .container .row [class*=col], a.lire-la-suite {
   display: flex;
@@ -1321,17 +1303,14 @@ header.shrinkable .gotop a i {
   margin-top: 0.8rem;
 }
 
-.search input[type=text] {
-  color: #ff8888 !important;
-  height: 30px;
-  background-color: #aa0000;
-  border: none !important;
+.ccm-search-block-text {
 }
-.search input[type=text]::placeholder {
-  color: black !important;
-  font-style: normal;
-}
-.search input[type=submit] {
+.ccm-search-block-submit {
+  font-family: 'FontAwesome';
+  color: #FFFFFF;
+  font-weight: 900;
+  margin-left: -0.7rem;
+  /*
   position: relative;
   width: 30px;
   height: 30px;
@@ -1342,21 +1321,10 @@ header.shrinkable .gotop a i {
   border: none !important;
   line-height: 0;
   margin: 0 !important;
+  */
 }
-.search input[type=submit]:hover {
+.ccm-search-block-submit:hover {
   background-color: #880000 !important;
-}
-.search .magnifying-glass {
-  font-size: 1rem;
-  position: absolute;
-  display: block;
-  top: 6px;
-  right: 22px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-.search input {
-  border: none;
 }
 
 #bib_chapo img {
