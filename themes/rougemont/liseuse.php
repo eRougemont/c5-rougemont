@@ -61,13 +61,13 @@ $booktitle = $parent->getCollectionName();
 <main class="liseuse">
   <div class="container" id="container">
     <div class="row">
-      <div class="col-4"> </div>
-      <div class="col-8">
+      <div class="col-md-4"> </div>
+      <div class="col-md-8">
         <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
       </div>
     </div>
     <div id="viewport" class="row">
-      <aside class="bkg-color-brightest col-4" id="sidebar">
+      <aside class="bkg-color-brightest col-md-4 col-sidebar" id="sidebar">
         <div class="toclocal" id="toc">
           <?php
             $a = new Area('Sidebar');
@@ -75,7 +75,7 @@ $booktitle = $parent->getCollectionName();
           ?>
         </div>
       </aside>
-      <div class="col-8 text" id="text">
+      <div class="col-md-8 text" id="text">
         <?php
           $prevnext = new GlobalArea('prev_next');
           $prevnext->display($c);

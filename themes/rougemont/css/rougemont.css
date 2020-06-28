@@ -409,6 +409,10 @@ body {
   text-align: center;
 }
 
+.liseuse h1.article {
+  margin-bottom: 5rem;
+}
+
 
 h1 {
   font-family: utopia-regular;
@@ -433,8 +437,14 @@ h3 {
   padding: 0;
 }
 
+.ccm-block-page-list-header,
+h4 {
+  font-size: 1.5rem;
+  font-family: firasans-regular;
+  font-weight: normal;
+}
 
-h4, h5, h6 {
+h5, h6 {
   font-family: firasans-regular;
   font-weight: normal;
 }
@@ -572,6 +582,8 @@ h5 {
   float: right;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+  font-family: firasans-light;
+  margin-top: 0.5rem;
 }
 
 
@@ -659,11 +671,15 @@ a.pb {
   font-size: 80%;
   font-stretch: 70%;
   font-family: sans-serif;
+  float: none;
+  margin: 0;
 }
 
 article > .pb, section > .pb {
-  position: absolute;
-  right: 15px;
+  display: block;
+  float: none;
+  text-align: left;
+  margin: 0;
 }
 
 .auto-scroll {
@@ -856,7 +872,7 @@ a.media-thumbnail .icon {
 }
 .col-sidebar,
 div.toclocal {
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem 0.5rem 5rem 0.5rem;
 }
 
 /** toc livre */
@@ -885,6 +901,10 @@ div.toclocal {
   color: #dd0000;
 }
 
+.col-sidebar li.nav-selected {
+  background: #FFFFFF;
+}
+
 
 div.toclocal li {
   padding: 0.1rem 0 0.1rem 0.5rem;
@@ -894,6 +914,18 @@ div.toclocal li {
   display: block;
 }
 
+.col-sidebar .nav li {
+  padding: 3px 1.5rem;
+  line-height: 125%;
+}
+  
+
+.col-sidebar .nav a {
+  display: block;
+  padding: 0 5px;
+}
+
+.col-sidebar .nav a:hover,
 .toclocal a:hover {
   background: linear-gradient(0.25turn, #ffffff, #eeeeee);
 }
@@ -1377,24 +1409,20 @@ nav.covers a .date {
 /** page liste avec vignette horizontale */
 
 .ccm-block-page-list-pages {
-  display: flex;
-  align-items: top;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
-div.ccm-block-page-list-page-entry-horizontal, div.ccm-block-page-list-page-entry {
-  width: 50%;
+div.ccm-block-page-list-page-entry-horizontal, 
+div.ccm-block-page-list-page-entry {
   display: block;
   margin: 0;
-  padding: 0 1rem 1rem 0;
 }
 div.ccm-block-page-list-title {
-  text-align: center;
+  /* text-align: center; */
 }
 div.ccm-block-page-list-title a {
   display: block;
-  padding: 0.5rem;
+  padding: 0 3px;
+  font-weight: normal;
 }
 div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail,
 div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-text {

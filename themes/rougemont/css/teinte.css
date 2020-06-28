@@ -182,7 +182,7 @@ blockquote.quote {
 }
 
 blockquote.quote .p {
-  text-indent: 2em;
+  /* text-indent: 2em; */
 }
 
 cite {
@@ -919,7 +919,7 @@ a.ed, a.pb {}
 a.facs {
   float: right;
   margin-right: 0;
-  margin-left: -1em;
+  margin-left: -1rem;
   z-index: 2;
 }
 
