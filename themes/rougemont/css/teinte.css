@@ -182,7 +182,6 @@ blockquote.quote {
 }
 
 blockquote.quote .p {
-  /* text-indent: 2em; */
 }
 
 cite {
@@ -331,6 +330,7 @@ figure h2 {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  clear: both;
   -webkit-hyphens: none !important;
   adobe-hyphenate: none;
   -moz-hyphens: none;
@@ -368,6 +368,7 @@ h1 a:hover {
 }
 
 h2 {
+  clear: both;
   font-size: 130%;
   margin: 1em 0 1em 0;
   padding-top: 1em;
@@ -376,6 +377,7 @@ h2 {
 }
 
 h3 {
+  clear: both;
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -413,6 +415,11 @@ hr.clear {
 
 i i, i em, em i, em em {
   font-style: normal;
+}
+
+img {
+  max-width: 100%;
+  border: 0;
 }
 
 p img {
@@ -640,7 +647,7 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
-button.but {
+button {
   overflow: visible;
 }
 
@@ -666,7 +673,7 @@ button.but, input[type="button"].but, input[type="reset"].but, input[type="submi
 }
 
 
-button[disabled].but {
+button[disabled], html input[disabled] {
   cursor: default;
 }
 
@@ -944,7 +951,8 @@ h1.collection {
 
 .dateline {
   margin: 2em 0;
-  text-indent: 4em;
+  text-align: right;
+  text-indent: 0;
 }
 
 section {
@@ -976,13 +984,17 @@ aside .docDate {
 .editionStmt {}
 
 .epigraph {
-  text-align: right;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 3rem 5rem;
+  font-size: 87%;
 }
 
-.epigraph p.p {
-  text-align: right;
+.epigraph p.p,
+.epigraph .l {
   font-style: italic;
+  text-align: right;
+}
+
+.epigraph .bibl {
 }
 
 .epigraph .p i,
@@ -998,6 +1010,12 @@ aside .docDate {
   margin-left: 0;
 }
 
+li.item {
+  line-height: 120%;
+  margin-top: 0.5ex;
+  margin-bottom: 0.5ex;
+}
+
 .fileDesc, .fileDesc>p {
   text-align: center;
   text-indent: 0;
@@ -1010,6 +1028,33 @@ aside .docDate {
 .fileDesc>.titleStmt {
   text-align: center;
   margin: 0 0 5em 0;
+}
+
+.titlePart {
+  font-size: 200%;
+  margin-top: 1em;
+}
+
+.titlePart.sub {
+  font-style: italic;
+  margin-top: 0em;
+}
+
+.titleStmt>p {
+  text-align: center;
+  text-indent: 0;
+}
+
+.titleStmt h1 {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.titleStmt div {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .fileDesc>.editionStmt, .fileDesc>.publicationStmt, .fileDesc>.sourceDesc {
@@ -1438,10 +1483,9 @@ div.part-Y {text-indent: 3em;}
 .l.part-F {margin-left: 6em; text-indent: 0; padding-left: 0;}
 */
 div.salute, p.salute {
-  margin: 1em 0 1em 4em;
-  text-indent: 0em;
-  font-style: italic;
-  text-align: right;
+  margin: 1rem 0 1rem 0;
+  text-align: left;
+  text-indent: 1.5rem;
 }
 
 .letter .salute {
@@ -1726,7 +1770,7 @@ section.article h2 {
 
 .border {
   border: 1px solid #808080;
-  padding: 1ex;
+  padding: 0.2rem 0.5rem;
 }
 
 blockquote.border {
@@ -1751,6 +1795,11 @@ h1:hover a.bookmark, h2:hover a.bookmark, h3:hover a.bookmark, h4:hover a.bookma
   margin-left: auto;
   margin-right: auto;
   padding-left: 0;
+}
+
+.center.border {
+  padding: 0.2rem 0.5rem;
+  display:table;
 }
 
 .center p {

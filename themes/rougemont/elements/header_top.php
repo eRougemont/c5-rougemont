@@ -9,9 +9,17 @@
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/rougemont.css" />
     <!--
-<?php echo dirname($c->getCollectionPath()); ?>
+getCollectionPath = <?php echo $c->getCollectionPath(); ?>
+getCollectionName = <?php echo $c->getCollectionName(); ?>
+getCollectionID = <?php echo $c->getCollectionID(); ?>
     -->
   </head>
 <body>
 
-<div id="" class="<?php  echo $c->getPageWrapperClass()?>">
+<div id="" class="<?php
+echo $c->getPageWrapperClass();
+$parent = dirname($c->getCollectionPath());
+if (preg_match('@[a-z]+@', $parent)) echo ' parent-',$parent;
+echo ' ',basename($c->getCollectionPath());
+
+?>">

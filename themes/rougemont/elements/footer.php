@@ -1,7 +1,7 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied."); ?>
 
 <footer id="footer">
-  <div class="bkg-color-darker pad-top-xxl pad-bottom-xxl" id="footer">
+  <div class="bg-dark pt-5 pb-5" id="footer">
     <div class="container">
       <div class="row">
         <div class="col-3">
@@ -21,11 +21,13 @@
         <div class="col-3">
           <h5>Contact</h5>
           <p>
-            Rougemont 2.0
-            <br/>GSI de l’Université de Genève Sciences II,
-            Quai Ernest-Ansermet 30
-            <br/>Case postale CH - 1211 Genève 4
-            <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
+              Rougemont 2.0
+              <br/>GSI de l’Université de Genève
+              <br/>Sciences II
+              <br/>Quai Ernest-Ansermet 30
+              <br/>Case postale
+              <br/>CH - 1211 Genève 4
+              <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
           </p>
         </div>
         <div class="col-3">

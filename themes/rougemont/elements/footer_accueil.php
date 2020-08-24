@@ -1,9 +1,9 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied."); ?>
 
 <footer id="footer">
-  <div class="logos bkg-color-black">
+  <div class="logos bg-black">
     <div class="container">
-      <div class="row pad-top-xxl pad-bottom-xxl">
+      <div class="row pt-5 pb-5">
         <div class="col gsi">
           <img src="<?php  echo $view->getThemePath()?>/img/gsi.png" alt="Unige Global Studies Institute (logo)">
         </div>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <nav>
-    <div class="bkg-color-darker">
+    <div class="bg-darker">
       <div class="container ">
         <div class="row">
           <div class="col-3">
@@ -41,9 +41,11 @@
             <h5>Contact</h5>
             <p>
               Rougemont 2.0
-              <br/>GSI de l’Université de Genève Sciences II,
-              Quai Ernest-Ansermet 30
-              <br/>Case postale CH - 1211 Genève 4
+              <br/>GSI de l’Université de Genève
+              <br/>Sciences II
+              <br/>Quai Ernest-Ansermet 30
+              <br/>Case postale
+              <br/>CH - 1211 Genève 4
               <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
             </p>
           </div>

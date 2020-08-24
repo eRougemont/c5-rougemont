@@ -7,6 +7,7 @@ Teinte = function() {
   var toc = null;
   var tocScroll = null;
   var linkLast = null;
+  var footerHeight = null;
 
 
   function init(selector)
@@ -18,8 +19,9 @@ Teinte = function() {
     }
     toc = document.querySelector("#sidebar .toclocal");
     if (toc) {
-      tocScroll = top(toc) - 30;
+      tocScroll = top(toc) - 50;
       toc.style.width = toc.offsetWidth+"px";
+      toc.lastBottom = 0;
       window.addEventListener('scroll', Teinte.tocFix);
       tocFix();
     }
@@ -37,6 +39,7 @@ Teinte = function() {
       window.addEventListener('scroll', Teinte.scrollPage);
       scrollPage();
     }
+    // Des liens dans le diaporama à l’accueil
     var links = document.querySelectorAll(".slider-nav a");
     for (var i = 0, max = links.length; i < max; i++) {
       let a = links[i];
@@ -48,7 +51,12 @@ Teinte = function() {
       a.ref = ref;
       a.onclick = Teinte.sliderClick;
     }
-
+    var footer = document.querySelector("#footer");
+    if (footer) footerHeight = footer.clientHeight;
+    var els = document.querySelectorAll("p.ccm-block-next-previous-previous-link, p.ccm-block-next-previous-next-link");
+    for (var i = 0, max = els.length; i < max; i++) {
+      els[i].title = els[i].innerText;
+    }
   }
 
   function sliderClick(e)
@@ -100,6 +108,16 @@ Teinte = function() {
   };
   function tocFix()
   {
+    scrollable = document.body;
+    if (!scrollable.scrollTop) scrollable = document.documentElement;
+    
+    var bottom = footerHeight - (scrollable.scrollHeight - scrollable.scrollTop - scrollable.clientHeight);
+    if (bottom > 0) {
+     toc.style.bottom = bottom+"px";
+     if (toc.scrollTop) toc.scrollTop = toc.scrollTop + (bottom - toc.lastBottom);
+     toc.lastBottom = bottom;
+     console.log(bottom);
+    }
     if (document.body.scrollTop > tocScroll || document.documentElement.scrollTop > tocScroll) {
       if (toc.className.match(/\bscrolled\b/));
     	else toc.className += " scrolled";
@@ -118,17 +136,25 @@ Teinte = function() {
     }
   }
 
+  function getScrollParent(node) {
+    if (node == null) return null;
+    if (node.scrollTop) return node;
+    return getScrollParent(node.parentNode);
+  }
   // scrol after anchor clicked
   function scrollAnchor()
   {
     let id = location.hash;
     if (!id) return;
     if (id[0] == "#") id = id.substring(1);
-    if (!document.getElementById(id)) return;
-    // Quand l'interface sera stabilisée,
-    // on saura quoi et de combien dérouler
-    // (table des matières longues)
-    // window.scrollBy(0, -10);
+    let target = document.getElementById(id);
+    if (!target) return;
+    const scrollable = getScrollParent(target);
+    if (!scrollable) return;
+    if (scrollable.lastScroll == scrollable.scrollTop) return;
+    var newScroll = scrollable.scrollTop - 100;
+    scrollable.scrollTop = newScroll;
+    scrollable.lastScroll = newScroll;
   };
 
   function scrollPage()

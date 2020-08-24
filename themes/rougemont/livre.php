@@ -7,7 +7,7 @@ $basename = basename($c->getCollectionPath());
 <main>
   <div>
     <div class="container">
-      <div class="marg-top-xl marg-bottom-xl" id="chapo">
+      <div class="mt-4 mb-4" id="chapo">
         <?php
            $a = new Area('livre_chapo');
            $a->display($c);
@@ -37,7 +37,7 @@ $basename = basename($c->getCollectionPath());
       </div>
     </div>
 
-    <div class="bkg-color-brightest pad-top-xl pad-bottom-xl">
+    <div class="bg-light pt-5 pb-5">
       <div class="container">
         <div class="row">
           <div class="col-6" id="biblio">
@@ -47,7 +47,7 @@ $basename = basename($c->getCollectionPath());
             ?>
           </div>
           <div class="col-6">
-            <nav class="toclocal" id="toc">
+            <nav class="toclocal" id="livre_sommaire">
               <?php
                  $a = new Area('livre_sommaire');
                  $a->display($c);

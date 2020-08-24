@@ -8,7 +8,7 @@ $booktitle = $parent->getCollectionName();
 
 <header id="header" class="shrinkable">
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row">
       <div class="col-3 logo">
         <div id="portrait">
           <a href="<?php echo BASE_URL; ?>">
@@ -60,14 +60,8 @@ $booktitle = $parent->getCollectionName();
 
 <main class="liseuse">
   <div class="container" id="container">
-    <div class="row">
-      <div class="col-md-4"> </div>
-      <div class="col-md-8">
-        <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
-      </div>
-    </div>
-    <div id="viewport" class="row">
-      <aside class="bkg-color-brightest col-md-4 col-sidebar" id="sidebar">
+     <div id="viewport" class="row">
+      <aside class="bg-light col-md-4 col-sidebar" id="sidebar">
         <div class="toclocal" id="toc">
           <?php
             $a = new Area('Sidebar');
@@ -76,6 +70,7 @@ $booktitle = $parent->getCollectionName();
         </div>
       </aside>
       <div class="col-md-8 text" id="text">
+        <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
         <?php
           $prevnext = new GlobalArea('prev_next');
           $prevnext->display($c);

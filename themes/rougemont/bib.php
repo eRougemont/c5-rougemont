@@ -4,21 +4,19 @@ $this->inc('elements/header.php'); ?>
 
 <main>
 
-<div class="bkg-gradient-white-to-brighter pad-top-xl pad-bottom-xl" id="bib_chapo">
+<div class="bkg-gradient-white-to-brighter pt-4 pb-4 clearfix" id="bib_chapo">
   <div class="container">
     <?php
     $a = new Area('Page Header');
-    $a->enableGridContainer();
     $a->display($c);
     ?>
   </div>
 </div>
 
-<div id="bib_pix" class=" pad-top-xl pad-bottom-xl">
-  <div class="container">
+<div id="bib_covers" class=" pt-4 pb-4">
+  <div class="container clearfix">
     <?php
     $a = new Area('Main');
-    $a->enableGridContainer();
     $a->display($c);
     ?>
   </div>
@@ -27,7 +25,6 @@ $this->inc('elements/header.php'); ?>
   <div class="container">
     <?php
     $a = new Area('Page Footer');
-    $a->enableGridContainer();
     $a->display($c);
     ?>
   </div>
