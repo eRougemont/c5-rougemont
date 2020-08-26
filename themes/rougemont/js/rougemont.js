@@ -1,4 +1,6 @@
 
+
+
 Teinte = function() {
   var lastScrollY = 0;
   var noterefs = document.querySelectorAll('a.noteref');
@@ -8,10 +10,14 @@ Teinte = function() {
   var tocScroll = null;
   var linkLast = null;
   var footerHeight = null;
+  var bookPath = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'));
+  var scrollMother = ('scrollTop' in document.documentElement)?document.documentElement:document.body;
 
 
   function init(selector)
   {
+  
+    console.log('scrollTop' in document.body);
     shrinkable = document.querySelector("header.shrinkable");
     if (shrinkable) {
       window.addEventListener('scroll', Teinte.shrink);
@@ -19,11 +25,31 @@ Teinte = function() {
     }
     toc = document.querySelector("#sidebar .toclocal");
     if (toc) {
+      
+      
+    
+      var tocScrollTop = sessionStorage.getItem(bookPath+"TocScrollTop");
+      
+      
+      toc.addEventListener('scroll', Teinte.tocStore, false);
       tocScroll = top(toc) - 50;
-      toc.style.width = toc.offsetWidth+"px";
+      // console.log(toc.parentNode.offsetWidth);
+      toc.style.width = toc.parentNode.offsetWidth+"px";
       toc.lastBottom = 0;
       window.addEventListener('scroll', Teinte.tocFix);
-      tocFix();
+      if (tocScrollTop) { // scroll window, tocFix, scroll toc
+        scrollMother.scrollTop = tocScroll + 50;
+        tocFix();
+        toc.scrollTop = tocScrollTop;
+      }
+      else {
+        tocFix();
+        var aselected = toc.querySelector("a.nav-selected");
+        if (aselected) {
+          aselected.scrollIntoView();
+          toc.scrollTop = toc.scrollTop - 30;
+        }
+      }
     }
     var text = document.querySelector("#text");
     if (text) {
@@ -106,29 +132,33 @@ Teinte = function() {
       && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   };
+  function tocStore()
+  {
+    if (toc.scrollTop) {
+      sessionStorage.setItem(bookPath+"TocScrollTop", toc.scrollTop);
+      console.log("set item "+bookPath+"TocScrollTop"+" :"+toc.scrollTop);
+    }
+  }
   function tocFix()
   {
-    scrollable = document.body;
-    if (!scrollable.scrollTop) scrollable = document.documentElement;
-    
-    var bottom = footerHeight - (scrollable.scrollHeight - scrollable.scrollTop - scrollable.clientHeight);
+    var bottom = footerHeight - (scrollMother.scrollHeight - scrollMother.scrollTop - scrollMother.clientHeight);
     if (bottom > 0) {
      toc.style.bottom = bottom+"px";
      if (toc.scrollTop) toc.scrollTop = toc.scrollTop + (bottom - toc.lastBottom);
      toc.lastBottom = bottom;
-     console.log(bottom);
     }
-    if (document.body.scrollTop > tocScroll || document.documentElement.scrollTop > tocScroll) {
+    if (scrollMother.scrollTop >= tocScroll) {
       if (toc.className.match(/\bscrolled\b/));
     	else toc.className += " scrolled";
-    } else {
+    } 
+    else {
       toc.className = toc.className.replace(/\bscrolled\b/g, "");
     }
   }
 
   function shrink()
   {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    if (scrollMother.scrollTop > 50) {
       if (shrinkable.className.match(/\bshrinked\b/));
     	else shrinkable.className += " shrinked";
     } else {
@@ -136,7 +166,8 @@ Teinte = function() {
     }
   }
 
-  function getScrollParent(node) {
+  function getScrollParent(node)
+  {
     if (node == null) return null;
     if (node.scrollTop) return node;
     return getScrollParent(node.parentNode);
@@ -220,6 +251,7 @@ Teinte = function() {
     scrollPage:scrollPage,
     resize:resize,
     tocFix:tocFix,
+    tocStore:tocStore,
     sliderClick:sliderClick,
   };
 }();

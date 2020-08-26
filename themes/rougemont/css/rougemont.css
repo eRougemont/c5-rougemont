@@ -579,13 +579,18 @@ a.media-thumbnail .icon {
   padding: 3rem 0 2rem 3px;
   position: relative;
 }
+#toc {
+  position: fixed;
+  overflow: auto;
+  bottom: 0rem;
+  top: 240px;
+  
+}
 #toc.scrolled {
   position: fixed;
   overflow: auto;
   bottom: 0rem;
-  top: 6rem;
-  width: inherit;
-  max-width: inherit;
+  top: 48px;
   padding-top: 3rem;
 }
 #toc.scrolled > ul {
@@ -640,9 +645,13 @@ div.toclocal {
 .col-sidebar li.nav-selected > a {
   color: #dd0000;
 }
+.col-sidebar li.nav-selected > a:hover {
+  background: none;
+}
 
 .col-sidebar li.nav-selected {
   background: #FFFFFF;
+  border-right: #dd0000 solid 3px;
 }
 
 
