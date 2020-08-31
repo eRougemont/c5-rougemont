@@ -1,13 +1,13 @@
 
-
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
 Teinte = function() {
   var lastScrollY = 0;
   var noterefs = document.querySelectorAll('a.noteref');
   var noteBot = null;
   var shrinkable = null;
-  var toc = null;
-  var tocScroll = null;
+  var sidefix = null;
   var linkLast = null;
   var footerHeight = null;
   var bookPath = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'));
@@ -16,40 +16,33 @@ Teinte = function() {
 
   function init(selector)
   {
-  
-    console.log('scrollTop' in document.body);
     shrinkable = document.querySelector("header.shrinkable");
     if (shrinkable) {
       window.addEventListener('scroll', Teinte.shrink);
       shrink();
     }
-    toc = document.querySelector("#sidebar .toclocal");
-    if (toc) {
-      
-      
-    
-      var tocScrollTop = sessionStorage.getItem(bookPath+"TocScrollTop");
-      
-      
-      toc.addEventListener('scroll', Teinte.tocStore, false);
-      tocScroll = top(toc) - 50;
-      // console.log(toc.parentNode.offsetWidth);
-      toc.style.width = toc.parentNode.offsetWidth+"px";
-      toc.lastBottom = 0;
-      window.addEventListener('scroll', Teinte.tocFix);
-      if (tocScrollTop) { // scroll window, tocFix, scroll toc
-        scrollMother.scrollTop = tocScroll + 50;
-        tocFix();
-        toc.scrollTop = tocScrollTop;
-      }
-      else {
-        tocFix();
-        var aselected = toc.querySelector("a.nav-selected");
-        if (aselected) {
-          aselected.scrollIntoView();
-          toc.scrollTop = toc.scrollTop - 30;
-        }
-      }
+    sidefix = document.getElementById("sidefix");
+    if (sidefix) {
+      window.addEventListener('scroll', Teinte.scrollFix);
+      do {
+        if (vw < 992) break; // do not scroll in the sidebar if screen is too small
+        var lastBook = sessionStorage.getItem('bookPath');
+        if (lastBook != bookPath) { // do not scroll if new in this series
+          sessionStorage.setItem('bookPath', bookPath);
+         }
+         else {
+          // // do not scroll if already scrolled like with reload
+          if (!scrollMother.scrollTop) scrollMother.scrollTop += 310; 
+         }
+        
+        // scroll link into view
+        var aselected = sidefix.querySelector("a.nav-selected");
+        if (!aselected) break;
+        scrollFix(); // set bottom of sidebar because of footer before scrolling 
+        aselected.scrollIntoView();
+        // center scroll, but not for last items
+        if (sidefix.scrollHeight - sidefix.scrollTop - sidefix.clientHeight > 0) sidefix.scrollTop = sidefix.scrollTop - (sidefix.clientHeight / 2);
+      } while(false);
     }
     var text = document.querySelector("#text");
     if (text) {
@@ -90,7 +83,7 @@ Teinte = function() {
     let ref = this.ref;
     ref.parentNode.scrollLeft = ref.offsetLeft;
     let last = this.parentNode.lastLink;
-    if (last) last.className = last.className.replace(/ *\bselected\b */g, "");
+    if (last) last.className = last.className.replace(/\bselected\b/g, "");
     this.className += " selected";
     this.parentNode.lastLink = this;
     e.preventDefault();
@@ -119,7 +112,6 @@ Teinte = function() {
   {
     var text = noteBot.parentNode;
     noteBot.style.width = getComputedStyle(text).width;
-    if (toc) toc.style.width = getComputedStyle(toc.parentNode).width;
   };
 
   function isVisible(elem)
@@ -132,37 +124,24 @@ Teinte = function() {
       && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   };
-  function tocStore()
-  {
-    if (toc.scrollTop) {
-      sessionStorage.setItem(bookPath+"TocScrollTop", toc.scrollTop);
-      console.log("set item "+bookPath+"TocScrollTop"+" :"+toc.scrollTop);
-    }
-  }
-  function tocFix()
+
+  function scrollFix()
   {
     var bottom = footerHeight - (scrollMother.scrollHeight - scrollMother.scrollTop - scrollMother.clientHeight);
     if (bottom > 0) {
-     toc.style.bottom = bottom+"px";
-     if (toc.scrollTop) toc.scrollTop = toc.scrollTop + (bottom - toc.lastBottom);
-     toc.lastBottom = bottom;
-    }
-    if (scrollMother.scrollTop >= tocScroll) {
-      if (toc.className.match(/\bscrolled\b/));
-    	else toc.className += " scrolled";
-    } 
-    else {
-      toc.className = toc.className.replace(/\bscrolled\b/g, "");
+      sidefix.style.bottom = bottom+"px";
+      if (sidefix.scrollTop) sidefix.scrollTop = sidefix.scrollTop + (bottom - sidefix.lastBottom);
+      sidefix.lastBottom = bottom;
     }
   }
 
   function shrink()
   {
     if (scrollMother.scrollTop > 50) {
-      if (shrinkable.className.match(/\bshrinked\b/));
-    	else shrinkable.className += " shrinked";
+      if (document.body.className.match(/\bshrink\b/));
+    	else document.body.className += " shrink";
     } else {
-      shrinkable.className = shrinkable.className.replace(/\bshrinked\b/g, "");
+      document.body.className = document.body.className.replace(/ *\bshrink\b */g, "");
     }
   }
 
@@ -195,26 +174,28 @@ Teinte = function() {
     if (scrollY < lastScrollY) up = true;
     lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll coul be negative
     var count = 0;
-    // hilite title
-    var links=toc.getElementsByTagName("a");
-    var path = window.location.href.split('#')[0];
-    var pos = path.length + 1;
-    for(var i=0; i < links.length; i++) {
-      var href = links[i].href;
-      if (href.indexOf(path) < 0) continue;
-      var id = href.substr(pos);
-      if (!id) continue;
-      var div = document.getElementById(id);
-      if (!div) continue;
-      var bounding = div.getBoundingClientRect();
-      var visible = bounding.top >= 0 || (bounding.bottom > 0 && bounding.bottom > (window.innerHeight || document.documentElement.clientHeight));
-      // console.log(div.id+" "+visible+" "+bounding.top+" "+bounding.bottom);
-      if (!visible) continue;
-      if (links[i] == linkLast) break;
-      if (linkLast) linkLast.className = linkLast.className.replace(/ *\bvisible\b */g, "");
-      links[i].className += "visible";
-      linkLast = links[i];
-      break;
+    // hilite title in toc
+    if (sidefix) {
+      var links=sidefix.getElementsByTagName("a");
+      var path = window.location.href.split('#')[0];
+      var pos = path.length + 1;
+      for(var i=0; i < links.length; i++) {
+        var href = links[i].href;
+        if (href.indexOf(path) < 0) continue;
+        var id = href.substr(pos);
+        if (!id) continue;
+        var div = document.getElementById(id);
+        if (!div) continue;
+        var bounding = div.getBoundingClientRect();
+        var visible = bounding.top >= 0 || (bounding.bottom > 0 && bounding.bottom > (window.innerHeight || document.documentElement.clientHeight));
+        // console.log(div.id+" "+visible+" "+bounding.top+" "+bounding.bottom);
+        if (!visible) continue;
+        if (links[i] == linkLast) break;
+        if (linkLast) linkLast.className = linkLast.className.replace(/ *\bvisible\b */g, "");
+        links[i].className += "visible";
+        linkLast = links[i];
+        break;
+      }
     }
 
 
@@ -250,8 +231,7 @@ Teinte = function() {
     scrollAnchor:scrollAnchor,
     scrollPage:scrollPage,
     resize:resize,
-    tocFix:tocFix,
-    tocStore:tocStore,
+    scrollFix:scrollFix,
     sliderClick:sliderClick,
   };
 }();

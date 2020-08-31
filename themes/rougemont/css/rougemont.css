@@ -51,8 +51,11 @@ a:active, a:focus {
   -moz-outline-style: none;
 }
 
-ul.nav { /* bug bootstrap ? */
-  display: block;
+ul.nav { /* bootstrap, flex ? */
+  /* display: block; */
+}
+
+ul.nav > li {
 }
 
 .color-brightest {
@@ -432,6 +435,10 @@ article > .pb, section > .pb {
   margin: 0;
 }
 
+article > h1 {
+  clear: none; /* for floating page number */
+}
+
 .auto-scroll {
   overflow-y: auto;
 }
@@ -576,26 +583,69 @@ a.media-thumbnail .icon {
   position: relative;
 }
 #sidebar {
-  padding: 3rem 0 2rem 3px;
+  /* do not fixed the sidebar container, to keep space */
   position: relative;
 }
-#toc {
-  position: fixed;
+#sidefix {
   overflow: auto;
   bottom: 0rem;
-  top: 240px;
-  
+  top: 180px;
+  padding-top: 5rem;
 }
-#toc.scrolled {
-  position: fixed;
-  overflow: auto;
-  bottom: 0rem;
-  top: 48px;
-  padding-top: 3rem;
+
+body.shrink #sidefix {
+  top: 3rem;
 }
-#toc.scrolled > ul {
-  margin-bottom: 3rem;
+
+@media (max-width: 400px) {
+  #header .logo {
+    display: none;
+  }
 }
+
+
+@media (max-width: 991px) {
+  #viewport {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+  .headnav ul {
+    flex-wrap: wrap;
+  }
+  .headnav a {
+    padding: 0 0.5rem !important;
+    border: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  #viewport {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  #sidebar {
+    width: 250px;
+    flex: 0 0 250px;
+  }
+  #sidefix {
+    width: 250px;
+    position: fixed;
+  }
+  #text {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  #sidebar {
+    width: 380px;
+    flex: 0 0 380px;
+  }
+  #sidefix {
+    width: 380px;
+  }
+}
+
 #text {
   padding-left: 2rem;
 }
@@ -612,13 +662,32 @@ a.media-thumbnail .icon {
 #livre_sommaire {
 
 }
-.col-sidebar {
-  background-color: #eee; /* bkg-color-brightest */
+
+.toclocal {
+  padding: 1.5rem 0 5rem 2rem;
 }
-.col-sidebar,
-div.toclocal {
-  padding: 1rem 0.5rem 5rem 0.5rem;
+
+.toclocal ul {
+  display: block; /* bootstrap want it as flex */
 }
+
+#sidefix .buts {
+  display: none;
+  position: fixed;
+  margin: -1rem 0 0 -1.7rem;
+}
+
+#sidefix .buts > * {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 15pt;
+  cursor: pointer;
+}
+
+#sidefix .buts > *:hover {
+  color: #dd0000;
+}
+
 
 /** toc livre */
 .toclocal li.chapter > ul {
@@ -651,12 +720,13 @@ div.toclocal {
 
 .col-sidebar li.nav-selected {
   background: #FFFFFF;
-  border-right: #dd0000 solid 3px;
+  border-left: #dd0000 solid 3px;
+  padding-left: 0.5rem;
 }
 
 
 div.toclocal li {
-  padding: 0.1rem 0 0.1rem 0.5rem;
+  padding: 0.1rem 0;
 }
 .toclocal a {
   color: black;
@@ -672,21 +742,28 @@ ul.nav {
   padding-left: 0;
 }
 
-.nav ul {
+.nav ul ul {
   list-style: none;
   padding-left: 1rem;
 }
   
 
+.col-sidebar .nav li {
+  display: block;
+  line-height: 115%;
+  padding-top: 5px; 
+  padding-bottom: 5px; 
+}
+
 .col-sidebar .nav a {
   display: block;
-  line-height: 130%;
-  padding: 0 5px;
 }
+
 
 .col-sidebar .nav a:hover,
 .toclocal a:hover {
-  background: linear-gradient(0.25turn, #ffffff, #eeeeee);
+  background: linear-gradient(0.25turn, #f8f9fa, 30%, #ffffff);
+  color: #dd0000;
 }
 .toclocal ul {
   list-style-type: none;
@@ -703,7 +780,7 @@ ul.nav {
   background-color: #FFFFFF;
 }
 .toclocal > ul > li {
-  padding-left: 0.5rem;
+  /* padding-left: 0.5rem; */
 }
 
 
@@ -790,9 +867,13 @@ a.btn.btn-plain-dark:hover, button.btn.btn-plain-dark:hover, input[type=submit].
   position: relative;
   display: flex;
   display: -ms-flexbox;
-  flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
+  /*
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  */
+  /*
   align-content: stretch;
+  */
   align-items: center;
   justify-content: center;
   margin: 3rem 0 3rem -15px;
@@ -801,13 +882,15 @@ a.btn.btn-plain-dark:hover, button.btn.btn-plain-dark:hover, input[type=submit].
   display: none;
 }
 .ccm-block-next-previous-wrapper p {
+  height: 1.5rem;
+  overflow: hidden;
   margin: 0;
   padding: 5px 0 3px 0;
   position: relative;
-  flex-grow: 1;
-  flex-basis: 0;
   -ms-flex-preferred-size: 0;
   -ms-flex-positive: 1;
+  flex: 1 1 50%;
+
   color: white;
   background-color: #dd0000;
   font-size: 0.9rem;
@@ -859,10 +942,9 @@ p.ccm-block-next-previous-next-link a,
 p.ccm-block-next-previous-previous-link a {
   color: white;
   display: inline-block;
-  border-radius: 0;
-  width: 21rem;
-  white-space: nowrap;
+  height: 1rem;
   overflow: hidden;
+  border-radius: 0;
   text-overflow: ellipsis;
 }
 p.ccm-block-next-previous-next-link a {
@@ -926,11 +1008,11 @@ header.shrinkable h2 {
 #header #breadcrumb {
   display: none;
 }
-#header.shrinked > .container > .row {
+body.shrink #header > .container > .row {
   align-items: center;
   justify-content: center;
 }
-#header.shrinked #breadcrumb {
+body.shrink #header #breadcrumb {
   display: block;
 }
 #breadcrumb .gotop {
@@ -957,29 +1039,29 @@ header.shrinkable .gotop a i {
 #header.shrinkable, #header.shrinkable * {
   transition: min-height 800ms, opacity 800ms;
 }
-#header.shrinked {
+body.shrink #header.shrinkable {
   height: 3rem;
   background-color: #cf1308;
 }
-#header.shrinked #portrait {
+body.shrink #header.shrinkable #portrait {
   height: 3rem;
   background: transparent;
 }
-#header.shrinked #portrait img {
+body.shrink #header.shrinkable #portrait img {
   padding: 0.1rem 0 0 1rem;
   height: 3.0rem;
 }
-#header.shrinked #sitebox, #header.shrinked #moto {
+body.shrink #header.shrinkable #sitebox, body.shrink #header.shrinkable #moto {
   display: none;
 }
-#header.shrinked {
+body.shrink #header.shrinkable {
   background-image: none !important;
 }
-#header.shrinked .ccm-block-next-previous-wrapper a {
+body.shrink #header.shrinkable .ccm-block-next-previous-wrapper a {
   color: black;
   background-color: white;
 }
-#header.shrinked .ccm-block-next-previous-wrapper a:hover {
+body.shrink #header.shrinkable .ccm-block-next-previous-wrapper a:hover {
   background-color: #EEE;
 }
 
@@ -1018,6 +1100,7 @@ header.shrinkable .gotop a i {
 .headnav ul {
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
   padding: 0;
   margin: 30px 0 0 0;
 }
@@ -1131,7 +1214,9 @@ header.shrinkable .gotop a i {
   text-align: right;
   margin-top: 0.8rem;
 }
-
+.ccm-search-block-form {
+  white-space: nowrap;
+}
 .ccm-search-block-text {
 }
 .ccm-search-block-submit {

@@ -60,16 +60,25 @@ $booktitle = $parent->getCollectionName();
 
 <main class="liseuse">
   <div class="container" id="container">
-     <div id="viewport" class="row">
-      <aside class="bg-light col-md-4 col-sidebar" id="sidebar">
-        <div class="toclocal" id="toc">
-          <?php
-            $a = new Area('Sidebar');
-            $a->display($c);
-          ?>
+     <div id="viewport">
+      <aside id="sidebar" class="col-sidebar">
+        <div class="bg-light" id="sidefix">
+          <div class="buts">
+            <i class="far fa-images"></i>
+            <i class="fas fa-list-ul"></i>
+          </div>
+          <div class="toclocal" id="toc">
+            <?php
+              $a = new Area('Sidebar');
+              $a->display($c);
+            ?>
+          </div>
+          <div id="pages">
+          
+          </div>
         </div>
       </aside>
-      <div class="col-md-8 text" id="text">
+      <div id="text">
         <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
         <?php
           $prevnext = new GlobalArea('prev_next');
