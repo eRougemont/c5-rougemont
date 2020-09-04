@@ -4,24 +4,24 @@ $this->inc('elements/header_top.php');
 
 $parent = Page::getByID($c->getCollectionParentID());
 $booktitle = $parent->getCollectionName();
+$gp = Page::getByID($parent->getCollectionParentID());
+
 ?>
 
 <header id="header" class="shrinkable">
   <div class="container">
     <div class="row">
-      <div class="col-3 logo">
-        <div id="portrait">
-          <a href="<?php echo BASE_URL; ?>">
-            <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
-            <span id="moto">
-              L'intégrale de
-              <br/>Denis de Rougemont<br/>
-              en libre accès
-            </span>
-          </a>
-        </div>
+      <div class="col-3 logo" id="portrait">
+        <a href="<?php echo BASE_URL; ?>">
+          <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
+          <span id="moto">
+            L'intégrale de
+            <br/>Denis de Rougemont<br/>
+            en libre accès
+          </span>
+        </a>
       </div>
-      <div class="col-9">
+      <div class="col-9" id="search_nav">
         <div id="sitebox">
           <div class="search">
             <?php
@@ -43,11 +43,10 @@ $booktitle = $parent->getCollectionName();
             </a>
           </div>
           <div class="headmeta">
-            <a href="../"><?php
-              $gp = Page::getByID($parent->getCollectionParentID());
+            <a href="<?php print($gp->getCollectionLink()); ?>"><?php
               echo $gp->getCollectionName();
             ?></a>
-            &gt; <a href="."><?php print($booktitle); ?></a>
+            &gt; <a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle); ?></a>
             &gt;  <a href="#"><?php print($c->getCollectionName()); ?></a>
           </div>
 
@@ -57,10 +56,10 @@ $booktitle = $parent->getCollectionName();
   </div>
 </header>
 
-
-<main class="liseuse">
-  <div class="container" id="container">
-     <div id="viewport">
+<main class="liseuse container">
+   <div id="viewport">
+      <?php if(!$mobile) {
+      echo '
       <aside id="sidebar" class="col-sidebar">
         <div class="bg-light" id="sidefix">
           <div class="buts">
@@ -68,26 +67,28 @@ $booktitle = $parent->getCollectionName();
             <i class="fas fa-list-ul"></i>
           </div>
           <div class="toclocal" id="toc">
-            <?php
+       ';
               $a = new Area('Sidebar');
               $a->display($c);
-            ?>
+      echo '
           </div>
           <div id="pages">
           
           </div>
         </div>
       </aside>
-      <div id="text">
-        <a href="."><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
-        <?php
-          $prevnext = new GlobalArea('prev_next');
-          $prevnext->display($c);
-          $a = new Area('Main');
-          $a->display($c);
-          $prevnext->display($c);
-        ?>
-      </div>
+      ';
+     } ?>
+    <div id="text">
+<?php print_r($mobile); ?>
+      <a href="<?php print($parent->getCollectionLink()); ?>"><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
+      <?php
+        $prevnext = new GlobalArea('prev_next');
+        $prevnext->display($c);
+        $a = new Area('Main');
+        $a->display($c);
+        $prevnext->display($c);
+      ?>
     </div>
   </div>
 </main>

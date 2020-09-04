@@ -3,6 +3,7 @@
 <html lang="fr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php  Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : '')); ?>
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/teinte.css" />
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/all.css" />
@@ -23,10 +24,13 @@ getCollectionID = <?php echo $c->getCollectionID(); ?>
     -->
   </head>
 <body>
-
+<?php 
+$md = new Mobile_Detect();
+$mobile = $md->isMobile();
+?>
 <div id="" class="<?php
 echo $c->getPageWrapperClass();
-$parent = dirname($c->getCollectionPath());
+$parent = trim(dirname($c->getCollectionPath()), " /");
 if (preg_match('@[a-z]+@', $parent)) echo ' parent-',$parent;
 echo ' ',basename($c->getCollectionPath());
 

@@ -8,7 +8,7 @@ $basename = basename($c->getCollectionPath());
 
   <div class="container">
     <div class="row">
-      <div class="col-7" id="accueil_actus">
+      <div id="accueil_actus" class="col-md-7">
         <h1>Actualités</h1>
         <?php
           $a = new Area('Main');
@@ -16,7 +16,7 @@ $basename = basename($c->getCollectionPath());
           $a->display($c);
         ?>
       </div>
-      <div class="col-5" id="accueil_video">
+      <div id="accueil_video" class="col-md-5">
         <?php
           $a = new Area('accueil_video');
           $a->enableGridContainer();
@@ -41,24 +41,24 @@ $basename = basename($c->getCollectionPath());
     </div>
   </div>
 
-  <div class="bg-light">
+  <div class="bg-light" id="accueil_textes">
     <div class="container bg-white">
       <div class="row">
-        <div class="col-4   extracts-list-box extracts-list-box-articles" id="accueil_articles">
+        <div class="col-md-4   extracts-list-box extracts-list-box-articles" id="accueil_articles">
           <h1 class="center m-4"><a href="articles">Articles</a></h1>
           <?php
             $a = new Area('accueil_articles');
             $a->display($c);
           ?>
         </div>
-        <div class="col-4 extracts-list-box extracts-list-box-correspondances" id="accueil_correspondances">
-          <h1 class="center m-4">Correspondances</h1>
+        <div class="col-md-4 extracts-list-box extracts-list-box-correspondances" id="accueil_correspondances">
+          <h1 class="center m-4"><a href="correspondances">Correspondances</a></h1>
           <?php
             $a = new Area('accueil_correspondances');
             $a->display($c);
           ?>
         </div>
-        <div class="col-4 extracts-list-box extracts-list-box-archives" id="accueil_archives">
+        <div class="col-md-4 extracts-list-box extracts-list-box-archives" id="accueil_archives">
           <h1 class="center m-4">Archives</h1>
           <?php
             $a = new Area('accueil_archives');
@@ -67,15 +67,13 @@ $basename = basename($c->getCollectionPath());
         </div>
       </div>
       <div class="row center pt-3 pb-5" id="accueil_tous">
-        <div class="col-4">
+        <div class="col-md-4">
           <a href="articles" class="btn btn-outline btn-outline-red btn-small">Tous les articles</a>
         </div>
-        <div class="col-4">
-          <!--
+        <div class="col-md-4">
           <a href="correspondances" class="btn btn-outline btn-outline-red btn-small">Toutes les correspondances</a>
-          -->
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
         <!--
           <a href="archives" class="btn btn-outline btn-outline-red btn-small">Toutes les archives</a>
           -->
@@ -86,24 +84,21 @@ $basename = basename($c->getCollectionPath());
 
   <div class="bg-red" id="accueil_medias">
     <div class="container">
-      <h1 class="center pt-4 pb-4">Médias</h1>
+      <h1 class="center pt-4 pb-4"><a href="medias">Médias</a></h1>
       <div class="row">
-        <div class="col-5">
+        <div class="trailer col-md-5">
           <?php
             $a = new Area('accueil_trailer');
             $a->display($c);
           ?>
         </div>
-        <div class="col-7">
+        <div class="videos col-md-7">
           <?php
             $a = new Area('accueil_medias');
             $a->enableGridContainer();
             $a->display($c);
           ?>
         </div>
-      </div>
-      <div class="center">
-          <a href="medias" class="  btn btn-plain btn-plain-bright  btn-small mt-3 mt-4">Tous les médias</a>
       </div>
     </div>
   </div>

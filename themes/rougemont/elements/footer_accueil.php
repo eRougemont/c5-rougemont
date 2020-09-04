@@ -22,53 +22,51 @@
       </div>
     </div>
   </div>
-  <nav>
-    <div class="bg-darker">
-      <div class="container ">
-        <div class="row">
-          <div class="col-3">
-            <h5>Soutiens financiers</h5>
-            <ul>
-              <li>Fondation privée genevoise</li>
-              <li>Mme Françoise Demole</li>
-              <li>Fondation Jan Michalski</li>
-              <li>Fondation UBS pour la culture</li>
-              <li>Fondation Ernst et Lucie Schmidheiny</li>
-              <li>Fondation de famille Sandoz</li>
-            </ul>
-          </div>
-          <div class="col-3">
-            <h5>Contact</h5>
-            <p>
-              Rougemont 2.0
-              <br/>GSI de l’Université de Genève
-              <br/>Sciences II
-              <br/>Quai Ernest-Ansermet 30
-              <br/>Case postale
-              <br/>CH - 1211 Genève 4
-              <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
-            </p>
-          </div>
-          <div class="col-3">
-            <h5>Conditions d'usage</h5>
-            <p>
-              Sauf indication contraire, les contenus de ce site sont publiés sous une licence Creative commons CC-BY-NC, 4.0.
-            </p>
-          </div>
-          <div class="col-3">
-            <h5>Partenaires</h5>
-            <ul>
-              <li>BPU de Neuchâtel</li>
-              <li>Centre européen de la culture</li>
-              <li>Bibliothèque de l’IHEID</li>
-              <li>Archives de la RTS</li>
-            </ul>
-            <div id="loginout"><?php  echo Core::make('helper/navigation')->getLogInOutLink()?></div>
-          </div>
+  <div class="bg-darker">
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-3">
+          <h5>Soutiens financiers</h5>
+          <ul>
+            <li>Fondation privée genevoise</li>
+            <li>Mme Françoise Demole</li>
+            <li>Fondation Jan Michalski</li>
+            <li>Fondation UBS pour la culture</li>
+            <li>Fondation Ernst et Lucie Schmidheiny</li>
+            <li>Fondation de famille Sandoz</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Contact</h5>
+          <p>
+            Rougemont 2.0
+            <br/>GSI de l’Université de Genève
+            <br/>Sciences II
+            <br/>Quai Ernest-Ansermet 30
+            <br/>Case postale
+            <br/>CH - 1211 Genève 4
+            <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h5>Conditions d'usage</h5>
+          <p>
+            Sauf indication contraire, les contenus de ce site sont publiés sous une licence Creative commons CC-BY-NC, 4.0.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h5>Partenaires</h5>
+          <ul>
+            <li>BPU de Neuchâtel</li>
+            <li>Centre européen de la culture</li>
+            <li>Bibliothèque de l’IHEID</li>
+            <li>Archives de la RTS</li>
+          </ul>
+          <div id="loginout"><?php  echo Core::make('helper/navigation')->getLogInOutLink()?></div>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 </footer>
 
 

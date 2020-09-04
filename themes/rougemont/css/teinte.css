@@ -70,34 +70,7 @@ body, html {
   padding: 0;
 }
 
-/* fonts */
-/*
-body {
-  font-size: 16px;
-  font-family: Georgia, "Bitstream Vera Serif", Times, serif;
-}
-
-.serif, .subtitle, textarea.readonly, .titleStmt h1 {
-  font-family: Georgia, "Bitstream Vera Serif", Times, serif;
-}
-
-.cb, .pb, .ed, small.l, small.l-n {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Geneva, sans-serif;
-}
-
-.sans-serif, .availability, figcaption, li.bibl, div.bibl, .editionStmt, .footnotes, figure .label, .marginnote, .note, #noterefover, .publicationStmt, .sourceDesc, .speaker, .stage {
-  font-size: 14px;
-  font-family: "Lucida Grande", Verdana, sans-serif;
-}
-
-tt, pre {
-  font-family: "Andale Mono", "Lucida Console", Courier, "MS Courier New", monospace;
-}
-
-.dingbat {
-  font-family: "FreeSans", "DejaVu Sans", "Lucida Sans Unicode", "Arial Unicode MS", sans-serif
-}
-*/
+/* no fonts here, too complex to override */
 
 blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li,
 .justify, div.note, aside.note, div.stage {
@@ -114,6 +87,8 @@ section:target {
   background: transparent !important;
   border-left: none;
 }
+
+a:target {}
 
 article a {
   background-color: transparent;
@@ -135,6 +110,8 @@ article a:active, article a:hover {
 a img {
   border: none;
 }
+
+a:visited {}
 
 nav a {
   border-bottom: none;
@@ -182,6 +159,7 @@ blockquote.quote {
 }
 
 blockquote.quote .p {
+  
 }
 
 cite {
@@ -399,7 +377,6 @@ header ul {
 }
 
 hr {
-  box-sizing: content-box;
   height: 0;
   overflow: visible;
   color: #E2DED0;
@@ -557,8 +534,6 @@ nav header {
 }
 
 nav menu, nav ul {
-  margin-left: 1em;
-  padding-left: 0;
 }
 
 optgroup {
@@ -655,7 +630,12 @@ button, select {
   text-transform: none;
 }
 
-button.but, input[type="button"].but, input[type="reset"].but, input[type="submit"].but, .but, .button {
+button.but,
+input[type="button"].but,
+input[type="reset"].but,
+input[type="submit"].but,
+.but,
+.button {
   -webkit-appearance: button;
   cursor: pointer;
   display: inline;
@@ -890,16 +870,6 @@ ul.castList {
   user-select: none;
 }
 
-.cb, .pb, .ed {
-  background-color: rgba(255, 255, 255, 0.6);
-  padding: 1px 2px 1px 2px;
-  text-align: right;
-  /* float: right; problèmes dans les tableaux */
-}
-
-article > .pb, section > .pb {
-  float: right;
-}
 
 a.pb {
   color: #888;
@@ -919,15 +889,6 @@ a.pb:hover {
   left: 0.7rem;
   color: rgba(128, 128, 128, 0.5);
   font-size: 10px;
-}
-
-a.ed, a.pb {}
-
-a.facs {
-  float: right;
-  margin-right: 0;
-  margin-left: -1rem;
-  z-index: 2;
 }
 
 small.ed {
@@ -1063,7 +1024,8 @@ li.item {
 }
 
 .floatingText {
-  font-size: 0.8rem line-height: 120%;
+  font-size: 0.8rem;
+  line-height: 120%;
   padding: 0% 1% 1% 5%;
   background-color: #F8F7F4;
 }
@@ -1282,7 +1244,8 @@ div.l {
 }
 
 .p.manuscrits {
-  font-size: 80% margin-top: 1.5rem;
+  font-size: 80%;
+  margin-top: 1.5rem;
   background-color: #FBFAF8;
   border-radius: 8px;
 }
@@ -1740,7 +1703,9 @@ p[id^="note"] {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-/* @rend, @type useful classes, in alphabetic order */
+/**
+ * @rend, @type useful classes, in alphabetic order 
+ */
 p.p {
   text-indent: 1.5rem;
 }
@@ -1837,6 +1802,11 @@ span.center {
   text-align: justify;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+hr.dots {
+  border: none;
+  border-bottom: 2.6px dotted #999;
 }
 
 span.exquote {
