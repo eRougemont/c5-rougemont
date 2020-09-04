@@ -25,8 +25,11 @@ getCollectionID = <?php echo $c->getCollectionID(); ?>
   </head>
 <body>
 <?php 
-$md = new Mobile_Detect();
-$mobile = $md->isMobile();
+define("MOBILE", preg_match(
+  "/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i" 
+  , $_SERVER["HTTP_USER_AGENT"])
+);
+echo "<!-- HTTP_USER_AGENT=".$_SERVER["HTTP_USER_AGENT"]."-->\n";
 ?>
 <div id="" class="<?php
 echo $c->getPageWrapperClass();

@@ -43,7 +43,8 @@ $gp = Page::getByID($parent->getCollectionParentID());
             </a>
           </div>
           <div class="headmeta">
-            <a href="<?php print($gp->getCollectionLink()); ?>"><?php
+            <a class="fas fa-home" href="<?php print DIR_REL; ?>"></a>
+            &gt; <a href="<?php print($gp->getCollectionLink()); ?>"><?php
               echo $gp->getCollectionName();
             ?></a>
             &gt; <a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle); ?></a>
@@ -58,9 +59,19 @@ $gp = Page::getByID($parent->getCollectionParentID());
 
 <main class="liseuse container">
    <div id="viewport">
-      <?php if(!$mobile) {
+    <div id="text">
+      <a href="<?php print($parent->getCollectionLink()); ?>"><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
+      <?php
+        $prevnext = new GlobalArea('prev_next');
+        $prevnext->display($c);
+        $a = new Area('Main');
+        $a->display($c);
+        $prevnext->display($c);
+      ?>
+    </div>
+      <?php if(!MOBILE) {
       echo '
-      <aside id="sidebar" class="col-sidebar">
+      <aside id="sidebar" class="col-sidebar order-md-first">
         <div class="bg-light" id="sidefix">
           <div class="buts">
             <i class="far fa-images"></i>
@@ -79,17 +90,6 @@ $gp = Page::getByID($parent->getCollectionParentID());
       </aside>
       ';
      } ?>
-    <div id="text">
-<?php print_r($mobile); ?>
-      <a href="<?php print($parent->getCollectionLink()); ?>"><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
-      <?php
-        $prevnext = new GlobalArea('prev_next');
-        $prevnext->display($c);
-        $a = new Area('Main');
-        $a->display($c);
-        $prevnext->display($c);
-      ?>
-    </div>
   </div>
 </main>
 <?php   $this->inc('elements/footer.php'); ?>
