@@ -22,10 +22,10 @@
       </div>
     </div>
   </div>
-  <div class="bg-darker">
+  <div class="bg-dark">
     <div class="container ">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3  pt-3 pb-3 pt-md-5 pb-md-5">
           <h5>Soutiens financiers</h5>
           <ul>
             <li>Fondation privée genevoise</li>
@@ -36,7 +36,7 @@
             <li>Fondation de famille Sandoz</li>
           </ul>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 pt-3 pb-3 pt-md-5 pb-md-5">
           <h5>Contact</h5>
           <p>
             Rougemont 2.0
@@ -48,13 +48,13 @@
             <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
           </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 pt-3 pb-3 pt-md-5 pb-md-5">
           <h5>Conditions d'usage</h5>
           <p>
             Sauf indication contraire, les contenus de ce site sont publiés sous une licence Creative commons CC-BY-NC, 4.0.
           </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6 col-lg-3 pt-3 pb-3 pt-md-5 pb-md-5">
           <h5>Partenaires</h5>
           <ul>
             <li>BPU de Neuchâtel</li>

@@ -7,7 +7,7 @@ Teinte = function() {
   var noterefs = document.querySelectorAll('a.noteref');
   var noteBot = null;
   var shrinkable = null;
-  var sidefix = null;
+  var sidebar = null;
   var linkLast = null;
   var footerHeight = null;
   var bookPath = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'));
@@ -16,34 +16,34 @@ Teinte = function() {
 
   function init(selector)
   {
-    shrinkable = document.querySelector("header.shrinkable");
-    if (shrinkable) {
-      window.addEventListener('scroll', Teinte.shrink);
-      shrink();
-    }
-    sidefix = document.getElementById("sidefix");
-    if (sidefix) {
-      window.addEventListener('scroll', Teinte.scrollFix);
-      do {
-        if (vw < 992) break; // do not scroll in the sidebar if screen is too small
-        var lastBook = sessionStorage.getItem('bookPath');
-        if (lastBook != bookPath) { // do not scroll if new in this series
-          sessionStorage.setItem('bookPath', bookPath);
-         }
-         else {
-          // // do not scroll if already scrolled like with reload
-          if (!scrollMother.scrollTop) scrollMother.scrollTop += 310; 
-         }
-        
-        // scroll link into view
-        var aselected = sidefix.querySelector("a.nav-selected");
-        if (!aselected) break;
-        scrollFix(); // set bottom of sidebar because of footer before scrolling 
-        aselected.scrollIntoView();
-        // center scroll, but not for last items
-        if (sidefix.scrollHeight - sidefix.scrollTop - sidefix.clientHeight > 0) sidefix.scrollTop = sidefix.scrollTop - (sidefix.clientHeight / 2);
-      } while(false);
-    }
+    // store if book already visited
+    var lastBook = sessionStorage.getItem('bookPath');
+    if (lastBook != bookPath) sessionStorage.setItem('bookPath', bookPath);
+    
+    
+    sidebar = document.getElementById("sidebar");
+    // window.addEventListener('scroll', Teinte.scrollFix);
+    do {
+      if (!sidebar) break;
+      if (vw < 992) break; // do not scroll in the sidebar if screen is too small
+      if (lastBook != bookPath) break;
+      var scroll2text = 310;
+      var booktitle = document.querySelector("#text .booktitle");
+      if(booktitle) scroll2text = top(booktitle); //  + booktitle.offsetHeight;
+      // do not scroll if already scrolled like with reload
+      // if (!scrollMother.scrollTop) scrollMother.scrollTop = scroll2text;
+      // scroll link into view
+      var aselected = sidebar.querySelector("a.nav-selected");
+      if (!aselected) break;
+      // scrollFix(); // set bottom of sidebar because of footer before scrolling 
+      aselected.scrollIntoView();
+      // scroll intoview affect global scroll
+      scrollMother.scrollTop = scroll2text;
+      console.log(scrollMother.scrollTop);
+      // center scroll, but not for last items
+      if (sidebar.scrollHeight - sidebar.scrollTop - sidebar.clientHeight > 0) sidebar.scrollTop = sidebar.scrollTop - (sidebar.clientHeight / 2);
+    } while(false);
+
     var text = document.querySelector("#text");
     if (text) {
       var width = getComputedStyle(text).width;
@@ -70,7 +70,7 @@ Teinte = function() {
       a.ref = ref;
       a.onclick = Teinte.sliderClick;
     }
-    var footer = document.querySelector("#footer");
+    var footer = document.getElementById("footer");
     if (footer) footerHeight = footer.clientHeight;
     var els = document.querySelectorAll("p.ccm-block-next-previous-previous-link, p.ccm-block-next-previous-next-link");
     for (var i = 0, max = els.length; i < max; i++) {
@@ -129,9 +129,9 @@ Teinte = function() {
   {
     var bottom = footerHeight - (scrollMother.scrollHeight - scrollMother.scrollTop - scrollMother.clientHeight);
     if (bottom > 0) {
-      sidefix.style.bottom = bottom+"px";
-      if (sidefix.scrollTop) sidefix.scrollTop = sidefix.scrollTop + (bottom - sidefix.lastBottom);
-      sidefix.lastBottom = bottom;
+      sidebar.style.bottom = bottom+"px";
+      if (sidebar.scrollTop) sidebar.scrollTop = sidebar.scrollTop + (bottom - sidebar.lastBottom);
+      sidebar.lastBottom = bottom;
     }
   }
 
@@ -175,8 +175,8 @@ Teinte = function() {
     lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll coul be negative
     var count = 0;
     // hilite title in toc
-    if (sidefix) {
-      var links=sidefix.getElementsByTagName("a");
+    if (sidebar) {
+      var links=sidebar.getElementsByTagName("a");
       var path = window.location.href.split('#')[0];
       var pos = path.length + 1;
       for(var i=0; i < links.length; i++) {

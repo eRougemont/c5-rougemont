@@ -22,10 +22,14 @@ $basename = basename($c->getCollectionPath());
       <?php
         $a = new Area('livre_notice');
         $a->display($c);
-
+      ?>
+      <nav class="foot my-5">
+        <?php 
         $prevnext = new GlobalArea('prev_next');
         $prevnext->display($c);
-      ?>
+        ?>
+      </nav>
+
     </div>
     <div class="col-md-6 bg-light py-5 order-md-last">
       <nav class="toclocal" id="livre_sommaire">

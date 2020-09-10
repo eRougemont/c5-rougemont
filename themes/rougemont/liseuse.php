@@ -9,83 +9,85 @@ $gp = Page::getByID($parent->getCollectionParentID());
 ?>
 
 <header id="header" class="shrinkable">
-  <div class="container">
-    <div class="row">
-      <div class="col-3 logo" id="portrait">
-        <a href="<?php echo BASE_URL; ?>">
-          <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
-          <span id="moto">
-            L'intégrale de
-            <br/>Denis de Rougemont<br/>
-            en libre accès
-          </span>
-        </a>
+  <nav id="breadcrumb" class="rail">
+    <div class="container">
+      <a href="#" class="gotop" title="Sommet de la page">△</a>
+      <div class="rail">
+        <a class="home" href="<?php print DIR_REL; ?>"><img height="32" src="<?php  echo $view->getThemePath()?>/img/home.png" alt="Accueil, Rougemont 2.0"
+        /></a><b>/</b><a href="<?php print($gp->getCollectionLink()); ?>"><?php
+          echo $gp->getCollectionName();
+        ?></a><b>/</b><a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle);
+        ?></a><b>/</b><a href="#"><?php print($c->getCollectionName()); ?></a>
       </div>
-      <div class="col-9" id="search_nav">
-        <div id="sitebox">
+    </div>
+  </nav>
+  <div id="header_ban">
+    <picture>
+      <source srcset="<?php  echo $view->getThemePath()?>/img/ban-header.webp" type="image/webp">
+      <img src="<?php  echo $view->getThemePath()?>/img/ban-header.png" alt="Denis de Rougemont, l’œuvre complète en ligne"/>
+    </picture>
+    <div class="container" id="header_container">
+      <div id="header_row">
+        <div id="portrait">
+          <a href="<?php echo BASE_URL; ?>">
+            <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
+            <span id="moto"  class="d-none d-md-block">
+              L'intégrale de
+              <br/>Denis de Rougemont<br/>
+              en libre accès
+            </span>
+          </a>
+        </div>
+        <div id="search_nav">
           <div class="search">
             <?php
             $a = new GlobalArea('Header Search');
             $a->display();
             ?>
           </div>
-          <div class="headnav">
+          <nav class="headnav pb-2">
             <?php
             $a = new GlobalArea('Header Navigation');
             $a->display();
             ?>
-          </div>
-        </div>
-        <div id="breadcrumb">
-          <div class="gotop">
-            <a href="#">
-              <i class="fas fa-arrow-up"></i>
-            </a>
-          </div>
-          <div class="headmeta">
-            <a class="fas fa-home" href="<?php print DIR_REL; ?>"></a>
-            &gt; <a href="<?php print($gp->getCollectionLink()); ?>"><?php
-              echo $gp->getCollectionName();
-            ?></a>
-            &gt; <a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle); ?></a>
-            &gt;  <a href="#"><?php print($c->getCollectionName()); ?></a>
-          </div>
-
+          </nav>
         </div>
       </div>
     </div>
   </div>
 </header>
-
 <main class="liseuse container">
    <div id="viewport">
     <div id="text">
-      <a href="<?php print($parent->getCollectionLink()); ?>"><h1 class="custom-1"><?php print($booktitle); ?></h1></a>
+      
       <?php
+        echo '<nav class="booktitle"><a href="'.$parent->getCollectionLink().'">'.$booktitle.'</a></nav>';
         $prevnext = new GlobalArea('prev_next');
-        $prevnext->display($c);
+        // $prevnext->display($c);
         $a = new Area('Main');
         $a->display($c);
-        $prevnext->display($c);
       ?>
+      <nav class="foot my-5">
+        <?php $prevnext->display($c); ?>
+      </nav>
     </div>
-      <?php if(!MOBILE) {
+      <?php 
+      if(defined('SMALL') && SMALL);
+      else {
       echo '
-      <aside id="sidebar" class="col-sidebar order-md-first">
-        <div class="bg-light" id="sidefix">
-          <div class="buts">
-            <i class="far fa-images"></i>
-            <i class="fas fa-list-ul"></i>
-          </div>
-          <div class="toclocal" id="toc">
+      <aside id="sidebar" class="bg-light">
+        <div class="buts">
+          <i class="fa fa-images"></i>
+          <i class="fa fa-list-ul"></i>
+        </div>
+        <nav class="toclocal" id="toc">
        ';
               $a = new Area('Sidebar');
               $a->display($c);
       echo '
-          </div>
-          <div id="pages">
-          
-          </div>
+        </nav>
+        <div id="pages">
+        
         </div>
       </aside>
       ';

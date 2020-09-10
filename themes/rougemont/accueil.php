@@ -4,12 +4,12 @@ $this->inc('elements/header.php');
 $basename = basename($c->getCollectionPath());
 ?>
 
-<main id="accueil">
+<main id="accueil" class="accueil">
 
   <div class="container">
-    <div class="row">
+    <div class="row ui">
       <div id="accueil_actus" class="col-md-7">
-        <h1>Actualités</h1>
+        <h1><a href="actualites">Actualités</a></h1>
         <?php
           $a = new Area('Main');
           $a->enableGridContainer();
@@ -27,7 +27,7 @@ $basename = basename($c->getCollectionPath());
   </div>
 
 
-  <div class="bkg-gradient-brighter-to-white pt-5" id="accueil_livres">
+  <div class="bkg-gradient-brighter-to-white pt-5 ui" id="accueil_livres">
     <div class="container ">
       <div>
         <?php
@@ -50,6 +50,9 @@ $basename = basename($c->getCollectionPath());
             $a = new Area('accueil_articles');
             $a->display($c);
           ?>
+          <div class="center">
+            <a href="articles" class="btn btn-outline btn-outline-red btn-small">Tous les articles</a>
+          </div>
         </div>
         <div class="col-md-4 extracts-list-box extracts-list-box-correspondances" id="accueil_correspondances">
           <h1 class="center m-4"><a href="correspondances">Correspondances</a></h1>
@@ -57,6 +60,9 @@ $basename = basename($c->getCollectionPath());
             $a = new Area('accueil_correspondances');
             $a->display($c);
           ?>
+          <div class="center">
+            <a href="correspondances" class="btn btn-outline btn-outline-red btn-small">Toutes les correspondances</a>
+          </div>
         </div>
         <div class="col-md-4 extracts-list-box extracts-list-box-archives" id="accueil_archives">
           <h1 class="center m-4">Archives</h1>
@@ -64,16 +70,6 @@ $basename = basename($c->getCollectionPath());
             $a = new Area('accueil_archives');
             $a->display($c);
           ?>
-        </div>
-      </div>
-      <div class="row center pt-3 pb-5" id="accueil_tous">
-        <div class="col-md-4">
-          <a href="articles" class="btn btn-outline btn-outline-red btn-small">Tous les articles</a>
-        </div>
-        <div class="col-md-4">
-          <a href="correspondances" class="btn btn-outline btn-outline-red btn-small">Toutes les correspondances</a>
-        </div>
-        <div class="col-md-4">
         <!--
           <a href="archives" class="btn btn-outline btn-outline-red btn-small">Toutes les archives</a>
           -->
@@ -82,11 +78,11 @@ $basename = basename($c->getCollectionPath());
     </div>
   </div>
 
-  <div class="bg-red" id="accueil_medias">
+  <div class="bg-red pt-4 pb-4" id="accueil_medias">
     <div class="container">
-      <h1 class="center pt-4 pb-4"><a href="medias">Médias</a></h1>
-      <div class="row">
-        <div class="trailer col-md-5">
+      <h1 class="center"><a href="medias">Médias</a></h1>
+      <div class="row my-3">
+        <div class="pres col-md-5">
           <?php
             $a = new Area('accueil_trailer');
             $a->display($c);
@@ -99,6 +95,9 @@ $basename = basename($c->getCollectionPath());
             $a->display($c);
           ?>
         </div>
+      </div>
+      <div class="center">
+        <a href="medias" class="btn btn-outline-light btn-small">Tous les médias</a>
       </div>
     </div>
   </div>

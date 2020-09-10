@@ -4,7 +4,6 @@ $this->inc('elements/header.php'); ?>
 
 <main>
 
-  <div class="container">
     <?php
     $a = new Area('Page Header');
     $a->enableGridContainer();
@@ -22,7 +21,6 @@ $this->inc('elements/header.php'); ?>
     $a->enableGridContainer();
     $a->display($c);
     ?>
-  </div>
 </main>
 
 <?php   $this->inc('elements/footer.php'); ?>

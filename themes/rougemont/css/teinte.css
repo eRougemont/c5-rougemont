@@ -371,11 +371,6 @@ header {
   clear: both;
 }
 
-header ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 hr {
   height: 0;
   overflow: visible;
@@ -868,6 +863,7 @@ ul.castList {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  speak: never;
 }
 
 
@@ -1400,6 +1396,7 @@ a.noteref {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  speak: never;
 }
 
 a.noteref, a.noteback {
@@ -1747,6 +1744,7 @@ a.bookmark {
   font-size: 60%;
   visibility: hidden;
   user-select: none;
+  speak: never;
 }
 
 h1:hover a.bookmark, h2:hover a.bookmark, h3:hover a.bookmark, h4:hover a.bookmark, h5:hover a.bookmark, h6:hover a.bookmark, a.bookmark:hover {
@@ -1754,7 +1752,7 @@ h1:hover a.bookmark, h2:hover a.bookmark, h3:hover a.bookmark, h4:hover a.bookma
   visibility: visible;
 }
 
-.center, div.center, p.center, blockquote.center>* {
+div.center, p.center, blockquote.center>* {
   text-align: center;
   text-indent: 0;
   margin-left: auto;
@@ -1889,6 +1887,7 @@ h1.main {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  speak: never;
 }
 
 .normal, div.normal, .n {
@@ -2058,6 +2057,7 @@ a.prev, a.next {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  speak: never;
 }
 
 .mark a.prev:hover, .mark a:hover.next {
@@ -2203,32 +2203,32 @@ td.data p {
 }
 
 th.border, td.border {
-  border: #CCCCCC 1px solid !important;
+  border: #CCCCCC 1px solid;
   padding: 2px 1ex;
 }
 
 td.left, th.left {
-  text-align: left !important;
+  text-align: left;
 }
 
 td.center, th.center {
-  text-align: center !important;
+  text-align: center;
 }
 
 td.right, th.right {
-  text-align: right !important;
+  text-align: right;
 }
 
 td.top, th.top {
-  vertical-align: top !important;
+  vertical-align: top;
 }
 
 td.middle, th.middle {
-  vertical-align: middle !important;
+  vertical-align: middle;
 }
 
 td.bottom, th.bottom {
-  vertical-align: bottom !important;
+  vertical-align: bottom;
 }
 
 table.table td {
