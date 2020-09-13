@@ -111,8 +111,6 @@ a img {
   border: none;
 }
 
-a:visited {}
-
 nav a {
   border-bottom: none;
 }
@@ -166,33 +164,14 @@ cite {
   font-style: normal;
 }
 
-code {
-  font-size: 13px;
-}
-
 dd {
 }
 
-details {
-  font-size: 14px;
-}
-
-details[open] {
-  margin-bottom: 1rem;
-}
-
-details[open] summary {
-  margin-bottom: 1ex;
-}
-
 summary {
-  font-weight: bold;
-  cursor: pointer;
 }
 
 summary i {
   font-weight: 100;
-  font-size: 12px;
 }
 
 dfn {
@@ -1336,9 +1315,9 @@ div.lg {
   margin: 0 0 0 -1.5rem;
 }
 
-div.note, aside.note {
+.note {
   line-height: 115%;
-  margin: 1px 0 1em 0;
+  margin: 1px 0 1rem 0;
   clear: both;
   text-align: justify;
 }
@@ -1407,11 +1386,6 @@ a.noteref, a.noteback {
   font-variant: normal;
   padding-right: 0.2ex;
   /* note sep */
-}
-
-a.noteref:hover, a.noteback:hover {
-  text-decoration: none;
-  border-bottom: solid 1px;
 }
 
 a.noteback {
@@ -2516,13 +2490,13 @@ dl.xml dt {
 
 /** specific wide screen, not for print or phone */
 @media screen {
-  div.note, aside.note {
+  .note {
     margin: 0 0 0 1.7rem;
     border-left: 1px solid #CCCCCC;
     padding: 0.3rem 0 0.5ex 0.5rem;
   }
 
-  section>div.note {
+  section > .note {
     margin: 1em 0 1em 0;
     padding-left: 1.5em;
     padding-left: 1.5rem;

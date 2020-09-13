@@ -5,7 +5,6 @@
   /*
    * pour un kit de chargement font awesome, attention C5 a besoin d’une V4
    * <script src="https://kit.fontawesome.com/0f33b966cc.js" crossorigin="anonymous" async></script>
-   * C5 a besoin que jquery soit chargé (v. 1.12.2 avec ckedditor)
    */?>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <?php  Loader::element('footer_required'); ?>

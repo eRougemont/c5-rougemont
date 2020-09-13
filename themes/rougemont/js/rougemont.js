@@ -29,28 +29,34 @@ Teinte = function() {
       if (lastBook != bookPath) break;
       var scroll2text = 310;
       var booktitle = document.querySelector("#text .booktitle");
-      if(booktitle) scroll2text = top(booktitle); //  + booktitle.offsetHeight;
+      if(booktitle) {
+        scroll2text = top(booktitle); //  + booktitle.offsetHeight;
+        // if (!scrollMother.scrollTop) scrollMother.scrollTop = scroll2text;
+        var booktitle = document.querySelector("#text h1");
+        if (booktitle) booktitle.scrollIntoView();
+      }
       // do not scroll if already scrolled like with reload
-      // if (!scrollMother.scrollTop) scrollMother.scrollTop = scroll2text;
       // scroll link into view
       var aselected = sidebar.querySelector("a.nav-selected");
+      if (!aselected) aselected = sidebar.querySelector("li.here > a");
       if (!aselected) break;
       // scrollFix(); // set bottom of sidebar because of footer before scrolling 
       aselected.scrollIntoView();
       // scroll intoview affect global scroll
       scrollMother.scrollTop = scroll2text;
-      console.log(scrollMother.scrollTop);
+      // console.log(scrollMother.scrollTop);
       // center scroll, but not for last items
       if (sidebar.scrollHeight - sidebar.scrollTop - sidebar.clientHeight > 0) sidebar.scrollTop = sidebar.scrollTop - (sidebar.clientHeight / 2);
     } while(false);
 
     var text = document.querySelector("#text");
     if (text) {
-      var width = getComputedStyle(text).width;
+      var style = getComputedStyle(text);
+      var width = parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       noteBot = document.createElement("div");
       noteBot.id = "notebot";
       noteBot.style.display = "none";
-      noteBot.style.width = width;
+      noteBot.style.width = width+"px";
       text.appendChild(noteBot);
       window.addEventListener('resize', Teinte.resize);
       window.addEventListener('load', Teinte.scrollAnchor);

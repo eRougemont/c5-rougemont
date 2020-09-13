@@ -2,7 +2,7 @@
 $this->inc('elements/header_top.php');
 ?>
 
-<header id="header">
+<header id="header" class="topheader">
     <div id="header_ban">
     <picture>
       <source srcset="<?php  echo $view->getThemePath()?>/img/ban-header.webp" type="image/webp">
