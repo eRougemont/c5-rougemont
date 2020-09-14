@@ -16,7 +16,7 @@ $this->inc('elements/header.php'); ?>
         $a->display($c);
         ?>
     </div>
-    <aside class="col-md-3 col-sidebar order-md-first">
+    <aside id="sidebar" class="col-md-3 col-sidebar py-5 order-md-first bg-light">
         <?php
         $a = new GlobalArea('Sidebar');
         $a->display($c);
