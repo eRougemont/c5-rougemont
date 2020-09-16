@@ -8,20 +8,29 @@ defined('C5_EXECUTE') or die("Access Denied.");
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" type="image/png" href="<?php  echo $view->getThemePath()?>/img/favicon.png"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Fira+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500&family=EB+Garamond:ital@0;1&display=swap">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="all" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
 <?php  
-    Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
-    ?>
+$html = Loader::helper('html');
+$this->addHeaderItem($html->css('css/bootstrap-grid.css'));
+$this->addHeaderItem($html->css('css/teinte.css'));
+$this->addHeaderItem($html->css('css/rougemont.css'));
+Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
+
+/*
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500&family=EB+Garamond:ital@0;1&display=swap"/>
+    C5 a besoin de jquery en mode admin (v. 1.12.2 avec ckedditor) et des plugins comme les diaporamas
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/teinte.css" />
     <link rel="stylesheet" type="text/css" href="<?php  echo $view->getThemePath()?>/css/rougemont.css" />
-
     <script>
 // inform server of client width
 document.cookie = "innerWidth="+window.innerWidth+";samesite=strict";
     </script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" media="all" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+*/
+    ?>
   </head>
 <body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <?php
 $isMobile = preg_match(
   "/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i" 

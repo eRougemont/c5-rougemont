@@ -8,10 +8,12 @@ $gp = Page::getByID($parent->getCollectionParentID());
 
 ?>
 
-<header id="header" class="shrinkable">
+<header id="header" class="topheader">
   <nav id="breadcrumb" class="rail">
     <div class="container">
-      <a href="#" class="gotop" title="Sommet de la page">△</a>
+      <a href="#" class="gotop buticon" title="Sommet de la page">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><rect fill="none" height="24" width="24"/><path d="M5,9l1.41,1.41L11,5.83V22H13V5.83l4.59,4.59L19,9l-7-7L5,9z"/></svg>
+      </a>
       <div class="rail">
         <a class="home" href="<?php print DIR_REL; ?>"><img height="32" src="<?php  echo $view->getThemePath()?>/img/home.png" alt="Accueil, Rougemont 2.0"
         /></a><b>/</b><a href="<?php print($gp->getCollectionLink()); ?>"><?php
@@ -58,7 +60,7 @@ $gp = Page::getByID($parent->getCollectionParentID());
 </header>
 <main class="liseuse container">
    <div id="viewport">
-    <div id="text">
+    <div id="text" class="body">
       
       <?php
         echo '<nav class="booktitle"><a href="'.$parent->getCollectionLink().'">'.$booktitle.'</a></nav>';

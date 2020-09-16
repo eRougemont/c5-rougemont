@@ -24,33 +24,38 @@ Teinte = function() {
     sidebar = document.getElementById("sidebar");
     // window.addEventListener('scroll', Teinte.scrollFix);
     do {
+      var scroll2text = 310;
+      var pagetitle = document.querySelector("#text h1");
+      // passer le bannière si même livre
+      if (lastBook != bookPath);
+      else if (pagetitle) {
+        scroll2text = top(pagetitle) - 60; // petite barre
+        ccmbar = document.getElementById("ccm-toolbar");
+        if (ccmbar) scroll2text -= ccmbar.offsetHeight;
+        window.scroll(0, scroll2text);
+      }
+      // sidebar
       if (!sidebar) break;
       if (vw < 992) break; // do not scroll in the sidebar if screen is too small
-      if (lastBook != bookPath) break;
-      var scroll2text = 310;
-      var booktitle = document.querySelector("#text .booktitle");
-      if(booktitle) scroll2text = top(booktitle); //  + booktitle.offsetHeight;
-      // do not scroll if already scrolled like with reload
-      // if (!scrollMother.scrollTop) scrollMother.scrollTop = scroll2text;
-      // scroll link into view
-      var aselected = sidebar.querySelector("a.nav-selected");
-      if (!aselected) break;
-      // scrollFix(); // set bottom of sidebar because of footer before scrolling 
-      aselected.scrollIntoView();
-      // scroll intoview affect global scroll
-      scrollMother.scrollTop = scroll2text;
-      console.log(scrollMother.scrollTop);
-      // center scroll, but not for last items
-      if (sidebar.scrollHeight - sidebar.scrollTop - sidebar.clientHeight > 0) sidebar.scrollTop = sidebar.scrollTop - (sidebar.clientHeight / 2);
+      var here = sidebar.querySelector("a.nav-selected");
+      if (!here) here = sidebar.querySelector("li.here > a");
+      if (!here) break;
+      var hereY = here.offsetTop;
+      if (hereY > sidebar.clientHeight + sidebar.scrollTop) {
+        scrollto = hereY - (sidebar.clientHeight / 2);
+        // avoid scroll intoview, too much effects on global scroll
+        sidebar.scrollTop = hereY - (sidebar.clientHeight / 2);
+      }
     } while(false);
 
     var text = document.querySelector("#text");
     if (text) {
-      var width = getComputedStyle(text).width;
+      var style = getComputedStyle(text);
+      var width = parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       noteBot = document.createElement("div");
       noteBot.id = "notebot";
       noteBot.style.display = "none";
-      noteBot.style.width = width;
+      noteBot.style.width = width+"px";
       text.appendChild(noteBot);
       window.addEventListener('resize', Teinte.resize);
       window.addEventListener('load', Teinte.scrollAnchor);
@@ -172,14 +177,15 @@ Teinte = function() {
     var up = false;
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollY < lastScrollY) up = true;
-    lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll coul be negative
+    lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll could be negative
     var count = 0;
     // hilite title in toc
     if (sidebar) {
       var links=sidebar.getElementsByTagName("a");
       var path = window.location.href.split('#')[0];
       var pos = path.length + 1;
-      for(var i=0; i < links.length; i++) {
+      // loop from the end, to get the smallest section container if nested sections
+      for(var i = links.length - 1; i >= 0 ; i--) {
         var href = links[i].href;
         if (href.indexOf(path) < 0) continue;
         var id = href.substr(pos);
@@ -187,14 +193,17 @@ Teinte = function() {
         var div = document.getElementById(id);
         if (!div) continue;
         var bounding = div.getBoundingClientRect();
-        var visible = bounding.top >= 0 || (bounding.bottom > 0 && bounding.bottom > (window.innerHeight || document.documentElement.clientHeight));
-        // console.log(div.id+" "+visible+" "+bounding.top+" "+bounding.bottom);
-        if (!visible) continue;
-        if (links[i] == linkLast) break;
-        if (linkLast) linkLast.className = linkLast.className.replace(/ *\bvisible\b */g, "");
-        links[i].className += "visible";
-        linkLast = links[i];
-        break;
+        // console.log(id);
+        // console.log(bounding);
+        // parent section maybe visible before children, so we should go ahead
+        var visible = bounding.top <= (window.innerHeight || document.documentElement.clientHeight) - 200 || (bounding.bottom > 0 && bounding.bottom < (window.innerHeight || document.documentElement.clientHeight));
+        if (visible) {
+          // clean last link hilited
+          if (linkLast) linkLast.className = linkLast.className.replace(/ *\bvisible\b */g, "");
+          links[i].className = links[i].className.replace(/ *\bvisible\b */g, "") + " visible";
+          linkLast = links[i]; // keep pointer on this link
+          break;
+        }
       }
     }
 

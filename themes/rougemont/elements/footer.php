@@ -41,7 +41,4 @@
     </div>
   </div>
 </footer>
-
-<script src="<?php  echo $view->getThemePath()?>/js/rougemont.js">//</script>
-<script>Teinte.init()</script>
 <?php  $this->inc('elements/footer_bottom.php');?>
