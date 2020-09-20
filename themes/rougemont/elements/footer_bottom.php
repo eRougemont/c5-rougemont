@@ -13,7 +13,6 @@ $html = Loader::helper('html');
 $this->addFooterItem($html->javascript($view->getThemePath().'/js/rougemont.js'));
 Loader::element('footer_required');
 ?>
-    <script>Teinte.init()</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166319083-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,8 +20,5 @@ Loader::element('footer_required');
       gtag('js', new Date());
       gtag('config', 'UA-166319083-1');
     </script>
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500&family=EB+Garamond:ital@0;1&display=optional');
-    </style>
   </body>
 </html>

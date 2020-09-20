@@ -1,67 +1,93 @@
+'use strict';
+/**
+ * Interface statique, essentiellement pour la liseuse
+ */
+class Liser {
 
-const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-
-Teinte = function() {
-  var lastScrollY = 0;
-  var noterefs = document.querySelectorAll('a.noteref');
-  var noteBot = null;
-  var shrinkable = null;
-  var sidebar = null;
-  var linkLast = null;
-  var footerHeight = null;
-  var bookPath = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'));
-  var scrollMother = ('scrollTop' in document.documentElement)?document.documentElement:document.body;
-
-
-  function init(selector)
+  static init(selector)
   {
+    Liser.vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    Liser.vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    Liser.noterefs = document.querySelectorAll('a.noteref');
+    var bookpath = document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'));
+    Liser.scrollMother = ('scrollTop' in document.documentElement)?document.documentElement:document.body;
     // store if book already visited
-    var lastBook = sessionStorage.getItem('bookPath');
-    if (lastBook != bookPath) sessionStorage.setItem('bookPath', bookPath);
+    var lastbook = sessionStorage.getItem('bookpath');
+    if (lastbook != bookpath) sessionStorage.setItem('bookpath', bookpath);
     
+    var tocbut = document.getElementById("tocbut");
+    var toc = document.getElementById("toc");
+    if (tocbut && toc) {
+      tocbut.addEventListener("click", function (e) {
+          event.preventDefault();
+          // e.target; peut être un enfant du lien dans le SVG
+          if (tocbut.classList.contains("splash")) {
+            tocbut.classList.remove("splash");
+            toc.classList.remove("splash");
+            
+          } else {
+            tocbut.classList.add("splash");
+            toc.classList.add("splash");
+          }
+      }, false);
+      toc.addEventListener("click", function (e) {
+        tocbut.classList.remove("splash");
+        toc.classList.remove("splash");
+      }, false);
+    }
+
+    var menubut = document.getElementById("menubut");
+    var menu = document.getElementById("menu");
+    if (menubut && menu) {
+      menubut.addEventListener("click", function (e) {
+        event.preventDefault();
+        if (menubut.classList.contains("splash")) {
+          menubut.classList.remove("splash");
+          menu.classList.remove("splash");
+          
+        } else {
+          menubut.classList.add("splash");
+          menu.classList.add("splash");
+        }
+      }, false);
+    }
+
     
-    sidebar = document.getElementById("sidebar");
-    // window.addEventListener('scroll', Teinte.scrollFix);
+    Liser.sidebar = document.getElementById("sidebar");
     do {
+      /*
       var scroll2text = 310;
       var pagetitle = document.querySelector("#text h1");
       // passer le bannière si même livre
-      if (lastBook != bookPath);
+      if (lastbook != bookpath);
       else if (pagetitle) {
-        scroll2text = top(pagetitle) - 60; // petite barre
-        ccmbar = document.getElementById("ccm-toolbar");
+        scroll2text = Liser.top(pagetitle) - 60; // petite barre
+        var ccmbar = document.getElementById("ccm-toolbar");
         if (ccmbar) scroll2text -= ccmbar.offsetHeight;
         window.scroll(0, scroll2text);
       }
+      */
       // sidebar
-      if (!sidebar) break;
-      if (vw < 992) break; // do not scroll in the sidebar if screen is too small
-      var here = sidebar.querySelector("a.nav-selected");
-      if (!here) here = sidebar.querySelector("li.here > a");
+      if (!Liser.sidebar) break;
+      if (Liser.vw < 992) break; // do not scroll in the sidebar if screen is too small
+      var here = Liser.sidebar.querySelector("a.nav-selected");
+      if (!here) here = Liser.sidebar.querySelector("li.here > a");
       if (!here) break;
       var hereY = here.offsetTop;
-      if (hereY > sidebar.clientHeight + sidebar.scrollTop) {
-        scrollto = hereY - (sidebar.clientHeight / 2);
+      if (hereY > Liser.sidebar.clientHeight + Liser.sidebar.scrollTop) {
+        // var scrollto = hereY - (Liser.sidebar.clientHeight / 2);
         // avoid scroll intoview, too much effects on global scroll
-        sidebar.scrollTop = hereY - (sidebar.clientHeight / 2);
+        Liser.sidebar.scrollTop = hereY - (Liser.sidebar.clientHeight / 2);
       }
     } while(false);
 
-    var text = document.querySelector("#text");
-    if (text) {
-      var style = getComputedStyle(text);
-      var width = parseFloat(style.width) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-      noteBot = document.createElement("div");
-      noteBot.id = "notebot";
-      noteBot.style.display = "none";
-      noteBot.style.width = width+"px";
-      text.appendChild(noteBot);
-      window.addEventListener('resize', Teinte.resize);
-      window.addEventListener('load', Teinte.scrollAnchor);
-      window.addEventListener('hashchange', Teinte.scrollAnchor);
-      window.addEventListener('scroll', Teinte.scrollPage);
-      scrollPage();
+    Liser.notebox = document.getElementById("notebox");
+    if (Liser.notebox) {
+      var text = this.notebox.parentNode;
+      notebox.style.width = getComputedStyle(text).width;
+      window.addEventListener('resize', Liser.resize); // garder la largeur relative de la boîte à notes
+      window.addEventListener('scroll', Liser.scrollPage);
+      // scrollPage(); // non, trop long au démarrage
     }
     // Des liens dans le diaporama à l’accueil
     var links = document.querySelectorAll(".slider-nav a");
@@ -73,24 +99,68 @@ Teinte = function() {
       let ref = document.getElementById(id);
       if (!ref) continue;
       a.ref = ref;
-      a.onclick = Teinte.sliderClick;
+      a.onclick = Liser.sliderClick;
     }
+    /*
     var footer = document.getElementById("footer");
     if (footer) footerHeight = footer.clientHeight;
+    */
+    // bulle au survol pour lien tronqués (ellipsis)
     var els = document.querySelectorAll("p.ccm-block-next-previous-previous-link, p.ccm-block-next-previous-next-link");
     for (var i = 0, max = els.length; i < max; i++) {
       els[i].title = els[i].innerText;
     }
+    // la recherche
+    do {
+      var q = document.getElementById("q");
+      if (!q) break;
+      Liser.results = document.getElementById("results");
+      if (!Liser.results) break;
+      q.addEventListener('input', Liser.suggest);
+      q.addEventListener('focus', Liser.suggest);
+      window.addEventListener('click', Liser.resblur); // do not inform body
+      q.form.addEventListener('click', (event) => { event.stopPropagation();}); // do not inform body
+      q.form.reset.addEventListener('click', Liser.resblur);
+    } while (false);
+  }
+  
+  static resblur(e)
+  {
+    if(results.style.display == 'none') return;
+    results.style.display = 'none'; 
+    results.innerHTML = '';
+    var release = e.target;
+    // <button> with <svg> image
+    while (release && release.namespaceURI == "http://www.w3.org/2000/svg") release = release.parentNode;
+    if (release && release.blur) release.blur();
+  }
+  
+  static suggest(e)
+  {
+    var query = e.target.value;
+    if(!query) {
+      results.style.display = 'none';
+      return;
+    }
+    if (query.slice(-1) != ' ') query += '*';
+    fetch(CCM_REL+"/data/titles?q="+query)
+    .then(response => {
+      return response.text()
+    })
+    .then(data => {
+      results.innerHTML = data;
+    });
+    results.style.display = 'block';
   }
 
-  function sliderClick(e)
+  static sliderClick(e)
   {
-    let ref = this.ref;
+    let ref = Liser.ref;
     ref.parentNode.scrollLeft = ref.offsetLeft;
-    let last = this.parentNode.lastLink;
+    let last = Liser.parentNode.lastLink;
     if (last) last.className = last.className.replace(/\bselected\b/g, "");
-    this.className += " selected";
-    this.parentNode.lastLink = this;
+    Liser.className += " selected";
+    Liser.parentNode.lastLink = this;
     e.preventDefault();
     return false; // stop propagation
   }
@@ -102,7 +172,7 @@ Teinte = function() {
    *
    * @param object element
    */
-  function top(node)
+  static top(node)
   {
     var top = 0;
     do {
@@ -113,13 +183,14 @@ Teinte = function() {
   }
 
 
-  function resize(event)
+  static resize(event)
   {
-    var text = noteBot.parentNode;
-    noteBot.style.width = getComputedStyle(text).width;
-  };
+    // garder la largeur de la boite à notes
+    var text = this.notebox.parentNode;
+    notebox.style.width = getComputedStyle(text).width;
+  }
 
-  function isVisible(elem)
+  static isVisible(elem)
   {
     var bounding = elem.getBoundingClientRect();
     return (
@@ -128,9 +199,10 @@ Teinte = function() {
       && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
       && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
-  };
-
-  function scrollFix()
+  }
+  
+  /* CSS sticky marche mieux
+  static scrollFix()
   {
     var bottom = footerHeight - (scrollMother.scrollHeight - scrollMother.scrollTop - scrollMother.clientHeight);
     if (bottom > 0) {
@@ -139,8 +211,9 @@ Teinte = function() {
       sidebar.lastBottom = bottom;
     }
   }
+  */
 
-  function shrink()
+  static shrink()
   {
     if (scrollMother.scrollTop > 50) {
       if (document.body.className.match(/\bshrink\b/));
@@ -150,38 +223,24 @@ Teinte = function() {
     }
   }
 
-  function getScrollParent(node)
+  static getScrollParent(node)
   {
     if (node == null) return null;
     if (node.scrollTop) return node;
     return getScrollParent(node.parentNode);
   }
-  // scrol after anchor clicked
-  function scrollAnchor()
-  {
-    let id = location.hash;
-    if (!id) return;
-    if (id[0] == "#") id = id.substring(1);
-    let target = document.getElementById(id);
-    if (!target) return;
-    const scrollable = getScrollParent(target);
-    if (!scrollable) return;
-    if (scrollable.lastScroll == scrollable.scrollTop) return;
-    var newScroll = scrollable.scrollTop - 100;
-    scrollable.scrollTop = newScroll;
-    scrollable.lastScroll = newScroll;
-  };
-
-  function scrollPage()
+  
+  static scrollPage()
   {
     var up = false;
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollY < lastScrollY) up = true;
-    lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll could be negative
+    if (scrollY < Liser.lastScrollY) up = true;
+    Liser.lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll could be negative
     var count = 0;
     // hilite title in toc
-    if (sidebar) {
-      var links=sidebar.getElementsByTagName("a");
+    do {
+      if (!Liser.sidebar) break;
+      var links = Liser.sidebar.getElementsByTagName("a");
       var path = window.location.href.split('#')[0];
       var pos = path.length + 1;
       // loop from the end, to get the smallest section container if nested sections
@@ -193,54 +252,59 @@ Teinte = function() {
         var div = document.getElementById(id);
         if (!div) continue;
         var bounding = div.getBoundingClientRect();
-        // console.log(id);
-        // console.log(bounding);
-        // parent section maybe visible before children, so we should go ahead
         var visible = bounding.top <= (window.innerHeight || document.documentElement.clientHeight) - 200 || (bounding.bottom > 0 && bounding.bottom < (window.innerHeight || document.documentElement.clientHeight));
-        if (visible) {
-          // clean last link hilited
-          if (linkLast) linkLast.className = linkLast.className.replace(/ *\bvisible\b */g, "");
-          links[i].className = links[i].className.replace(/ *\bvisible\b */g, "") + " visible";
-          linkLast = links[i]; // keep pointer on this link
-          break;
-        }
+        if (visible) break;
       }
-    }
-
-
-    // bottom notes
-    for (var i = 0, len = noterefs.length; i < len; i++) {
-      var ref = noterefs[i];
-      var id = ref.hash;
-      if (id[0] = '#') id = id.substring(1);
-      idCopy = id+"Copy";
-      var noteCopy = document.getElementById(idCopy);
-      if (isVisible(ref)) {
-        count++;
-        if (noteCopy) continue;
-        var note = document.getElementById(id);
-        if (!note) continue; // no note ? bad
-        noteCopy = note.cloneNode(true);
-        noteCopy.id = idCopy;
-        if (up) noteBot.insertBefore(noteCopy, noteBot.firstChild); // prepend not for MS
-        else noteBot.appendChild(noteCopy);
+      if (!visible) break;
+      if (Liser.linkLast == links[i]) break;
+      // clean last link hilited
+      if (Liser.linkLast) Liser.linkLast.className = Liser.linkLast.className.replace(/ *\bvisible\b */g, "");
+      links[i].className = links[i].className.replace(/ *\bvisible\b */g, "") + " visible";
+      Liser.linkLast = links[i]; // keep pointer on this link
+      // update running head
+      var runhead = document.getElementById('runhead');
+      if (!runhead) break;
+      var head = div.querySelector("h1, h2, h3, h4, h5");
+      if (head) {
+        runhead.innerHTML = head.innerHTML;
+        runhead.href = "#"+id;
       }
       else {
-        if (!noteCopy) continue;
-        noteCopy.parentNode.removeChild(noteCopy);
+        runhead.innerHTML = "";
+        runhead.href = "";
       }
-    }
-    if(!count) noteBot.style.display = "none";
-    else noteBot.style.display = "";
-  };
+    } while(false);
 
-  return {
-    init:init,
-    shrink:shrink,
-    scrollAnchor:scrollAnchor,
-    scrollPage:scrollPage,
-    resize:resize,
-    scrollFix:scrollFix,
-    sliderClick:sliderClick,
-  };
-}();
+
+    // le notebox
+    if (Liser.notebox) {
+      var count = 0;
+      for (var i = 0, len = Liser.noterefs.length; i < len; i++) {
+        var ref = Liser.noterefs[i];
+        var id = ref.hash;
+        if (id[0] == '#') id = id.substring(1);
+        var idCopy = id+"Copy";
+        var noteCopy = document.getElementById(idCopy);
+        if (Liser.isVisible(ref)) {
+          
+          count++;
+          if (noteCopy) continue; // déjà affichée
+          var note = document.getElementById(id);
+          if (!note) continue; // no note ? bad
+          noteCopy = note.cloneNode(true);
+          noteCopy.id = idCopy;
+          if (up) Liser.notebox.insertBefore(noteCopy, Liser.notebox.firstChild); // prepend not for MS
+          else Liser.notebox.appendChild(noteCopy);
+        }
+        else {
+          if (!noteCopy) continue;
+          noteCopy.parentNode.removeChild(noteCopy);
+        }
+      }
+      if(!count) Liser.notebox.style.visibility = "hidden";
+      else Liser.notebox.style.visibility = "visible";
+    }
+  }
+}
+window.addEventListener("load", Liser.init, false);
+
