@@ -2,6 +2,7 @@
 /**
  * Interface statique, essentiellement pour la liseuse
  */
+ 
 class Liser {
 
   static init(selector)
@@ -112,10 +113,14 @@ class Liser {
     }
     // la recherche
     do {
-      var q = document.getElementById("q");
-      if (!q) break;
+      var q = document.getElementById("titles");
+      if (!q) {
+        console.log("Pas de recherche ici ?");
+        break;
+      }
       Liser.results = document.getElementById("results");
       if (!Liser.results) break;
+      Liser.header = document.getElementById("header");
       q.addEventListener('input', Liser.suggest);
       q.addEventListener('focus', Liser.suggest);
       window.addEventListener('click', Liser.resblur); // do not inform body
@@ -126,6 +131,13 @@ class Liser {
   
   static resblur(e)
   {
+    header.style.position = null;
+    
+    if (window.oldScrollY) {
+      window.scrollTo(0, window.oldScrollY);
+      window.oldScrollY = null;
+      console.log("Scroll  old to :"+window.oldScrollY);
+    }
     if(results.style.display == 'none') return;
     results.style.display = 'none'; 
     results.innerHTML = '';
@@ -134,14 +146,27 @@ class Liser {
     while (release && release.namespaceURI == "http://www.w3.org/2000/svg") release = release.parentNode;
     if (release && release.blur) release.blur();
   }
-  
+
+  /**
+   * Get and display results in header as a de-fixed block
+   * for easier browsing on mobile
+   */
   static suggest(e)
   {
     var query = e.target.value;
     if(!query) {
+      header.style.position = null;
       results.style.display = 'none';
+      if (window.oldScrollY) window.scrollTo(0, window.oldScrollY);
       return;
     }
+    // keep actual position before scroll to top 
+    if (!window.oldScrollY) {
+      window.oldScrollY = window.scrollY;
+      window.scrollTo(0, 0);
+    }
+    header.style.position = "relative";
+    results.style.display = 'block';
     if (query.slice(-1) != ' ') query += '*';
     fetch(CCM_REL+"/data/titles?q="+query)
     .then(response => {
@@ -150,7 +175,6 @@ class Liser {
     .then(data => {
       results.innerHTML = data;
     });
-    results.style.display = 'block';
   }
 
   static sliderClick(e)
@@ -266,8 +290,10 @@ class Liser {
       if (!runhead) break;
       var head = div.querySelector("h1, h2, h3, h4, h5");
       if (head) {
-        runhead.innerHTML = head.innerHTML;
         runhead.href = "#"+id;
+        var html = head.innerHTML;
+        html = html.replace(/<br( [^>]*)?\/?>/g, " — ")
+        runhead.innerHTML = html;
       }
       else {
         runhead.innerHTML = "";

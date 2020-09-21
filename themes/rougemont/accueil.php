@@ -113,8 +113,4 @@ $basename = basename($c->getCollectionPath());
   </div>
 
 </main>
-<script src="<?php  echo $view->getThemePath()?>/js/rougemont.js">//</script>
-<script>Teinte.init()</script>
-
-
 <?php   $this->inc('elements/footer_accueil.php'); ?>

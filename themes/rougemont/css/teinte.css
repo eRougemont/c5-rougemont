@@ -1,5 +1,4 @@
 /*! Teinte.css, generic TEI styling, https://github.com/oeuvres/Teinte   */
-
 /* Reset CSS */
 html {
   -ms-text-size-adjust: 100%;
@@ -47,7 +46,6 @@ body, html {
 }
 
 /* no fonts here, too complex to override */
-
 blockquote.quote, dd, p.p, div.p, .argument, .availability, div.bibl, li.bibl, .dialogue li,
 .justify, div.note, aside.note, div.stage {
   text-align: justify;
@@ -69,18 +67,17 @@ a:target, mark:target, b.mark:target {
   top: 0;
   left: -16px;
 }
+
 .note:target,
-.marginnote:target ,
+.marginnote:target,
 .l:target {
   background-color: #FFFFEE;
 }
-
 
 section:target {
   background: transparent !important;
   border-left: none;
 }
-
 
 article a {
   background-color: transparent;
@@ -130,7 +127,6 @@ article {
 aside header {
   border: none;
   padding-right: 1rem;
-  margin: 1rem 0 1rem 0;
 }
 
 b, strong {
@@ -148,18 +144,16 @@ blockquote.quote {
   padding: 0;
 }
 
-blockquote.quote .p {
-  
-}
+blockquote.quote .p {}
 
 cite {
   font-style: normal;
 }
 
-dd {
-}
+dd {}
 
 summary {
+  cursor: pointer;
 }
 
 summary i {
@@ -182,20 +176,20 @@ dl.dl dd {
 
 fieldset {
   margin: 2rem 0 1rem 0;
-  padding: 0 1ex 1ex 1ex;
+  padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
 fieldset div {
   line-height: 1.1rem;
-  margin: 0.5ex 0;
+  margin: 0.25rem 0;
 }
 
 fieldset blockquote {
-  margin: 0.5ex 0 0 0;
+  margin: 0.25rem 0 0 0;
 }
 
 fieldset ul {
-  margin: 0.5ex 0 0 0;
+  margin: 0.25rem 0 0 0;
 }
 
 figcaption {
@@ -267,14 +261,14 @@ figure a:hover {
 figure h1 {
   font-size: inherit;
   font-weight: bold;
-  margin: 1rem 0 1ex 0;
+  margin: 1rem 0 0.5rem 0;
   text-align: center;
 }
 
 figure h2 {
   font-size: inherit;
   font-weight: bold;
-  margin: 1rem 0 1ex 0;
+  margin: 1rem 0 0.5rem 0;
   text-align: left;
 }
 
@@ -376,8 +370,8 @@ kbd {
 
 li.item {
   line-height: 120%;
-  margin-top: 0.5ex;
-  margin-bottom: 0.5ex;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 li.item p {
@@ -402,8 +396,8 @@ legend {
   font-size: 105%;
   color: #666;
   font-weight: bold;
-  padding: 0 1ex;
-  margin: 1ex 0;
+  padding: 0 0.5rem;
+  margin: 0.5rem 0;
   text-decoration: underline;
 }
 
@@ -448,11 +442,11 @@ nav blockquote, nav dl {
 
 nav h1 {
   font-size: 15px;
-  padding: 0.2ex;
+  padding: 0.1rem;
   color: inherit;
   text-align: left;
-  margin: 1rem 1.3ex 1ex 0;
-  letter-spacing: 0.7ex;
+  margin: 1rem 0.8rem 0.5rem 0;
+  letter-spacing: 0.4rem;
 }
 
 nav hr {
@@ -467,40 +461,38 @@ nav li {
 }
 
 nav li.front {
-  margin-bottom: 1ex;
-  padding-bottom: 1ex;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px #FFF solid;
 }
 
 nav li.back {
-  margin-top: 1ex;
-  padding-top: 1ex;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
   border-top: 1px #FFF solid;
 }
 
 nav header {
   display: block;
-  padding: 1px 1ex;
-  margin-bottom: 1ex;
-  margin-top: 1ex;
+  padding: 1px 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   font-weight: bold;
   font-size: 120%;
   border: 1px #FFF solid;
   border-right: none;
-  line-height: 110%;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  -webkit-border-top-left-radius: 1ex;
-  -moz-border-top-left-radius: 1ex;
-  border-top-left-radius: 1ex;
-  -webkit-border-bottom-left-radius: 1ex;
-  -moz-border-bottom-left-radius: 1ex;
-  border-bottom-left-radius: 1ex;
+  -webkit-border-top-left-radius: 0.5rem;
+  -moz-border-top-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  -webkit-border-bottom-left-radius: 0.5rem;
+  -moz-border-bottom-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
-nav menu, nav ul {
-}
+nav menu, nav ul {}
 
 optgroup {
   font-weight: bold;
@@ -509,7 +501,6 @@ optgroup {
 p.p, div.p, .dialogue li {
   margin: 0;
   text-align: justify;
-  line-height: 150%;
 }
 
 pre {
@@ -554,7 +545,7 @@ section {
 }
 
 select {
-  padding: 0 0.5ex;
+  padding: 0 0.25rem;
 }
 
 small {
@@ -582,7 +573,6 @@ svg:not(:root) {
 }
 
 /** Forms */
-
 button, input, optgroup, select, textarea {
   font-size: inherit;
   margin: 0;
@@ -613,11 +603,10 @@ input[type="submit"].but,
   text-shadow: 1px 1px #FFFFFF;
   white-space: nowrap;
   text-decoration: none !important;
-  -webkit-border-radius: 0.5ex;
-  -moz-border-radius: 0.5ex;
-  border-radius: 0.5ex;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  border-radius: 0.25rem;
 }
-
 
 button[disabled], html input[disabled] {
   cursor: default;
@@ -674,7 +663,7 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 }
 
 input.year {
-  width: 6ex;
+  width: 3rem;
 }
 
 input::-webkit-input-placeholder {
@@ -779,7 +768,7 @@ li.bibl {
 /* like li.witness */
 blockquote .bibl {
   text-align: right;
-  margin-top: 1ex;
+  margin-top: 0.5rem;
   line-height: 110%;
 }
 
@@ -920,8 +909,7 @@ aside .docDate {
   text-align: right;
 }
 
-.epigraph .bibl {
-}
+.epigraph .bibl {}
 
 .epigraph .p i,
 .epigraph .p em {
@@ -938,8 +926,8 @@ aside .docDate {
 
 li.item {
   line-height: 120%;
-  margin-top: 0.5ex;
-  margin-bottom: 0.5ex;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .fileDesc, .fileDesc>p {
@@ -1047,8 +1035,8 @@ p dfn.gloss, div.gloss {
 
 li.item {
   line-height: 120%;
-  margin-top: 0.5ex;
-  margin-bottom: 0.5ex;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 div.l {
@@ -1060,7 +1048,6 @@ div.l {
 .l.indent {
   text-indent: -1rem;
 }
-
 
 .l1 {
   padding-left: 13rem;
@@ -1186,13 +1173,13 @@ div.l {
 }
 
 .l.promythium {
-  margin-bottom: 2.0ex;
+  margin-bottom: 1rem;
   text-indent: 0;
   padding-left: 0;
 }
 
 .l.epimythium {
-  margin-top: 2.0ex;
+  margin-top: 1rem;
   text-indent: 0;
   padding-left: 0;
 }
@@ -1229,7 +1216,7 @@ p.label, div.label {
 }
 
 blockquote.quote .label {
-  margin: 1ex 0 0.5ex 2rem;
+  margin: 0.5rem 0 0.25rem 2rem;
   text-align: left;
 }
 
@@ -1268,7 +1255,7 @@ div.lg {
   margin: 1px -10rem 1px 1rem;
   border: 1px #C9C6BB solid;
   box-shadow: 10px 0px 10px #E2DED0;
-  padding: 0.2ex 1ex !important;
+  padding: 0.1rem 0.5rem !important;
   background: rgba(255, 255, 255, 0.7);
   z-index: 5;
   position: relative;
@@ -1286,16 +1273,14 @@ div.lg {
   line-height: 115%;
   margin: 1px 0 1rem 0;
   clear: both;
-  text-align: justify;
 }
 
- {
+  {
   background-color: #FFFFEE;
 }
 
-
 .note blockquote {
-  margin: 1ex 0rem 1ex 2rem;
+  margin: 0.5rem 0rem 0.5rem 2rem;
 }
 
 .note p {
@@ -1311,12 +1296,12 @@ div.lg {
 
 p.note {
   text-indent: 0;
-  margin-top: 1ex;
-  margin-bottom: 1ex;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .notes-abc, .notes-123, .notes-misc {
-  margin-top: 1ex;
+  margin-top: 0.5rem;
 }
 
 .note-page {
@@ -1326,7 +1311,7 @@ p.note {
 .note-margin-left {
   float: left;
   margin-left: -2rem;
-  margin-right: 1ex;
+  margin-right: 0.5rem;
 }
 
 a.noteref {
@@ -1343,7 +1328,7 @@ a.noteref, a.noteback {
   border-bottom: none;
   font-style: normal;
   font-variant: normal;
-  padding-right: 0.2ex;
+  padding-right: 0.1rem;
   /* note sep */
 }
 
@@ -1395,7 +1380,7 @@ div.salute, p.salute {
 
 .sp p {
   text-indent: 0;
-  margin-bottom: 0.6ex;
+  margin-bottom: 0.3rem;
 }
 
 .sp blockquote {
@@ -1410,7 +1395,7 @@ div.salute, p.salute {
 
 div.speaker, p.speaker {
   margin-top: 1rem;
-  margin-bottom: 0.5ex;
+  margin-bottom: 0.25rem;
   font-weight: normal;
   text-transform: uppercase;
   font-size: 0.9rem;
@@ -1451,12 +1436,12 @@ div.stage.sc {
   font-style: normal;
   text-align: center;
   font-size: 105%;
-  margin-bottom: 1ex;
+  margin-bottom: 0.5rem;
 }
 
 .sp div.stage {
-  margin-top: 0.7ex;
-  margin-bottom: 1ex;
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .sp div.stage.right {
@@ -1522,7 +1507,10 @@ section section .subtitle {
   font-variant: small-caps;
 }
 
-.title em, .title i, .title .title, .title .sc {
+.title em,
+.title i,
+.title .title,
+.title .sc {
   font-style: normal;
 }
 
@@ -1634,7 +1622,7 @@ p[id^="note"] {
 }
 
 /**
- * @rend, @type useful classes, in alphabetic order 
+ * @rend, @type useful classes, in alphabetic order
  */
 p.p {
   text-indent: 1.5rem;
@@ -1694,7 +1682,7 @@ div.center, p.center, blockquote.center>* {
 
 .center.border {
   padding: 0.2rem 0.5rem;
-  display:table;
+  display: table;
 }
 
 .center p {
@@ -1796,7 +1784,7 @@ div.left {
 }
 
 .ls, .letter-spacing {
-  letter-spacing: 0.4ex;
+  letter-spacing: 0.2rem;
 }
 
 h1.main {
@@ -1835,7 +1823,7 @@ h1.main {
 body.nota {
   box-shadow: 10px 0px 50px #E2DED0;
   height: auto;
-  width: 100ex;
+  width: 5rem;
   margin: 3rem auto 2rem auto;
   padding: 1rem;
   background: #FFF;
@@ -1890,13 +1878,13 @@ p.right {
 }
 
 p img {
-  margin-right: 0.5ex;
+  margin-right: 0.25rem;
 }
 
 img.right {
   float: right;
   margin-right: 0;
-  margin-left: 0.5ex;
+  margin-left: 0.25rem;
 }
 
 .sb {
@@ -1933,7 +1921,7 @@ h1.sub {
 .todo {
   border: #F00 solid 1px;
   background: #FFC;
-  padding: 1ex;
+  padding: 0.5rem;
 }
 
 .u, .underline {
@@ -1945,8 +1933,8 @@ h1.sub {
 }
 
 nav.prevnext {
-  margin-top: 1ex;
-  margin-bottom: 1ex;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 table.prevnext {
@@ -2000,7 +1988,7 @@ nav.breadcrumb {
 }
 
 .breadcrumb a {
-  padding: 1px 0.5ex;
+  padding: 1px 0.25rem;
 }
 
 .breadcrumb a:hover {
@@ -2013,8 +2001,8 @@ nav.breadcrumb {
   border-bottom: none;
   position: fixed;
   color: rgba(150, 150, 150, 0.5);
-  bottom: 1ex;
-  right: 1ex;
+  bottom: 0.5rem;
+  right: 0.5rem;
   z-index: 10;
 }
 
@@ -2124,7 +2112,7 @@ caption {
 }
 
 th {
-  padding: 1px 1ex;
+  padding: 1px 0.5rem;
 }
 
 td.data p {
@@ -2134,7 +2122,7 @@ td.data p {
 
 th.border, td.border {
   border: #CCCCCC 1px solid;
-  padding: 2px 1ex;
+  padding: 2px 0.5rem;
 }
 
 td.left, th.left {
@@ -2162,7 +2150,7 @@ td.bottom, th.bottom {
 }
 
 table.table td {
-  padding: 1px 1ex;
+  padding: 1px 0.5rem;
   border-top: 1px #CCCCCC solid;
   border-left: 1px #CCCCCC solid;
 }
@@ -2179,7 +2167,7 @@ table.table p {
 table.table th, table.data th {
   vertical-align: middle;
   text-align: right;
-  padding: 5px 1ex 5px 1ex;
+  padding: 5px 0.5rem 5px 0.5rem;
   background-color: #F5F3EB;
   border: none;
   border-right: 2px #FFF solid;
@@ -2187,7 +2175,7 @@ table.table th, table.data th {
 }
 
 table.data td {
-  padding: 1px 0.5ex 1px 1ex;
+  padding: 1px 0.25rem 1px 0.5rem;
   text-align: right;
   border-bottom: 1px solid #CCC;
   border-top: 1px solid #CCC;
@@ -2200,7 +2188,7 @@ table.data tr:hover, table.data tr:hover th {
 }
 
 table.data td a {
-  padding: 1px 1ex;
+  padding: 1px 0.5rem;
   display: block;
 }
 
@@ -2209,7 +2197,7 @@ table.data td a:hover {
 }
 
 table.table tr.head td {
-  padding-top: 1ex;
+  padding-top: 0.5rem;
   border-left: none;
   border-right: none;
   font-style: italic;
@@ -2222,7 +2210,7 @@ table.table tr.head td.data {
 
 thead td, table.data thead td {
   background-color: #FFFFFF;
-  padding: 5px 1ex;
+  padding: 5px 0.5rem;
   border-bottom: #FFFFFF solid 1px;
 }
 
@@ -2246,7 +2234,7 @@ table.graph th {
 
 section.mark:before, div.mark:before, li.mark:before {
   content: "☞";
-  margin-right: 1ex;
+  margin-right: 0.5rem;
   font-size: 16px;
   float: left;
 }
@@ -2280,7 +2268,7 @@ figcaption.less:before {
   content: '◿';
 }
 
-/* a.prev:before, a.prev:after , a.next:before, a.next:after {font-size: 3rem; color: rgba(200, 200, 200, 0.5); padding-right: 0.2ex; padding-left: 0.2ex;} */
+/* a.prev:before, a.prev:after , a.next:before, a.next:after {font-size: 3rem; color: rgba(200, 200, 200, 0.5); padding-right: 0.1rem; padding-left: 0.1rem;} */
 /* xml2html.xsl, documented XML source */
 .exemplum {
   background-color: #FFFFFF;
@@ -2291,7 +2279,7 @@ figcaption.less:before {
   background-image: -o-linear-gradient(left, #FFFFFF, #F8F8F8);
   background-image: linear-gradient(left, #FFFFFF, #F8F8F8);
   border-left: 1px dotted #808080;
-  padding: 1ex 1rem;
+  padding: 0.5rem 1rem;
   margin: 0;
 }
 
@@ -2449,10 +2437,10 @@ dl.xml dt {
   .note {
     margin: 0 0 0 1.7rem;
     border-left: 1px solid #CCCCCC;
-    padding: 0.3rem 0 0.5ex 0.5rem;
+    padding: 0.3rem 0 0.25rem 0.5rem;
   }
 
-  section > .note {
+  section>.note {
     margin: 1rem 0 1rem 0;
     padding-left: 1.5rem;
     padding-left: 1.5rem;
@@ -2463,7 +2451,7 @@ dl.xml dt {
     display: block;
     text-align: right;
     width: 1.5rem;
-    margin: 0.3ex 0 0 -2.5rem;
+    margin: 0.2rem 0 0 -2.5rem;
   }
 
   aside.marginnote {
