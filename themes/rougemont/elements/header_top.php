@@ -12,8 +12,7 @@ $u = new User();
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
 <?php  
 $html = Loader::helper('html');
 $this->addHeaderItem($html->css('css/bootstrap-grid.css'));
@@ -26,7 +25,7 @@ if ($u->isLoggedIn ()) {
 
 
 /*
-
+Le lien fonte à la première vue bloque le rendu
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"/>
 
 

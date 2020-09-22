@@ -1,8 +1,67 @@
 /*! css Rougemont */
-/*# Fontes */
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+/*# Fontes, le minifieur de C5 casse la déclaration dimport de fonte */
+
+body, #chapo .btn {
+  font-family: 'Fira Sans', 'Open Sans', 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+h1, h3, #chapo p {
+  font-family: 'EB Garamond', serif;
+}
+
+#chapo .btn, header, footer, .btn, .bg-light, .ui {
+  /* interface */
+}
+
+/*# Tailles 
+ * La taille de fonte de base est définie selon les écrans (plus bas).
+ * Beaucoup de tailles relatives en cours de texte 
+ * (ex citations, notes) sont définies dans teinte.css.
+ * Des zones peuvent être définies en tailles absolue
+ * (limites de la vue), relatives à l’écran.
+ */
+
+body {
+  line-height: 1.5;
+}
+
+.text1 {
+  /* retour à la taille de base */
+  font-size: 1rem;
+}
+
+main.accueil,
+.ccm-block-next-previous-wrapper,
+#header,
+#footer,
+#sidebar,
+.bg-light,
+.btn,
+.text2 {
+  font-size: 16px;
+}
+
+/*
+.headnav a,
+.foot {
+  font-size: 15px;
+}
+*/
+
+#portrait a {
+  font-size: 13px;
+}
+
+
 
 /*# Couleurs */
+
+body {
+  background-color: #fff;
+}
+
+
 :root {
   /*# Les variables ne fonctionnent pas après minification dans concrete5 */
   --red: #cf1308;
@@ -14,17 +73,60 @@
   --gray: #6c757d;
 }
 
+/*# html de base */
+
 body {
   line-height: 1.5;
   min-height: 100%;
-  background-color: #fff;
+}
+
+h1 {
+  margin-top: 1rem;
+  font-size: 200%;
+  padding: 0;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 150%;
+  font-weight: normal;
+  text-align: left;
+  line-height: initial;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 120%;
+  padding: 0;
+}
+
+.ccm-block-page-list-header,
+h4 {
+  font-size: 150%;
+  font-weight: normal;
+}
+
+h5, h6 {
+  font-weight: normal;
+}
+
+h5 {
+  font-size: 100%;
+}
+
+.booktitle {
+  font-size: 150%;
+  margin: 0;
+  text-align: center;
 }
 
 *:focus {
   outline: none;
 }
 
-::placeholder { /* pads d’effet */
+::placeholder { /* pas d’effet */
   opacity: 1; /* Firefox */
 }
 
@@ -33,19 +135,6 @@ div.ccm-page { /* bottom footer hack */
   min-height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-body, #chapo .btn {
-  font-family: 'Fira Sans', 'Open Sans', 'Roboto', sans-serif;
-  font-weight: 300;
-}
-
-h1, h3, time, address, #chapo p {
-  font-family: 'EB Garamond', serif;
-}
-
-#chapo .btn, header, footer, .btn, .bg-light, .ui {
-  /* interface */
 }
 
 /*# disable Concrete5 customisations */
@@ -113,7 +202,6 @@ a {
   background-color: transparent;
   border: 1px solid transparent;
   padding: .375rem .75rem;
-  font-size: 1rem;
   line-height: 1.1;
   border-radius: .25rem;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -203,17 +291,16 @@ button svg,
 }
 
 #menubut.splash {
-  background: #fba19d;
+  background: #edd;
   color: #000;
   border-color: #fff;
 }
 
 #menu {
-  background: linear-gradient(#fba19d, #cc6b66);
+  background: linear-gradient(#edd, #fff);
   color: #000;
   display: none;
   padding: 15px;
-  border-top: 2px solid #fba19d;
 }
 #menu a {
   color: #000;
@@ -290,14 +377,6 @@ body {
   padding: 0;
 }
 
-.body {
-  font-size: 110%;
-}
-
-.body aside.note {
-  font-size: 90%;
-}
-
 a:active, a:focus {
   outline: 0;
   border: none;
@@ -327,12 +406,6 @@ a:active, a:focus {
   text-align: center;
 }
 
-.booktitle {
-  font-size: 1.5rem;
-  margin: 0;
-  text-align: center;
-}
-
 .booktitle a {
   display: block;
   padding: 10px;
@@ -342,41 +415,6 @@ a:active, a:focus {
   margin-bottom: 5rem;
 }
 
-h1 {
-  margin-top: 1rem;
-  font-size: 2rem;
-  padding: 0;
-  font-weight: normal;
-}
-
-h2 {
-  font-size: 1.5rem;
-  font-weight: normal;
-  text-align: left;
-  line-height: initial;
-  margin: 1rem 0;
-  padding: 0;
-}
-
-h3 {
-  font-weight: normal;
-  font-size: 1.2rem;
-  padding: 0;
-}
-
-.ccm-block-page-list-header,
-h4 {
-  font-size: 1.5rem;
-  font-weight: normal;
-}
-
-h5, h6 {
-  font-weight: normal;
-}
-
-h5 {
-  font-size: 100%;
-}
 
 .slider {
   overflow-y: hidden;
@@ -507,7 +545,6 @@ h5 {
   text-align: center;
   cursor: pointer;
   font-weight: 400;
-  font-size: 0.9rem;
   padding: 10px;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -526,8 +563,8 @@ h5 {
 }
 
 #chapo p {
-  line-height: 120% !important;
-  font-size: 1.7rem;
+  line-height: 120%;
+  font-size: 150%;
   color: #aaa;
   margin: 1rem 0;
 }
@@ -554,16 +591,6 @@ h5 {
   font-variant: small-caps;
 }
 
-h3.custom-1 {
-  font-size: 1.2em !important;
-  font-weight: normal !important;
-  text-align: left !important;
-  line-height: initial !important;
-  margin: 20px 0 !important;
-  padding: 0 !important;
-  text-indent: 0;
-}
-
 a {
   color: #cf1308;
 }
@@ -572,21 +599,22 @@ form {
   /* be careful, c5 search results are in a form */
 }
 
+/*
 time, address {
   color: #888;
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 110%;
   text-align: center;
   display: block;
   text-align: left;
 }
+*/
 
 img.img-round {
   border-radius: 100%;
 }
 
 a.pb {
-  font-size: 80%;
   font-stretch: 70%;
   float: none;
   margin: 0;
@@ -709,8 +737,7 @@ a.media-thumbnail .icon {
   z-index: 20;
   margin-left: -15px;
   padding: 0.7rem 15px 0.2rem 15px;
-  box-shadow: 0px -10px 10px #fff;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #ccc;
   visibility: hidden;
 }
 
@@ -765,7 +792,7 @@ a.media-thumbnail .icon {
 #sidebar .buts>* {
   display: block;
   margin-bottom: 1rem;
-  font-size: 15pt;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -795,7 +822,7 @@ div.ccm-block-page-list-title a,
 .toclocal header a {
   border-bottom: none;
   font-weight: 400;
-  font-size: normal;
+  font-size: 100%;
 }
 
 .toc_details summary {
@@ -1022,14 +1049,16 @@ p.ccm-block-next-previous-next-link a {
   position: relative;
   width: 100%;
   padding: 0;
-  box-shadow: 0px 10px 10px #fff;
+  /* box-shadow: 0px 10px 10px #fff; */
 }
 
 #header.liseuse {
   position: fixed;
   width: 100%;
-  height: 48px;
+  height: auto;
   z-index: 100;
+  box-shadow: 0px 10px 24px 0px rgba(0,0,0,0.25);
+  opacity: .97;
 }
 
 #header_md {
@@ -1064,8 +1093,6 @@ a.ddr {
 #header_md .meta {
   height: 48px;
   flex-grow: 1;
-  line-height: 1.4;
-  font-size: 16px;
   min-width: 0;
   /* hack ellipsis */
   text-align: center;
@@ -1185,7 +1212,7 @@ form.search:focus-within button {
 
 form.search input[type=text] {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
   padding: 4px 40px;
   width: 100%;
@@ -1280,9 +1307,8 @@ main.liseuse aside.bibl {
 
 #portrait {
   height: 175px;
-  margin-right: -90px;
   position: relative;
-  background-image: url('../img/ddr_portrait.webp');
+  background-image: url('../img/ddr_portrait.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: -15% 50%;
@@ -1295,7 +1321,6 @@ main.liseuse aside.bibl {
 
 #portrait a {
   color: black !important;
-  font-size: 0.8rem;
   display: inline-block;
   width: 100%;
 }
@@ -1363,7 +1388,6 @@ main.liseuse aside.bibl {
 .headnav a {
   display: block;
   padding: 10px 8px;
-  font-size: 15px;
 }
 
 
@@ -1419,7 +1443,6 @@ horizontal scrolling bad for mobile
   /* always bottom trick */
   text-align: left;
   position: relative;
-  font-size: 0.9rem;
   color: #ccc;
 }
 
@@ -1437,16 +1460,24 @@ horizontal scrolling bad for mobile
   text-decoration: underline;
 }
 
-#footer h5 {
-  font-size: 1.1rem;
+#footer div.label {
+  font-size: 110%;
   color: #666;
   margin: 0 0 15px 0;
   text-indent: 2rem;
   border-bottom: 1px solid;
 }
 
+.medias div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title {
+  font-size: 130%;
+  text-align: center;
+  font-weight: 300;
+  padding-bottom: 0.5rem;
+}
+
+#footer address,
 #footer p {
-  margin-left: 2rem;
+  margin: 0 0 0 2rem;
 }
 
 #footer ul {
@@ -1597,7 +1628,6 @@ nav.covers a .date {
 /*# list-pages medias */
 .medias div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title {
   text-align: center;
-  font-size: 130%;
   font-weight: 300;
   padding-bottom: 0.5rem;
 }
@@ -1705,14 +1735,15 @@ section>a.pb {
 /*
  * Événements spécifiques souris
  */
-@media(hover: hover) and (pointer: fine) {
+@media (pointer: fine) and (hover: hover) { /* attention minify, garder une espace après @media */
+
   .btn-outline-light:hover {
     color: #212529;
     background-color: #f5f4f5;
   }
 
   #header_md .icon:hover {
-    background-color: #fff;
+    background-color: #edd;;
     color: #000;
     border-color: #fff;
   }
@@ -1764,7 +1795,8 @@ section>a.pb {
     text-decoration: none;
   }
 
-  a.hover-underline:hover, a.lire-la-suite:hover {
+  a.hover-underline:hover,
+  a.lire-la-suite:hover {
     text-decoration: underline !important;
   }
 
@@ -1938,7 +1970,6 @@ section>a.pb {
     width: auto;
     margin: 0 0.5em 0 0;
     font-weight: bold;
-    font-size: 100%;
   }
 
   aside.note {
@@ -1992,9 +2023,6 @@ section>a.pb {
   h1 {
     font-size: 130%;
   }
-  .body {
-    font-size: 100%;
-  }
 }
 
 @media (min-width: 767px) {
@@ -2016,7 +2044,6 @@ section>a.pb {
   /*# bootstrap, not lg large */
   .headnav a {
     padding: 5px;
-    font-size: 100%;
   }
 
   #sidebar {}
@@ -2071,6 +2098,10 @@ section>a.pb {
 
 @media (min-width: 1200px) {
 
+  body {
+    font-size: 20px;
+  }
+
   /*# bootstrap xl  extra large */
   #sidebar {
     /*
@@ -2078,6 +2109,15 @@ section>a.pb {
     flex: 0 0 380px;
     */
   }
+@media (min-width: 1500px) {
+
+  body {
+    font-size: 21px;
+  }
+  .container {
+    max-width: 1400px;
+  }
+
 }
 
 /* La minification a pu bloquer sur les svg data, laissées ici par précaution */

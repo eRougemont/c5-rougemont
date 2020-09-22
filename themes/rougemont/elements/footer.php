@@ -7,11 +7,11 @@
         <div class="col-md-6 col-lg-3 py-3 py-md-5">
           <div class="center">
             <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="signature Denis de Rougemont blanc" class="signature">
-            <span>
+            <p>
               L'intégrale de
               <br/>Denis de Rougemont<br/>
               en libre accès
-            </span>
+            </p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 py-3 py-md-5">
@@ -19,8 +19,8 @@
           <img src="<?php  echo $view->getThemePath()?>/img/gsi.png" class="unige" alt="Unige Global Studies Institute (logo)">
         </div>
         <div class="col-md-6 col-lg-3 py-3 py-md-5">
-          <h5>Contact</h5>
-          <p>
+          <div class="label">Contact</div>
+          <address>
               Rougemont 2.0
               <br/>GSI de l’Université de Genève
               <br/>Sciences II
@@ -28,10 +28,10 @@
               <br/>Case postale
               <br/>CH - 1211 Genève 4
               <br/><a href="mailto:rougemont@unige.ch">rougemont@unige.ch</a>
-          </p>
+          </address>
         </div>
         <div class="col-md-6 col-lg-3 py-3 py-md-5">
-          <h5>Conditions d'usage</h5>
+          <div class="label">Conditions d'usage</div>
           <p>
             Sauf indication contraire, les contenus de ce site sont publiés sous une licence Creative commons CC-BY-NC, 4.0.
           </p>
