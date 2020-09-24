@@ -2,7 +2,21 @@
 /**
  * Interface statique, essentiellement pour la liseuse
  */
- 
+
+
+/*
+// faire partir la barre fixe au scrolll ?
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+*/
 class Liser {
 
   static init(selector)
@@ -19,40 +33,70 @@ class Liser {
     var tocbut = document.getElementById("tocbut");
     var toc = document.getElementById("toc");
     if (tocbut && toc) {
-      tocbut.addEventListener("click", function (e) {
-          event.preventDefault();
-          // e.target; peut être un enfant du lien dans le SVG
-          if (tocbut.classList.contains("splash")) {
-            tocbut.classList.remove("splash");
-            toc.classList.remove("splash");
-            
-          } else {
-            tocbut.classList.add("splash");
-            toc.classList.add("splash");
-          }
-      }, false);
-      toc.addEventListener("click", function (e) {
-        tocbut.classList.remove("splash");
-        toc.classList.remove("splash");
-      }, false);
+      tocbut.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        // event.target maybe the svg
+        if (tocbut.classList.contains("splash")) {
+          tocbut.classList.remove("splash");
+          toc.classList.remove("splash");
+          return;
+        }
+        if (menubut && menu) {
+          menubut.classList.remove("splash");
+          menu.classList.remove("splash");
+        }
+
+        // show
+        tocbut.classList.add("splash");
+        toc.classList.add("splash");
+        // ensure scroll into view
+        var here = toc.querySelector("a.nav-selected");
+        if (!here) here = toc.querySelector("li.here > a");
+        if (!here) return;
+        var hereY = here.offsetTop;
+        if (hereY < toc.clientHeight + toc.scrollTop) return;
+        toc.scrollTop = hereY + 100;
+      });
+      
+      
+      toc.addEventListener("click", function (event) {
+        event.stopPropagation();
+      }, true);
     }
 
     var menubut = document.getElementById("menubut");
     var menu = document.getElementById("menu");
     if (menubut && menu) {
-      menubut.addEventListener("click", function (e) {
+      menubut.addEventListener("click", function (event) {
         event.preventDefault();
+        event.stopPropagation();
         if (menubut.classList.contains("splash")) {
           menubut.classList.remove("splash");
           menu.classList.remove("splash");
-          
-        } else {
-          menubut.classList.add("splash");
-          menu.classList.add("splash");
+          return;
         }
-      }, false);
+        menubut.classList.add("splash");
+        menu.classList.add("splash");
+        if (tocbut && toc) {
+          tocbut.classList.remove("splash");
+          toc.classList.remove("splash");
+        }
+
+      });
     }
 
+    window.addEventListener("click", function (event) {
+      if (tocbut && toc) {
+        tocbut.classList.remove("splash");
+        toc.classList.remove("splash");
+      }
+      if (menubut && menu) {
+        menubut.classList.remove("splash");
+        menu.classList.remove("splash");
+      }
+    });
+    
     
     Liser.sidebar = document.getElementById("sidebar");
     do {
@@ -129,6 +173,7 @@ class Liser {
     } while (false);
   }
   
+  
   static resblur(e)
   {
     header.style.position = null;
@@ -168,8 +213,12 @@ class Liser {
     header.style.position = "relative";
     results.style.display = 'block';
     if (query.slice(-1) != ' ') query += '*';
-    fetch(CCM_REL+"/data/titles?q="+query)
-    .then(response => {
+    fetch(CCM_REL+"/data/titles?q="+query, {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    }).then(response => {
       return response.text()
     })
     .then(data => {

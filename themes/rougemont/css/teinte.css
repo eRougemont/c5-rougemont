@@ -1419,7 +1419,7 @@ a.noteback {
   border-bottom: none;
   font-style: normal;
   font-variant: normal;
-  padding-right: 0.1rem;
+  padding-right: .1em;
   /* note sep */
 }
 

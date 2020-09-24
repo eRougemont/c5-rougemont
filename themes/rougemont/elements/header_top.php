@@ -6,37 +6,67 @@ $u = new User();
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="theme-color" content="#CF1308"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-<?php  
+    <meta charset="UTF-8"/>
+    <meta name="theme-color" content="#cf1308"/>
+    <link rel="preconnect" href="https://www.google-analytics.com/"/>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com/"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin/>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/" crossorigin/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin/>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/" crossorigin/>
+    <link
+      rel="preload" 
+      as="style" 
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+    />
+    <link 
+      rel="stylesheet" 
+      media="print" 
+      onload="this.media='all'" 
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+    />
+    <noscript>
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+    />
+    </noscript>
+    
+<?php
+
+/*
+Les fontes en local sont plus lentes
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/eb-garamond-v14-latin-ext_latin-italic.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/eb-garamond-v14-latin-ext_latin-regular.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-300italic.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-300.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-500italic.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-500.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-italic.woff2"/>
+<link rel="preload" crossorigin as="font" type="font/woff2" href="<?php echo $this->getThemePath(); ?>/fonts/fira-sans-v10-latin-ext_latin_greek-regular.woff2"/>
+$this->addHeaderItem($html->css('css/fonts-local.css'));
+
+*/
+
+// les fontes sont demandées vite pour espérer que cela ne perturbe pas la vue, crossorigin est nécessaire
+// par contre, il ne faut pas pour google-analytics
+
 $html = Loader::helper('html');
 $this->addHeaderItem($html->css('css/bootstrap-grid.css'));
 $this->addHeaderItem($html->css('css/teinte.css'));
 $this->addHeaderItem($html->css('css/rougemont.css'));
 Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
+/**
+    C5 a besoin de jquery en mode admin (v. 1.12.2 avec ckedditor) et des plugins comme les diaporamas, mais c’est plombant
+*/
+if ($u->isLoggedIn () || $c->getCollectionPath() == '/bio') {
+  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>';
+}
 if ($u->isLoggedIn ()) {
   echo '<link rel="stylesheet" media="screen" type="text/css" href="'.$this->getStyleSheet("css/c5-admin.css").'" />';
 }
-
-
-/*
-Le lien fonte à la première vue bloque le rendu
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"/>
-
-
-    C5 a besoin de jquery en mode admin (v. 1.12.2 avec ckedditor) et des plugins comme les diaporamas, il est demandé dans le body pour ne pas trop arrêter la page
-    mais defer ou async ne marchent pas.
-    Les fontes sont demandée en pied de page.
-    <script>
-// inform server of client width
-document.cookie = "innerWidth="+window.innerWidth+";samesite=strict";
-    </script>
-*/
     ?>
     <link rel="icon" sizes="32x32"    href="<?php  echo $view->getThemePath()?>/img/favicon32.png">
     <link rel="icon" sizes="57x57"    href="<?php  echo $view->getThemePath()?>/img/favicon57.png">
@@ -49,13 +79,9 @@ document.cookie = "innerWidth="+window.innerWidth+";samesite=strict";
     <link rel="icon" sizes="192x192"  href="<?php  echo $view->getThemePath()?>/img/favicon192.png">
     <link rel="icon" sizes="228x228"  href="<?php  echo $view->getThemePath()?>/img/favicon228.png">
   </head>
-<body>
+<body class="rougemont <?php echo $c->getCollectionTypeHandle(); ?>">
   
 <?php
-
-if ($u->isLoggedIn () || $c->getCollectionPath() == '/bio') {
-  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" async></script>';
-}
 
 
 /*

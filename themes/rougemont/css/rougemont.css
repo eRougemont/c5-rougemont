@@ -2,8 +2,8 @@
 /*# Fontes, le minifieur de C5 casse la déclaration dimport de fonte */
 
 body, #chapo .btn {
-  font-family: 'Fira Sans', 'Open Sans', 'Roboto', sans-serif;
-  font-weight: 300;
+  font-family: 'Fira Sans', 'Open Sans', 'Roboto', sans-serif-light, sans-serif;
+  line-height: 1.5;
 }
 
 h1, h3, #chapo p {
@@ -11,7 +11,11 @@ h1, h3, #chapo p {
 }
 
 #chapo .btn, header, footer, .btn, .bg-light, .ui {
-  /* interface */
+  font-weight: 300;
+}
+
+.btn, .btn, .bg-light, .ui {
+  
 }
 
 /*# Tailles 
@@ -22,9 +26,6 @@ h1, h3, #chapo p {
  * (limites de la vue), relatives à l’écran.
  */
 
-body {
-  line-height: 1.5;
-}
 
 .text1 {
   /* retour à la taille de base */
@@ -73,10 +74,40 @@ body {
   --gray: #6c757d;
 }
 
+/*# transitions */
+
+
+/*
+* {
+  transition: background-color 400ms, color 400ms, opacity 400ms, transform 400ms, border-bottom 400ms, width 400ms, max-width 0.2s ease-in;
+}
+
+
+.btn {
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+form.search,
+form.search *,
+#sidebar,
+#notebox {
+  -webkit-transition-duration: 0s;
+  -moz-transition-duration: 0s;
+  -o-transition-duration: 0s;
+  transition-duration: 0s;
+}
+*/
+
+/*# html  default */
+
+a {
+  color: #cf1308;
+}
+
+
 /*# html de base */
 
 body {
-  line-height: 1.5;
   min-height: 100%;
 }
 
@@ -116,11 +147,22 @@ h5 {
   font-size: 100%;
 }
 
-.booktitle {
-  font-size: 150%;
-  margin: 0;
-  text-align: center;
+nav header {
+  padding: 0;
+  border: none;
+  margin: 0 0 2rem 0;
 }
+  
+.booktitle {
+  margin: 0;
+  text-align: right;
+}
+
+.booktitle a {
+  display: block;
+  padding: 10px;
+}
+
 
 *:focus {
   outline: none;
@@ -204,7 +246,6 @@ a {
   padding: .375rem .75rem;
   line-height: 1.1;
   border-radius: .25rem;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   padding: 10px;
 }
 
@@ -230,10 +271,10 @@ ul.nav {
 }
 
 /* Google material icons used as inline SVG */
-.icon {
+a.icon {
   /* icon container for buttons */
   width: 48px;
-  height: 45px;
+  height: 48px;
   padding: 12px;
   display: inline-block;
   stroke-width: 0;
@@ -247,6 +288,15 @@ button svg,
   width: 24px;
   height: 24px;
 }
+
+#header_md .icon {
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  height: 40px;
+  padding: 6px 12px 8px 12px;
+}
+
 
 .icon .hide {
   visibility: hidden;
@@ -281,14 +331,6 @@ button svg,
   
 }
 
-#header_md .icon {
-  border: 1px solid transparent;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  height: 40px;
-  width: 45px;
-  padding: 8px 8px 8px 8px;
-}
 
 #menubut.splash {
   background: #edd;
@@ -392,7 +434,7 @@ a:active, a:focus {
 }
 
 .bkg-gradient-brighter-to-white {
-  background: linear-gradient(0deg, white 0%, #ccc 100%);
+  background: linear-gradient(0deg, #fff 0%, #ccc 100%);
 }
 
 .bkg-gradient-white-to-brighter {
@@ -404,11 +446,6 @@ a:active, a:focus {
 .liseuse h3,
 .liseuse h4 {
   text-align: center;
-}
-
-.booktitle a {
-  display: block;
-  padding: 10px;
 }
 
 .liseuse h1.article {
@@ -547,6 +584,7 @@ a:active, a:focus {
   font-weight: 400;
   padding: 10px;
   white-space: nowrap;
+  letter-spacing: -0.09em;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -591,9 +629,6 @@ a:active, a:focus {
   font-variant: small-caps;
 }
 
-a {
-  color: #cf1308;
-}
 
 form {
   /* be careful, c5 search results are in a form */
@@ -633,10 +668,6 @@ article>h1 {
 
 .ccm-block-express-entry-list-advanced-search-container {
   background-color: #444;
-}
-
-* {
-  transition: background-color 400ms, color 400ms, opacity 400ms, transform 400ms, border-bottom 400ms, width 400ms, max-width 0.2s ease-in;
 }
 
 main.accueil h1 {}
@@ -714,7 +745,7 @@ main.accueil h1 {}
 
 a.media-thumbnail {
   display: block;
-  color: white;
+  color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   height: 180px;
@@ -726,8 +757,16 @@ a.media-thumbnail .icon {
   height: 100%;
 }
 
+/* notes */
+
+a.noteback,
+a.noteref {
+  color: #cf1308;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 #notebox {
-  transition: none;
   width: 100%;
   max-height: 20%;
   overflow-y: auto;
@@ -759,7 +798,7 @@ a.media-thumbnail .icon {
 #livre_sommaire {}
 
 #toc {
-  padding-top: 3rem;
+  padding-top: 1rem;
 }
 
 #toc::after {
@@ -816,8 +855,13 @@ div.ccm-block-page-list-title a,
   display: block;
   padding: 10px 15px 10px 15px;
   line-height: 1.1;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #fff;
 }
+
+#toc a.icon {
+  padding: 12px;
+}
+
 
 .toclocal header a {
   border-bottom: none;
@@ -977,7 +1021,7 @@ div.toclocal {
 }
 
 .btn.btn-plain-red {
-  color: white !important;
+  color: #fff !important;
   background-color: #cf1308 !important;
 }
 
@@ -1026,6 +1070,7 @@ nav.foot {}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  letter-spacing: -0.06em;
   padding: 6px;
   height: 48px;
   line-height: 36px;
@@ -1035,14 +1080,14 @@ p.ccm-block-next-previous-previous-link a {
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: 0% 50%;
-  padding-left: 48px;
+  padding-left: 30px;
 }
 
 p.ccm-block-next-previous-next-link a {
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: 100% 50%;
-  padding-right: 48px;
+  padding-right: 30px;
 }
 
 #header {
@@ -1054,11 +1099,16 @@ p.ccm-block-next-previous-next-link a {
 
 #header.liseuse {
   position: fixed;
+  top: 0;
   width: 100%;
   height: auto;
   z-index: 100;
   box-shadow: 0px 10px 24px 0px rgba(0,0,0,0.25);
   opacity: .97;
+}
+
+body.liseuse {
+  padding-top: 48px;
 }
 
 #header_md {
@@ -1072,11 +1122,16 @@ p.ccm-block-next-previous-next-link a {
 }
 
 a.ddr {
+  width: 48px;
+  flex: 0 0 48px;
   line-height: 1px;
   margin-right: 8px;
   height: 48px;
-  width: 48px;
-  flex: 0 0 48px;
+}
+
+a.ddr img {
+  object-fit: cover;
+  object-position: 100% 0;
 }
 
 /** ancres dans la liseuse */
@@ -1094,25 +1149,29 @@ a.ddr {
   height: 48px;
   flex-grow: 1;
   min-width: 0;
+  margin-left: 8px;
   /* hack ellipsis */
   text-align: center;
 }
 
 #runtitle {
   font-style: italic;
+  font-weight: 300;
 }
 
 #runhead {
   font-weight: 400;
+  font-size: 17px;
 }
 
 
 .meta #runtitle,
 .meta #runhead {
+  letter-spacing: -0.09em;
   display: block;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #header_md .menu {}
@@ -1160,7 +1219,6 @@ a.ddr {
 
 form.search {
   position: relative;
-  transition: none;
   width: 100%;
   /*
   display: flex;
@@ -1172,10 +1230,6 @@ form.search {
 }
 form.search label {
   display: block;
-}
-
-form.search * {
-  transition: none;
 }
 
 form.search button[type=button] {
@@ -1252,7 +1306,6 @@ form.search input[type=text]:focus {
 }
 
 main.liseuse {
-  padding-top: 48px;
   background: #f5f4f5;
 }
 
@@ -1279,6 +1332,7 @@ main.liseuse aside.bibl {
   overflow: hidden;
   max-width: 100%;
   white-space: nowrap;
+  letter-spacing: -0.09em;
   line-height: 32px;
   /* pour centrage sur home */
 }
@@ -1287,22 +1341,6 @@ main.liseuse aside.bibl {
   padding: 0;
   height: auto;
   vertical-align: top;
-}
-
-.rail a {
-  padding: 10px;
-  border-radius: 5px;
-  line-height: 1;
-}
-
-.rail a.buticon {
-  padding: 4px;
-}
-
-.rail .icon {}
-
-.rail b {
-  font-weight: 900;
 }
 
 #portrait {
@@ -1412,6 +1450,7 @@ nav.header li.here a {
 .headnav li {
   list-style: none;
   white-space: nowrap;
+  letter-spacing: -0.09em;
   padding: 0;
   margin: 0;
 }
@@ -1694,7 +1733,6 @@ nav.covers a .date {
   color: #fff;
   text-shadow: #000 0 0 10px;
   font-weight: bold;
-  transition: unset;
   padding: 10px 20px;
 }
 
@@ -1952,8 +1990,6 @@ section>a.pb {
     border: none;
   }
 
-  .toclocal a {}
-
   .toclocal ul ul {
     margin-left: 0.5rem;
     padding-left: 0.5rem;
@@ -1983,9 +2019,14 @@ section>a.pb {
     border-bottom: #6c757d dotted 1px;
     padding-bottom: 15px;
   }
+  
 }
 
 @media (max-width: 575px) {
+
+  body {
+    line-height: 1.4;
+  }
 
   /*# bootstrap sm small */
   nav.covers a {
@@ -2001,7 +2042,8 @@ section>a.pb {
   .booktitle {
     line-height: 1.2;
     font-size: 105%;
-    font-weight: 400;
+    font-weight: 300;
+    text-align: center;
   }
 
   .liseuse h1.article {
@@ -2023,6 +2065,25 @@ section>a.pb {
   h1 {
     font-size: 130%;
   }
+  
+  a.ddr {
+    width: 32px;
+    flex: 0 0 32px;
+    margin-right: 0;
+    pointer-events: none;
+    display: none;
+  }
+  
+  #header_md .container {
+    background-image: url('../img/ddr_icon.png');
+    background-repeat: no-repeat;
+    background-position: left 22px top;
+  }
+  
+  #menubut {
+    margin-right: 20px;
+  }
+    
 }
 
 @media (min-width: 767px) {
@@ -2037,16 +2098,27 @@ section>a.pb {
   #notebox {
     margin-left: -5vw;
   }
+  
+  body {
+    font-weight: 300;
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 991px) {
 
-  /*# bootstrap, not lg large */
+  /*# <lg bootstrap */
+  /*# no sidebar */
   .headnav a {
     padding: 5px;
   }
 
   #sidebar {}
+  
+  #toc.splash .title {
+    text-align: center;
+  }
+
 
   .headnav a.nav-path-selected {
     background: #fff;
@@ -2072,10 +2144,13 @@ section>a.pb {
     position: -webkit-sticky;
     position: sticky;
     /* size with full header */
-    top: 40px;
-    height: calc(100vh - 40px);
+    top: 48px;
+    height: calc(100vh - 48px);
     order: -1;
     overflow-y: auto;
+  }
+  main.liseuse {
+    padding-top: 48px;
   }
 
   #tocbut {
@@ -2094,12 +2169,17 @@ section>a.pb {
   #sidebar {
     flex: 0 0 30%;
   }
+  
+  .meta #runtitle,
+  .meta #runhead {
+    letter-spacing: 0.1em;
+  }
 }
 
 @media (min-width: 1200px) {
 
   body {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   /*# bootstrap xl  extra large */
@@ -2109,6 +2189,9 @@ section>a.pb {
     flex: 0 0 380px;
     */
   }
+}
+
+/*
 @media (min-width: 1500px) {
 
   body {
@@ -2119,6 +2202,17 @@ section>a.pb {
   }
 
 }
+*/
+
+#toc a.collection {
+  float: right;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 24px;
+  padding-right: 48px;
+}
+
 
 /* La minification a pu bloquer sur les svg data, laissées ici par précaution */
 #chapo .btn {
@@ -2133,14 +2227,6 @@ p.ccm-block-next-previous-next-link a {
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23cf1308"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>');
 }
 
-header a.collection {
-  float: right;
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-position: right 8px top 50%;
-  background-size: 24px;
-  padding-right: 40px;
-}
 
 li.result {
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23cf1308"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>');
@@ -2156,17 +2242,17 @@ li.result a {
 }
 
 
-header a.livres,
+#toc a.livres,
 li.livres {
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(207, 19, 8, 0.5)"><path d="M21,5c-1.11-0.35-2.33-0.5-3.5-0.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5S2.45,4.9,1,6v14.65 c0,0.25,0.25,0.5,0.5,0.5c0.1,0,0.15-0.05,0.25-0.05C3.1,20.45,5.05,20,6.5,20c1.95,0,4.05,0.4,5.5,1.5c1.35-0.85,3.8-1.5,5.5-1.5 c1.65,0,3.35,0.3,4.75,1.05c0.1,0.05,0.15,0.05,0.25,0.05c0.25,0,0.5-0.25,0.5-0.5V6C22.4,5.55,21.75,5.25,21,5z M21,18.5 c-1.1-0.35-2.3-0.5-3.5-0.5c-1.7,0-4.15,0.65-5.5,1.5V8c1.35-0.85,3.8-1.5,5.5-1.5c1.2,0,2.4,0.15,3.5,0.5V18.5z"/><path d="M17.5,10.5c0.88,0,1.73,0.09,2.5,0.26V9.24C19.21,9.09,18.36,9,17.5,9c-1.7,0-3.24,0.29-4.5,0.83v1.66 C14.13,10.85,15.7,10.5,17.5,10.5z"/><path d="M13,12.49v1.66c1.13-0.64,2.7-0.99,4.5-0.99c0.88,0,1.73,0.09,2.5,0.26V11.9c-0.79-0.15-1.64-0.24-2.5-0.24 C15.8,11.66,14.26,11.96,13,12.49z"/><path d="M17.5,14.33c-1.7,0-3.24,0.29-4.5,0.83v1.66c1.13-0.64,2.7-0.99,4.5-0.99c0.88,0,1.73,0.09,2.5,0.26v-1.52 C19.21,14.41,18.36,14.33,17.5,14.33z"/></svg>');
 }
 
-header a.articles,
+#toc a.articles,
 li.articles {
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(207, 19, 8, 0.5)"><path d="M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3L19,3z"/><path d="M14,17H7v-2h7V17z M17,13H7v-2h10V13z M17,9H7V7h10V9z"/></svg>');
 }
 
-header a.correspondances,
+#toc a.correspondances,
 li.correspondances {
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(207, 19, 8, 0.5)"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>');
 }
