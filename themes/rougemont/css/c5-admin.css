@@ -1,4 +1,7 @@
 /*! Quand c5 fout la merde en mode édition */
+#header.liseuse {
+  top: 48px;
+}
 #toc.splash {
   top: 96px;
 }

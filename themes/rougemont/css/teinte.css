@@ -158,16 +158,6 @@ aside header {
   padding-right: 1rem;
 }
 
-b,
-strong {
-  font-weight: inherit;
-}
-
-b,
-strong {
-  font-weight: bolder;
-}
-
 blockquote.quote {
   margin: 1.5rem 0rem 1.5rem 1.5rem;
   line-height: 130%;

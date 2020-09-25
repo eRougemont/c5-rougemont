@@ -61,8 +61,8 @@ class Liser {
       
       
       toc.addEventListener("click", function (event) {
-        event.stopPropagation();
-      }, true);
+        // attrappé par window, caché
+      }, false);
     }
 
     var menubut = document.getElementById("menubut");
@@ -84,6 +84,7 @@ class Liser {
         }
 
       });
+      
     }
 
     window.addEventListener("click", function (event) {
@@ -163,29 +164,70 @@ class Liser {
         break;
       }
       Liser.results = document.getElementById("results");
+      Liser.results_progress = q.form.querySelector(".progress");
       if (!Liser.results) break;
       Liser.header = document.getElementById("header");
-      q.addEventListener('input', Liser.suggest);
-      q.addEventListener('focus', Liser.suggest);
+      
+      q.addEventListener('input', function(e) {
+        var query = this.value;
+        if (!query);
+        else if (query.slice(-1) != ' ') query += '*';
+        if(Liser.results_progress) Liser.results_progress.style.visibility = 'visible';
+        fetch(CCM_REL+"/data/titles?q="+query, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        }).then(response => {
+          return response.text()
+        })
+        .then(data => {
+          results.innerHTML = data;
+          if(Liser.results_progress) Liser.results_progress.style.visibility = 'hidden';
+        });
+        
+      });
+      q.addEventListener('focus', function(e) {
+        // afficher les résultats dans la page normale, pour bien défiler au tel
+        window.oldScrollY = window.scrollY;
+        header.style.position = "relative";
+        document.body.style.paddingTop = 0;
+        document.body.style.marginTop = 0;
+        results.style.display = 'block';
+        window.scrollTo(0, 0);
+        q.dispatchEvent(new Event('input')); // prendre les premiers résultats
+      });
       window.addEventListener('click', Liser.resblur); // do not inform body
       q.form.addEventListener('click', (event) => { event.stopPropagation();}); // do not inform body
       q.form.reset.addEventListener('click', Liser.resblur);
+      results.addEventListener("touchstart", function (event) {
+        // si on défile la liste de résultats sur du tactile, désafficher le clavier
+        q.blur();
+      });
+      
     } while (false);
   }
   
+  /** afficher les résultats */
+   
+  static resfocus(e)
+  {
   
+  }
   static resblur(e)
   {
+    results.style.display = null; 
     header.style.position = null;
-    
+    // rétablir la barre en fixed
+    header.style.position = null;
+    document.body.style.paddingTop = null;
+    document.body.style.marginTop = null;
+    // si les résultats ont tout scrollé, revenir à la position initiale
     if (window.oldScrollY) {
       window.scrollTo(0, window.oldScrollY);
       window.oldScrollY = null;
-      console.log("Scroll  old to :"+window.oldScrollY);
     }
-    if(results.style.display == 'none') return;
-    results.style.display = 'none'; 
-    results.innerHTML = '';
+    // results.innerHTML = ''; // et si on gardait ?
     var release = e.target;
     // <button> with <svg> image
     while (release && release.namespaceURI == "http://www.w3.org/2000/svg") release = release.parentNode;
@@ -193,25 +235,12 @@ class Liser {
   }
 
   /**
-   * Get and display results in header as a de-fixed block
-   * for easier browsing on mobile
+   * Get and display results
    */
   static suggest(e)
   {
     var query = e.target.value;
-    if(!query) {
-      header.style.position = null;
-      results.style.display = 'none';
-      if (window.oldScrollY) window.scrollTo(0, window.oldScrollY);
-      return;
-    }
-    // keep actual position before scroll to top 
-    if (!window.oldScrollY) {
-      window.oldScrollY = window.scrollY;
-      window.scrollTo(0, 0);
-    }
-    header.style.position = "relative";
-    results.style.display = 'block';
+    if(!query) return Liser.resblur();
     if (query.slice(-1) != ' ') query += '*';
     fetch(CCM_REL+"/data/titles?q="+query, {
       headers: {
@@ -352,7 +381,17 @@ class Liser {
 
 
     // le notebox
-    if (Liser.notebox) {
+    do {
+      if (!Liser.notebox) break;
+      // les premières notes sont elles en vue ?
+      var id = Liser.noterefs[0].hash;
+      if (id[0] == '#') id = id.substring(1);
+      var note = document.getElementById(id);
+      if (Liser.isVisible(note)) {
+        Liser.notebox.innerHTML = "";
+        Liser.notebox.style.visibility = "hidden";
+        break;
+      }
       var count = 0;
       for (var i = 0, len = Liser.noterefs.length; i < len; i++) {
         var ref = Liser.noterefs[i];
@@ -378,7 +417,7 @@ class Liser {
       }
       if(!count) Liser.notebox.style.visibility = "hidden";
       else Liser.notebox.style.visibility = "visible";
-    }
+    } while (false);
   }
 }
 window.addEventListener("load", Liser.init, false);

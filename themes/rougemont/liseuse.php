@@ -24,12 +24,14 @@ $booktitle = $parent->getCollectionName();
 ?>
   <div id="header_md" class="bg-red">
     <div class="container">
-      <a title="Accueil, Rougemont 2.0" class="ddr" href="<?php print DIR_REL; ?>"><img height="48" width="48" src="<?php  echo $view->getThemePath()?>/img/ddr_icon.png"/></a>
       <a id="menubut" href="#menu" role="button" aria-label="Menu du site, montrer/cacher" class="icon menu">
         <svg viewBox="0 0 24 24" width="24px" height="24px">
           <path class="show" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
           <path aria-label="menu_open" class="hide" d="M3,18h13v-2H3V18z M3,13h10v-2H3V13z M3,6v2h13V6H3z M21,15.59L17.42,12L21,8.41L19.59,7l-5,5l5,5L21,15.59z"/>
         </svg>
+      </a>
+      <a href="<?php echo BASE_URL; ?>" title="Accueil, Rougemont 2.0" id="signature">
+        <img height="40" src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
       </a>
       <div class="meta">
         <?php
@@ -38,8 +40,8 @@ $booktitle = $parent->getCollectionName();
         <a id="runhead" href="#"><?php echo $c->getCollectionName(); ?></a>
       </div>
       <?php /*
+      <a title="Accueil, Rougemont 2.0" class="ddr" href="<?php print DIR_REL; ?>"><img height="48" width="48" src="<?php  echo $view->getThemePath()?>/img/ddr_icon.png"/></a>
           <path aria-label="expand" class="hide" d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
-      <img class="signature" src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
       <button class="icon" name="search" type="button"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
           <path aria-label="close" class="hide" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
       */ ?>
@@ -58,27 +60,29 @@ $booktitle = $parent->getCollectionName();
   </div>
   <div id="menu" class="bg-red">
     <div class="container ">
+      <label for="titles">Site, trouver un titre</label>
       <form class="search" id="search" autocomplete="off" onsubmit="return false;" action="<?php echo BASE_URL; ?>/data/titles">
-        <label for="titles">Site, trouver un titre</label>
         <button name="magnify" type="button">
           <svg viewBox="0 0 24 24"  width="24px" height="24px">
             <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
           </svg>
         </button>
-        <input id="titles" name="titles" aria-describedby="titles-hint" type="text" class="q" placeholder="am* 197"/>
+        <input id="titles" name="titles" aria-describedby="titles-hint" type="text" class="q" placeholder="am… dia… eu… fed…"/>
         <button name="reset" class="reset" type="reset">
           <svg viewBox="0 0 24 24"  width="24px" height="24px">
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
           </svg>
         </button>
+        <div class="progress"><div></div></div>
         <div id="results"></div>
       </form>
 
       <div class="headnav"><?php $this->inc('elements/header_nav.php'); ?></div>
     </div>
   </div>
-
 </header>
+
+
 <main class="liseuse">
    <div id="viewport" class="container">
     <div id="text" class="body">
@@ -132,9 +136,9 @@ $booktitle = $parent->getCollectionName();
         $a = new Area('Sidebar');
         $a->display($c);
       ?>
-          </div>
-        </nav>
-      </aside>
+        </div>
+      </nav>
+    </aside>
   </div>
 </main>
 <?php   $this->inc('elements/footer.php'); ?>
