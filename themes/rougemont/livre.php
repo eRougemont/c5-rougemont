@@ -14,13 +14,17 @@ $basename = basename($c->getCollectionPath());
   <div class="row">
     <div class="col-md-4 pb-4">
       <?php
-         $a = new Area('livre_image');
-         $a->display($c);
+        $a = new Area('livre_image');
+        $a->setBlockWrapperStart("\n\n<div class=\"c5block\">");
+        $a->setBlockWrapperEnd("</div>\n\n");
+        $a->display($c);
       ?>
     </div>
     <div class="col-md-8">
       <?php
         $a = new Area('livre_notice');
+        $a->setBlockWrapperStart("\n\n<div class=\"c5block\">");
+        $a->setBlockWrapperEnd("</div>\n\n");
         $a->display($c);
       ?>
       <nav class="foot my-5">
@@ -34,15 +38,19 @@ $basename = basename($c->getCollectionPath());
     <div class="col-md-6 bg-light py-5 order-md-last">
       <nav class="toclocal" id="livre_sommaire">
         <?php
-           $a = new Area('livre_sommaire');
-           $a->display($c);
+          $a = new Area('livre_sommaire');
+          $a->setBlockWrapperStart("\n\n<div class=\"c5block\">");
+          $a->setBlockWrapperEnd("</div>\n\n");
+          $a->display($c);
         ?>
       </nav>
     </div>
     <div class="col-md-6 bg-light py-5" id="biblio">
       <?php
-         $a = new Area('livre_biblio');
-         $a->display($c);
+        $a = new Area('livre_biblio');
+        $a->setBlockWrapperStart("\n\n<div class=\"c5block\">");
+        $a->setBlockWrapperEnd("</div>\n\n");
+        $a->display($c);
       ?>
     </div>
   </div>

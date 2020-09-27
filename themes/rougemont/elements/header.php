@@ -2,7 +2,9 @@
 $this->inc('elements/header_top.php');
 ?>
 
-<header id="header" class="topheader">
+<header id="header" class="topheader>">
 <?php $this->inc('elements/header_ban.php'); ?>
+
+
 </header>
 

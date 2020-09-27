@@ -53,11 +53,18 @@ $this->addHeaderItem($html->css('css/fonts-local.css'));
 // les fontes sont demandées vite pour espérer que cela ne perturbe pas la vue, crossorigin est nécessaire
 // par contre, il ne faut pas pour google-analytics
 
+$title = $c->getAttribute('meta_title');
+if (!$title) $title = $c->getCollectionName();
+
 $html = Loader::helper('html');
 $this->addHeaderItem($html->css('css/bootstrap-grid.css'));
 $this->addHeaderItem($html->css('css/teinte.css'));
 $this->addHeaderItem($html->css('css/rougemont.css'));
-Loader::element('header_required', array('pageTitle' => isset($pageTitle) ? $pageTitle : '', 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
+Loader::element('header_required', array('pageTitle' => $title." | Rougemont 2.0", 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
+
+$ld = $c->getAttribute('meta_ld');
+if ($ld) echo '<script type="application/ld+json">',"\n",$ld,"\n",'</script>',"\n";
+
 /**
     C5 a besoin de jquery en mode admin (v. 1.12.2 avec ckedditor) et des plugins comme les diaporamas, mais c’est plombant
 */
@@ -79,7 +86,7 @@ if ($u->isLoggedIn ()) {
     <link rel="icon" sizes="192x192"  href="<?php  echo $view->getThemePath()?>/img/favicon192.png">
     <link rel="icon" sizes="228x228"  href="<?php  echo $view->getThemePath()?>/img/favicon228.png">
   </head>
-<body class="rougemont <?php echo $c->getCollectionTypeHandle(); ?>">
+<body class="rougemont <?php echo $c->getCollectionTypeHandle(); if (!$c->getCollectionPath()) echo " accueil"; ?>">
   
 <?php
 

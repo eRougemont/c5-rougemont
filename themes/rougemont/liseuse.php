@@ -31,7 +31,7 @@ $booktitle = $parent->getCollectionName();
         </svg>
       </a>
       <a href="<?php echo BASE_URL; ?>" title="Accueil, Rougemont 2.0" id="signature">
-        <img height="40" src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
+        <img height="40" class="signature" src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="Denis de Rougemont, signature"/>
       </a>
       <div class="meta">
         <?php
