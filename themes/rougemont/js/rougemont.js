@@ -30,6 +30,21 @@ class Liser {
     var lastbook = sessionStorage.getItem('bookpath');
     if (lastbook != bookpath) sessionStorage.setItem('bookpath', bookpath);
     
+    // accordeon
+    var blocks = document.querySelectorAll(".c5block");
+    for (var i = 0; i < blocks.length; i++) {
+      var headers = blocks[i].querySelectorAll("h2, h4, h5");
+      console.log(blocks[i]);
+      console.log(headers);
+      for (var z = 0; z < headers.length; z++) {
+        const myblock = blocks[i];
+        headers[z].addEventListener("click", function (event) {
+          myblock.classList.toggle("show");
+        }, false);
+      }
+    }
+    
+    
     var tocbut = document.getElementById("tocbut");
     var toc = document.getElementById("toc");
     if (tocbut && toc) {
@@ -366,7 +381,7 @@ class Liser {
       // update running head
       var runhead = document.getElementById('runhead');
       if (!runhead) break;
-      var head = div.querySelector("h1, h2, h3, h4, h5");
+      var head = div.querySelector("h1, h2, h3, h4, h5,");
       if (head) {
         runhead.href = "#"+id;
         var html = head.innerHTML;

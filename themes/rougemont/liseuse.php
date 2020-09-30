@@ -6,7 +6,7 @@ $booktitle = $parent->getCollectionName();
 
 ?>
 
-<header id="header" class="topheader liseuse" role="menubar">
+<header id="header" class="top liseuse" role="menubar">
   <?php 
 /*
   <nav id="breadcrumb" class="rail">
@@ -20,7 +20,6 @@ $booktitle = $parent->getCollectionName();
   </nav>
 
  */
-//  $this->inc('elements/header_ban.php'); 
 ?>
   <div id="header_md" class="bg-red">
     <div class="container">
@@ -58,7 +57,7 @@ $booktitle = $parent->getCollectionName();
       </a>
     </div>
   </div>
-  <div id="menu" class="bg-red">
+  <div id="menu" class="liseuse">
     <div class="container ">
       <label for="titles">Site, trouver un titre</label>
       <form class="search" id="search" autocomplete="off" onsubmit="return false;" action="<?php echo BASE_URL; ?>/data/titles">
