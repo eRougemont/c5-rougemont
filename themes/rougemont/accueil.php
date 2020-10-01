@@ -3,7 +3,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 $this->inc('elements/header_top.php');
 $basename = basename($c->getCollectionPath());
 ?>
-<header id="header" class="top">
+<header id="header" class="top accueil">
   <div id="header_ban">
     <picture>
       <source srcset="<?php  echo $view->getThemePath()?>/img/header_ban.webp" type="image/webp">
@@ -29,9 +29,7 @@ $basename = basename($c->getCollectionPath());
             <div class="progress"><div></div></div>
             <div id="results"></div>
           </form>
-          <div class="headnav">
-            <?php $this->inc('elements/header_nav.php'); ?>
-          </div>
+          <?php $this->inc('elements/menubar.php'); ?>
         </div>
       </div>
     </div>
@@ -41,38 +39,32 @@ $basename = basename($c->getCollectionPath());
 
 <main id="accueil" class="accueil">
 
-  <div class="container">
-    <div class="row ui">
-      <div id="accueil_actus" class="col-md-7">
-        <h1><a href="actualites">Actualités</a></h1>
-        <?php
-          $a = new Area('Main');
-          $a->enableGridContainer();
-          $a->display($c);
-        ?>
-      </div>
-      <div id="accueil_video" class="col-md-5">
-        <?php
-          $a = new Area('accueil_video');
-          $a->enableGridContainer();
-          $a->display($c);
-        ?>
+  <div id="accueil_row1">
+    <div class="container">
+      <div class="row ui">
+        <div id="accueil_actus" class="col-md-7">
+          <h1><a href="actualites">Actualités</a></h1>
+          <?php
+            $a = new Area('Main');
+            $a->enableGridContainer();
+            $a->display($c);
+          ?>
+        </div>
+        <div id="accueil_video" class="col-md-5">
+          <?php
+            $a = new Area('accueil_video');
+            $a->enableGridContainer();
+            $a->display($c);
+          ?>
+        </div>
       </div>
     </div>
   </div>
 
-
-  <div class="bkg-gradient-brighter-to-white pt-5 ui" id="accueil_livres">
-    <div class="container ">
-      <div>
-        <?php
-          $a = new Area('accueil_slider');
-          $a->display($c);
-        ?>
-      </div>
-      <div class="center  pt-5 pb-5">
-        <a href="livres" class="btn btn-plain btn-plain-red btn-small m-2">Tous les livres</a>
-      </div>
+  <div class="bkg-gradient-brighter-to-white py-4 py-md-5 ui" id="accueil_livres">
+    <?php $this->inc('elements/couvs.php'); ?>
+    <div class="center pt-3 pt-md-5">
+      <a href="livres" class="btn btn-plain btn-plain-red btn-small m-2">Tous les livres</a>
     </div>
   </div>
 

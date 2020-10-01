@@ -1,3 +1,4 @@
+
 'use strict';
 /**
  * Interface statique, essentiellement pour la liseuse
@@ -17,9 +18,11 @@ window.onscroll = function() {
   prevScrollpos = currentScrollPos;
 }
 */
+
+
 class Liser {
 
-  static init(selector)
+  static init()
   {
     Liser.vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     Liser.vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -29,6 +32,22 @@ class Liser {
     // store if book already visited
     var lastbook = sessionStorage.getItem('bookpath');
     if (lastbook != bookpath) sessionStorage.setItem('bookpath', bookpath);
+    
+    var ddr1972ao = document.querySelector("body.accueil #ddr1972ao");
+    if (ddr1972ao) {
+      ddr1972ao.parentNode.scrollLeft = ddr1972ao.offsetLeft;
+    }
+
+    var selectfilter = document.querySelector("select.filter");
+    var navcovers = document.querySelector("nav.covers");
+    if (selectfilter && navcovers) {
+      navcovers.classorig = navcovers.className;
+      selectfilter.selectedIndex = null
+      selectfilter.addEventListener("input", function (event) {
+        console.log(selectfilter.selectedIndex);
+        navcovers.className = navcovers.classorig +" "+ selectfilter.options[selectfilter.selectedIndex].value;
+      }, false);
+    }
     
     // accordeon
     var blocks = document.querySelectorAll(".c5block");
@@ -83,6 +102,7 @@ class Liser {
     var menubut = document.getElementById("menubut");
     var menu = document.getElementById("menu");
     if (menubut && menu) {
+    
       menubut.addEventListener("click", function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -102,6 +122,7 @@ class Liser {
       
     }
 
+    /*
     window.addEventListener("click", function (event) {
       if (tocbut && toc) {
         tocbut.classList.remove("splash");
@@ -112,6 +133,7 @@ class Liser {
         menu.classList.remove("splash");
       }
     });
+    */
     
     
     Liser.sidebar = document.getElementById("sidebar");
@@ -150,18 +172,8 @@ class Liser {
       window.addEventListener('scroll', Liser.scrollPage);
       // scrollPage(); // non, trop long au démarrage
     }
-    // Des liens dans le diaporama à l’accueil
-    var links = document.querySelectorAll(".slider-nav a");
-    for (var i = 0, max = links.length; i < max; i++) {
-      let a = links[i];
-      let id = a.hash;
-      if (!id) return;
-      if (id[0] == "#") id = id.substring(1);
-      let ref = document.getElementById(id);
-      if (!ref) continue;
-      a.ref = ref;
-      a.onclick = Liser.sliderClick;
-    }
+    
+    
     /*
     var footer = document.getElementById("footer");
     if (footer) footerHeight = footer.clientHeight;
@@ -212,7 +224,8 @@ class Liser {
         window.scrollTo(0, 0);
         q.dispatchEvent(new Event('input')); // prendre les premiers résultats
       });
-      window.addEventListener('click', Liser.resblur); // do not inform body
+      // bugge avec les select
+      // window.addEventListener('click', Liser.resblur); // do not inform body
       q.form.addEventListener('click', (event) => { event.stopPropagation();}); // do not inform body
       q.form.reset.addEventListener('click', Liser.resblur);
       results.addEventListener("touchstart", function (event) {
@@ -229,6 +242,9 @@ class Liser {
   {
   
   }
+  
+  
+  
   static resblur(e)
   {
     results.style.display = null; 
@@ -268,18 +284,6 @@ class Liser {
     .then(data => {
       results.innerHTML = data;
     });
-  }
-
-  static sliderClick(e)
-  {
-    let ref = Liser.ref;
-    ref.parentNode.scrollLeft = ref.offsetLeft;
-    let last = Liser.parentNode.lastLink;
-    if (last) last.className = last.className.replace(/\bselected\b/g, "");
-    Liser.className += " selected";
-    Liser.parentNode.lastLink = this;
-    e.preventDefault();
-    return false; // stop propagation
   }
 
   /**
@@ -436,4 +440,28 @@ class Liser {
   }
 }
 window.addEventListener("load", Liser.init, false);
+
+/*
+
+    // Des liens dans le diaporama à l’accueil
+    var links = document.querySelectorAll(".slider-nav a");
+    for (var i = 0, max = links.length; i < max; i++) {
+      let a = links[i];
+      let id = a.hash;
+      if (!id) continue;
+      if (id[0] == "#") id = id.substring(1);
+      const ref = document.getElementById(id);
+      if (!ref) continue;
+      a.ref = ref;
+      a.onclick = function(e) {
+        let slider = this.ref.parentNode;
+        slider.scrollLeft = this.ref.offsetLeft;
+        if (slider.lastLink) slider.lastLink.classList.remove("selected");
+        slider.lastLink = this;
+        this.classList.add("selected");
+        e.preventDefault();
+        return false; // stop propagation
+      }
+    }
+*/
 

@@ -6,21 +6,7 @@ $booktitle = $parent->getCollectionName();
 
 ?>
 
-<header id="header" class="top liseuse" role="menubar">
-  <?php 
-/*
-  <nav id="breadcrumb" class="rail">
-    <div class="container">
-      <div class="rail">
-        <a class="home" href="<?php print DIR_REL; ?>"><img height="32" src="<?php  echo $view->getThemePath()?>/img/home.png" alt="Accueil, Rougemont 2.0"
-        /></a><b>/</b><b>/</b><a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle);
-        ?></a><b>/</b><a href="#"><?php print($c->getCollectionName()); ?></a>
-      </div>
-    </div>
-  </nav>
-
- */
-?>
+<header id="header" class="top liseuse" role="banner">
   <div id="header_md" class="bg-red">
     <div class="container">
       <a id="menubut" href="#menu" role="button" aria-label="Menu du site, montrer/cacher" class="icon menu">
@@ -38,12 +24,6 @@ $booktitle = $parent->getCollectionName();
         ?>
         <a id="runhead" href="#"><?php echo $c->getCollectionName(); ?></a>
       </div>
-      <?php /*
-      <a title="Accueil, Rougemont 2.0" class="ddr" href="<?php print DIR_REL; ?>"><img height="48" width="48" src="<?php  echo $view->getThemePath()?>/img/ddr_icon.png"/></a>
-          <path aria-label="expand" class="hide" d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
-      <button class="icon" name="search" type="button"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
-          <path aria-label="close" class="hide" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
-      */ ?>
       <a id="northbut" href="#" role="button" class="icon north" title="Sommet de la page">
         <svg viewBox="0 0 24 24" width="24px" height="24px">
           <path d="M5,9l1.41,1.41L11,5.83V22H13V5.83l4.59,4.59L19,9l-7-7L5,9z"/>
@@ -60,7 +40,7 @@ $booktitle = $parent->getCollectionName();
   <div id="menu" class="liseuse">
     <div class="container ">
       <label for="titles">Site, trouver un titre</label>
-      <form class="search" id="search" autocomplete="off" onsubmit="return false;" action="<?php echo BASE_URL; ?>/data/titles">
+      <form class="search" id="search" autocomplete="off" onsubmit="return false;" action="<?php echo BASE_URL; ?>/data/titles" role="search">
         <button name="magnify" type="button">
           <svg viewBox="0 0 24 24"  width="24px" height="24px">
             <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -75,11 +55,31 @@ $booktitle = $parent->getCollectionName();
         <div class="progress"><div></div></div>
         <div id="results"></div>
       </form>
-
-      <div class="headnav"><?php $this->inc('elements/header_nav.php'); ?></div>
+      <?php $this->inc('elements/menubar.php'); ?>
     </div>
   </div>
 </header>
+<?php 
+/* // pour mémoire
+
+  <nav id="breadcrumb" class="rail">
+    <div class="container">
+      <div class="rail">
+        <a class="home" href="<?php print DIR_REL; ?>"><img height="32" src="<?php  echo $view->getThemePath()?>/img/home.png" alt="Accueil, Rougemont 2.0"
+        /></a><b>/</b><b>/</b><a href="<?php print($parent->getCollectionLink()); ?>"><?php print($booktitle);
+        ?></a><b>/</b><a href="#"><?php print($c->getCollectionName()); ?></a>
+      </div>
+    </div>
+  </nav>
+
+      <a title="Accueil, Rougemont 2.0" class="ddr" href="<?php print DIR_REL; ?>"><img height="48" width="48" src="<?php  echo $view->getThemePath()?>/img/ddr_icon.png"/></a>
+          <path aria-label="expand" class="hide" d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
+      <button class="icon" name="search" type="button"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+          <path aria-label="close" class="hide" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+
+
+ */
+?>
 
 
 <main class="liseuse">

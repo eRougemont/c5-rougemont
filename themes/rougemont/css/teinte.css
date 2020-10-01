@@ -589,10 +589,6 @@ section {
   clear: both;
 }
 
-select {
-  padding: 0 0.25rem;
-}
-
 small {
   font-weight: normal;
   font-size: 80%;
@@ -622,7 +618,6 @@ svg:not(:root) {
 button,
 input,
 optgroup,
-select,
 textarea {
   font-size: inherit;
   margin: 0;
@@ -632,8 +627,7 @@ button {
   overflow: visible;
 }
 
-button,
-select {
+button {
   text-transform: none;
 }
 

@@ -60,7 +60,7 @@ $html = Loader::helper('html');
 $this->addHeaderItem($html->css('css/bootstrap-grid.css'));
 $this->addHeaderItem($html->css('css/teinte.css'));
 $this->addHeaderItem($html->css('css/rougemont.css'));
-Loader::element('header_required', array('pageTitle' => $title." | Rougemont 2.0", 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
+Loader::element('header_required', array('pageTitle' => $title." — Rougemont 2.0", 'pageDescription' => isset($pageDescription) ? $pageDescription : ''));
 
 $ld = $c->getAttribute('meta_ld');
 if ($ld) echo '<script type="application/ld+json">',"\n",$ld,"\n",'</script>',"\n";

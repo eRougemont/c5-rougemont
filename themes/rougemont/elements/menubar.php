@@ -1,6 +1,5 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied."); ?>
-<nav class="header">
-  <ul>
+<nav class="menubar">
 <?php
 $thisPath = $c->getCollectionPath();
 $home = Page::getByID(Page::getHomePageID());
@@ -23,14 +22,16 @@ function display($page, $herePath) {
   $class = '';
   $path = $page->getCollectionPath();
   echo "\n<!-- $herePath $path -->";
-  if (!$path) $class .= 'home';
+  if (!$path) {
+    $class .= 'home';
+    if (!$herePath) $class .= ' here';
+  }
   else if (startsWith($herePath, $path)) $class .= 'here';
   if($class) $class=' class="'.trim($class).'"';
   echo '
-<li'.$class.'><a href="'.$page->getCollectionLink().'"'.$title.'>'.$page->getCollectionName().'</a></li>
+<a'.$class.' href="'.$page->getCollectionLink().'"'.$title.'>'.$page->getCollectionName().'</a>
 ';
 }
 ?>
-  </ul>
 </nav>
 
