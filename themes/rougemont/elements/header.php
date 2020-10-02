@@ -29,8 +29,7 @@ $this->inc('elements/header_top.php');
           </a>
           <div id="moto">
             Denis de Rougemont,
-            <br/>l’intégrale
-            <br/>en accès libre
+            <br/>l’intégrale en ligne
           </div>
         </div>
         <div id="menu" class="other">

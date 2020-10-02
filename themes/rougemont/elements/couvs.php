@@ -9,8 +9,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       </span>
       <span class="text">Filtre</span>
       <select class="filter">
-        <option/>
-        <option value="florilege">Florilège</option>
+        <option>Tous</option>
         <option value="journal">Journaux</option>
         <option value="suisse">Suisse</option>
         <option value="europe">Europe</option>
@@ -21,6 +20,9 @@ defined('C5_EXECUTE') or die("Access Denied.");
     </label>
   </div>
   <nav class="covers">
+    <a class="last_page">
+      <svg viewBox="0 0 24 24" preserveAspectRatio="none"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41zM16 6h2v12h-2V6z"/></svg>
+    </a>
     <a id="ddr1929mip" class="suisse" href="livres/ddr1929mip" title="Les Méfaits de l’Instruction publique (1929)">
       <time class="year">1929</time>
       <picture>
@@ -84,6 +86,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">L’Amour et l’Occident</em>
       <span class="publisher">Plon</span>
     </a>
+    <!--
     <a id="ddr1939nf" class="suisse" href="livres/ddr1939nf" title="Nicolas de Flue, légende dramatique (1939)">
       <time class="year">1939</time>
       <picture>
@@ -93,6 +96,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Nicolas de Flue, légende dramatique</em>
       <span class="publisher">Institut Neuchâtelois</span>
     </a>
+    -->
     <a id="ddr1940mds" class="suisse" href="livres/ddr1940mds" title="Mission ou démission de la Suisse (1940)">
       <time class="year">1940</time>
       <picture>
@@ -344,7 +348,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
         <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1972mip_couv.jpg/full/575,/0/default.jpg"/>
         <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1972mip_couv.jpg/full/,250/0/default.jpg"/>
       </picture>
-      <em class="title">Les Méfaits de l’instruction publique (1929) aggravés d’une Suite des Méfaits (1972)</em>
+      <em class="title">Les Méfaits de l’instruction publique, aggravés d’une Suite…</em>
       <span class="publisher">Eurêka</span>
     </a>
     <a id="ddr1977aena" class="monde florilege" href="livres/ddr1977aena" title="L'Avenir est notre affaire (1977)">
@@ -362,7 +366,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
         <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1979rpe_couv.jpg/full/575,/0/default.jpg"/>
         <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1979rpe_couv.jpg/full/,250/0/default.jpg"/>
       </picture>
-      <em class="title">Rapport au peuple européen sur l’état de l’union de l’Europe</em>
+      <em class="title">Rapport au peuple européen</em>
       <span class="publisher">Stock</span>
     </a>
     <a id="ddr1982paysan" class="journal" href="livres/ddr1982paysan" title="Le Paysan du Danube et autres textes (1982)">
@@ -382,6 +386,9 @@ defined('C5_EXECUTE') or die("Access Denied.");
       </picture>
       <em class="title">La Part du diable</em>
       <span class="publisher">Gallimard</span>
+    </a>
+    <a class="first_page">
+      <svg viewBox="0 0 24 24" preserveAspectRatio="none"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z"/></svg>
     </a>
   </nav>
 </div>

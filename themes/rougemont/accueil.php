@@ -17,11 +17,10 @@ $basename = basename($c->getCollectionPath());
           </a>
           <div id="moto">
             Denis de Rougemont,
-            <br/>l’intégrale
-            <br/>en accès libre
+            <br/>l’intégrale en ligne
           </div>
         </div>
-        <div id="search_nav">
+        <div id="menu">
           <form class="search mt-md-3 mb-md-4" id="search" autocomplete="off" onsubmit="return false;" action="<?php echo BASE_URL; ?>/data/titles">
             <input id="titles" name="titles" type="text" class="q"/>
             <button name="reset" class="reset" type="reset"><svg viewBox="0 0 24 24" width="24px" height="24px"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></button>

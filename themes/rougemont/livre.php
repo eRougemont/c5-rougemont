@@ -6,7 +6,7 @@ $basename = basename($c->getCollectionPath());
 
 <main class="container" id="livre_blocs">
   <div class="row">
-    <div class="mt-4 mb-4" id="chapo">
+    <div class="mt-4 mb-4 col-md-12" id="chapo">
       <?php
          $a = new Area('livre_chapo');
          $a->display($c);
@@ -25,13 +25,6 @@ $basename = basename($c->getCollectionPath());
         $a->setBlockWrapperEnd("</div>\n\n");
         $a->display($c);
       ?>
-      <nav class="foot my-5 d-none d-md-block">
-        <?php 
-        $prevnext = new GlobalArea('prev_next');
-        $prevnext->display($c);
-        ?>
-      </nav>
-
     </div>
     <nav class="toc_details col col-md-6 bg-light py-md-5 order-md-last" id="livre_sommaire">
       <?php
@@ -50,6 +43,12 @@ $basename = basename($c->getCollectionPath());
       ?>
     </div>
   </div>
+  <nav class="my-md-5">
+    <?php 
+    $prevnext = new GlobalArea('prev_next');
+    $prevnext->display($c);
+    ?>
+  </nav>
 </main>
 
 <?php   $this->inc('elements/footer.php'); ?>

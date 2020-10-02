@@ -7,10 +7,8 @@
         <div class="col-md-6 col-lg-3 py-3 py-md-5">
           <div class="center">
             <img src="<?php  echo $view->getThemePath()?>/img/ddr-signature.svg" alt="signature Denis de Rougemont blanc" class="signature">
-            <p>
-              L'intégrale de
-              <br/>Denis de Rougemont<br/>
-              en libre accès
+            <p>Denis de Rougemont,
+              <br/>l’intégrale en ligne
             </p>
           </div>
         </div>
