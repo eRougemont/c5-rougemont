@@ -32,7 +32,7 @@ class Liser {
     // store if book already visited
     var lastbook = sessionStorage.getItem('bookpath');
     if (lastbook != bookpath) sessionStorage.setItem('bookpath', bookpath);
-    
+
     Liser.path = window.location.href.split('#')[0];
 
     // bulle au survol pour lien tronqués (ellipsis)
@@ -59,12 +59,12 @@ class Liser {
     var q = document.getElementById("titles");
     if(!q) return;
     Liser.q = q;
-    
+
     Liser.results = document.getElementById("results");
     if (!Liser.results) return;
     Liser.results_progress = q.form.querySelector(".progress");
     Liser.header = document.getElementById("header");
-    
+
     q.addEventListener('input', function(e) {
       var query = this.value;
       if (!query);
@@ -82,7 +82,7 @@ class Liser {
         results.innerHTML = data;
         if(Liser.results_progress) Liser.results_progress.style.visibility = 'hidden';
       });
-      
+
     });
     q.addEventListener('click', function(e) { // focus do not work on mobile
       results.style.display = 'block';
@@ -105,7 +105,7 @@ class Liser {
 
     /*
     console.log(results);
-    results.style.display = null; 
+    results.style.display = null;
     header.style.position = null;
     // rétablir la barre en fixed
     header.style.position = null;
@@ -124,7 +124,7 @@ class Liser {
     */
   }
 
-  
+
   /**
    * Get and display results
    */
@@ -172,7 +172,7 @@ class Liser {
       }, false);
     }
   }
-  
+
   static accordeon()
   {
     // accordeon
@@ -187,7 +187,7 @@ class Liser {
       }
     }
   }
-  
+
   static toc()
   {
     var tocbut = document.getElementById("tocbut");
@@ -225,9 +225,9 @@ class Liser {
       tocbut.classList.remove("splash");
       toc.classList.remove("splash");
     });
- 
+
   }
-  
+
   static menu()
   {
     var menubut = document.getElementById("menubut");
@@ -256,7 +256,7 @@ class Liser {
       menu.classList.remove("splash");
     });
   }
-  
+
   static sidebar()
   {
     var sidebar = document.getElementById("sidebar");
@@ -277,7 +277,7 @@ class Liser {
     Liser.sidebarLinks = Liser.sidebar.getElementsByTagName("a");
     window.addEventListener('scroll', Liser.sidebarScroll);
 
-    
+
     if (Liser.vw < 992) return; // do not scroll in the sidebar if screen is too small
     var here = sidebar.querySelector("a.nav-selected");
     if (!here) here = sidebar.querySelector("li.here > a");
@@ -289,9 +289,9 @@ class Liser {
       Liser.sidebar.scrollTop = hereY - (Liser.sidebar.clientHeight / 2);
     }
 
-  
+
   }
-  
+
   static sidebarScroll(e)
   {
     var pos = Liser.path.length + 1;
@@ -329,7 +329,7 @@ class Liser {
       runhead.href = "";
     }
   }
-  
+
   static notebox()
   {
     var notebox = document.getElementById("notebox");
@@ -341,7 +341,7 @@ class Liser {
     window.addEventListener('scroll', Liser.noteboxScroll);
     // scrollPage(); // non, trop long au démarrage
   }
-  
+
   static noteboxResize(event)
   {
     // garder la largeur de la boite à notes
@@ -349,7 +349,7 @@ class Liser {
     notebox.style.width = getComputedStyle(text).width;
   }
 
-  
+
   static noteboxScroll()
   {
     var up = false;
@@ -357,7 +357,7 @@ class Liser {
     if (scrollY < Liser.lastScrollY) up = true;
     Liser.lastScrollY = (scrollY <= 0) ? 0 : scrollY; // phone scroll could be negative
 
-    
+
     // les premières notes sont elles en vue ?
     var id = Liser.noterefs[0].hash;
     if (id[0] == '#') id = id.substring(1);
@@ -375,7 +375,7 @@ class Liser {
       var idCopy = id+"Copy";
       var noteCopy = document.getElementById(idCopy);
       if (Liser.isVisible(ref)) {
-        
+
         count++;
         if (noteCopy) continue; // déjà affichée
         var note = document.getElementById(id);
@@ -421,7 +421,7 @@ class Liser {
       && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   }
-  
+
   /* CSS sticky marche mieux
   static scrollFix()
   {
@@ -450,31 +450,30 @@ class Liser {
     if (node.scrollTop) return node;
     return getScrollParent(node.parentNode);
   }
-  
+
 }
 window.addEventListener("load", Liser.init, false);
 
-/*
-
-    // Des liens dans le diaporama à l’accueil
-    var links = document.querySelectorAll(".slider-nav a");
-    for (var i = 0, max = links.length; i < max; i++) {
-      let a = links[i];
-      let id = a.hash;
-      if (!id) continue;
-      if (id[0] == "#") id = id.substring(1);
-      const ref = document.getElementById(id);
-      if (!ref) continue;
-      a.ref = ref;
-      a.onclick = function(e) {
-        let slider = this.ref.parentNode;
-        slider.scrollLeft = this.ref.offsetLeft;
-        if (slider.lastLink) slider.lastLink.classList.remove("selected");
-        slider.lastLink = this;
-        this.classList.add("selected");
-        e.preventDefault();
-        return false; // stop propagation
-      }
-    }
-*/
-
+/** Capture all hash links to avoid history entries */
+window.addEventListener('click', function(event) {
+  const a = event.target.closest("a");
+  if (!a) return;
+  if (a.pathname != location.pathname) return; // external link, let it
+  // history.replaceState(undefined, undefined, "#hash");
+  const id = a.hash.substr(1);
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  // scroll is smooth but element:target do not fire with history.replaceState
+  // https://github.com/whatwg/html/issues/639#issuecomment-213084467
+  /*
+  if (el.scrollIntoView) {
+    var behave = false;
+    if ('scrollBehavior' in document.documentElement.style) behave = {behavior: "smooth", block: "start", inline: "nearest"};
+    el.scrollIntoView(behave);
+  }
+    history.replaceState(null, '', '#'+id);
+  */
+  window.location.replace('#'+id);
+  event.preventDefault();
+}, false);

@@ -1,13 +1,18 @@
 
 
 reduce() {
-   magick $1 -strip -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $3
+  # -interlace none (?)
+  # -unsharp 0.25x0.08+8.3+0.045 (?)
+  # -filter Triangle -define filter:support=2 -thumbnail $2 -dither None -posterize 136
+  magick $1 -strip +dither -geometry $2 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -colorspace sRGB -interlace Plane -quality 90% $3
 }
 
-reduce ddr_paraphe.png 48x48^ ddr_paraphe48.png
+reduce ddr1972mip_couv.jpg x250 ddr1972mip_250.png
+
 
 exit
 
+reduce ddr_paraphe.png 48x48^ ddr_paraphe48.png
 reduce ddr.png x175 ddr_portrait.png
 reduce ddr.png x175 ddr_portrait.webp
 

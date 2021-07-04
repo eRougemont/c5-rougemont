@@ -1,5 +1,5 @@
-<?php  
-defined('C5_EXECUTE') or die("Access Denied."); 
+<?php
+defined('C5_EXECUTE') or die("Access Denied.");
 ?>
 <div>
   <div class="coverbar">
@@ -21,7 +21,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
   </div>
   <nav class="covers">
     <a class="last_page">
-      <svg viewBox="0 0 24 24" preserveAspectRatio="none"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41zM16 6h2v12h-2V6z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41zM16 6h2v12h-2V6z"/></svg>
     </a>
     <a id="ddr1929mip" class="suisse" href="livres/ddr1929mip" title="Les Méfaits de l’Instruction publique (1929)">
       <time class="year">1929</time>
@@ -106,7 +106,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Mission ou démission de la Suisse</em>
       <span class="publisher">Éditions de la Baconnière</span>
     </a>
-    <a id="ddr1942partdia" class="monde" href="livres/ddr1942partdia" title="La Part du diable (1942)">
+    <a id="ddr1942partdia" class="amour" href="livres/ddr1942partdia" title="La Part du diable (1942)">
       <time class="year">1942</time>
       <picture>
         <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1942partdia_couv.jpg/full/575,/0/default.jpg"/>
@@ -115,7 +115,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">La Part du diable</em>
       <span class="publisher">Brentano's</span>
     </a>
-    <a id="ddr1944partdia" class="monde" href="livres/ddr1944partdia" title="La Part du diable (1944)">
+    <a id="ddr1944partdia" class="amour" href="livres/ddr1944partdia" title="La Part du diable (1944)">
       <time class="year">1944</time>
       <picture>
         <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1944partdia_couv.jpg/full/575,/0/default.jpg"/>
@@ -378,7 +378,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Le Paysan du Danube et autres textes</em>
       <span class="publisher">L’Âge d’homme</span>
     </a>
-    <a id="ddr1982partdia" class="monde florilege" href="livres/ddr1982partdia" title="La Part du diable (1982)">
+    <a id="ddr1982partdia" class="amour florilege" href="livres/ddr1982partdia" title="La Part du diable (1982)">
       <time class="year">1982</time>
       <picture>
         <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/ddr-divers/couv/ddr1982partdia_couv.jpg/full/575,/0/default.jpg"/>
@@ -388,7 +388,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <span class="publisher">Gallimard</span>
     </a>
     <a class="first_page">
-      <svg viewBox="0 0 24 24" preserveAspectRatio="none"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41zM6 6h2v12H6V6z"/></svg>
     </a>
   </nav>
 </div>
