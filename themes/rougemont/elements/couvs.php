@@ -106,6 +106,15 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Mission ou démission de la Suisse</em>
       <span class="publisher">Éditions de la Baconnière</span>
     </a>
+    <a id="ddr1940lg" class="suisse" href="livres/ddr1940lg" title="Qu’est-ce que la Ligue du Gothard ? (1940)">
+      <time class="year">1940</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1940lg.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1940lg.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Qu’est-ce que la Ligue du Gothard ?</em>
+      <span class="publisher">Ligue du Gothard-Éditions de la Baconnière</span>
+    </a>
     <a id="ddr1942partdia" class="amour" href="livres/ddr1942partdia" title="La Part du diable (1942)">
       <time class="year">1942</time>
       <picture>
@@ -214,6 +223,15 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Lettres aux députés européens</em>
       <span class="publisher">Ides et Calendes</span>
     </a>
+    <a id="ddr1951lpp" class="monde" href="livres/ddr1951lpp" title="Les Libertés que nous pouvons perdre (1951)">
+      <time class="year">1951</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1951lpp.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1951lpp.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Les Libertés que nous pouvons perdre</em>
+      <span class="publisher">Société des Éditions des amis de la liberté</span>
+    </a>
     <a id="ddr1953ch" class="suisse" href="livres/ddr1953ch" title="La Confédération helvétique (1953)">
       <time class="year">1953</time>
       <picture>
@@ -240,6 +258,15 @@ defined('C5_EXECUTE') or die("Access Denied.");
       </picture>
       <em class="title">L'Aventure occidentale de l’homme</em>
       <span class="publisher">Albin Michel</span>
+    </a>
+    <a id="ddr1958dver" class="europe" href="livres/ddr1958dver" title="Définition, valeurs, énergie, recherche : quatre essais européens (1958)">
+      <time class="year">1958</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1958dver.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1958dver.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Définition, valeurs, énergie, recherche : quatre essais européens</em>
+      <span class="publisher">Bulletin du Centre européen de la culture</span>
     </a>
     <a id="ddr1961ctm" class="amour" href="livres/ddr1961ctm" title="Comme toi-même (1961)">
       <time class="year">1961</time>
@@ -276,6 +303,15 @@ defined('C5_EXECUTE') or die("Access Denied.");
       </picture>
       <em class="title">La Suisse ou l’histoire d’un peuple heureux</em>
       <span class="publisher">Hachette</span>
+    </a>
+    <a id="ddr1965fc" class="europe" href="livres/ddr1965fc" title="Fédéralisme culturel (1965)">
+      <time class="year">1965</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1965fc.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1965fc.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Fédéralisme culturel</em>
+      <span class="publisher">Éditions de la Baconnière</span>
     </a>
     <!--
           <a href="" title="La Suisse ou L'histoire d’un peuple heureux">
@@ -350,6 +386,33 @@ defined('C5_EXECUTE') or die("Access Denied.");
       </picture>
       <em class="title">Les Méfaits de l’instruction publique, aggravés d’une Suite…</em>
       <span class="publisher">Eurêka</span>
+    </a>
+    <a id="ddr1972dfso" class="monde" href="livres/ddr1972dfso" title="Les Dirigeants et les finalités de la société occidentale (1972)">
+      <time class="year">1972</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1972dfso.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1972dfso.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Les Dirigeants et les finalités de la société occidentale</em>
+      <span class="publisher">Centre de recherches européennes</span>
+    </a>
+    <a id="ddr1973resea" class="europe" href="livres/ddr1973resea" title="Responsabilité de l’écrivain dans la société européenne d’aujourd’hui (1973)">
+      <time class="year">1973</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1973resea.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1973resea.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Responsabilité de l’écrivain dans la société européenne d’aujourd’hui</em>
+      <span class="publisher">Pro Helvetia</span>
+    </a>
+    <a id="ddr1974jdef" class="journal" href="livres/ddr1974jdef" title="Journal d’un Européen (fragments 1974)">
+      <time class="year">1974</time>
+      <picture>
+        <source media="print" srcset="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1974jdef.jpg/full/575,/0/default.jpg"/>
+        <img class="cover" src="https://iiif.unige.ch/iiif/2/rougemont/couv/ddr1974jdef.jpg/full/,250/0/default.jpg"/>
+      </picture>
+      <em class="title">Journal d’un Européen (fragments 1974)</em>
+      <span class="publisher">Bulletin du Centre européen de la culture</span>
     </a>
     <a id="ddr1977aena" class="monde florilege" href="livres/ddr1977aena" title="L'Avenir est notre affaire (1977)">
       <time class="year">1977</time>
