@@ -196,6 +196,13 @@ h5 {
   font-size: 100%;
 }
 
+blockquote.quote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 95%;
+  color: #000;
+}
+
 .c5block > .toc_details > h2,
 .c5block h4,
 .c5block h5,
@@ -1154,8 +1161,8 @@ h3 a.noteref {
 .bg-light .nav a,
 .bg-light nav a,
 div.ccm-block-page-list-title a,
-.toc_details summary,
 .toc_details a,
+.toc_details summary,
 .toclocal li>span,
 /* deprecated */
 .toclocal li>div,
@@ -1165,6 +1172,20 @@ div.ccm-block-page-list-title a,
   line-height: 1.1;
   border-bottom: 1px solid #fff;
 }
+
+.toc_details div > a {
+  padding-left: 22px;
+}
+
+
+.toc_details summary a {
+  display: inline;
+  padding: 0 ;
+  border:none;
+  font-style: normal;
+}
+
+
 
 #toc a.icon {
   padding: 12px;
@@ -1266,10 +1287,6 @@ li.nav-selected {
 .toclocal li li div,
 .toc_details details div {
   border-left: 1px dotted #6c757d;
-}
-
-.toc_details div a {
-  padding-left: 22px;
 }
 
 .toc_details details div {
