@@ -88,6 +88,7 @@ $booktitle = $parent->getCollectionName();
       
       <?php
         echo '<nav class="booktitle"><a href="'.$parent->getCollectionLink().'">'.$booktitle.'</a></nav>';
+        echo '<div id="keywords" class="text2"></div>';
         $prevnext = new GlobalArea('prev_next');
         // $prevnext->display($c);
         $a = new Area('Main');
@@ -138,6 +139,31 @@ $booktitle = $parent->getCollectionName();
         </div>
       </nav>
     </aside>
+    <aside id="seealso" class="bg-light">
+      <header>
+        <div class="head">Sur le même sujet (rapprochements automatiques)</div>
+      </header>
+      <nav id="seelinks">
+
+      </nav>
+    </aside>
   </div>
 </main>
+<?php 
+
+$here = $c->getCollectionLink();
+$id = null;
+if (preg_match('@/articles/@', $here)) {
+    preg_match('@/([^/]+)$@', $here, $matches);
+    $id = $matches[1];
+} 
+else if (preg_match('@/livres/@', $here)) {
+    preg_match('@/([^/]+)/(\d+)$@', $here, $matches);
+    $id = $matches[1] . '_' . str_pad($matches[2], 3, '0', STR_PAD_LEFT);
+}
+$url = 'https://oeuvres.unige.ch/ddrlab/data/jsondoc.jsp?callback=seealso&amp;id=' . $id;
+
+echo '<script defer src="' . $url . '"></script>';
+    
+?>
 <?php   $this->inc('elements/footer.php'); ?>
