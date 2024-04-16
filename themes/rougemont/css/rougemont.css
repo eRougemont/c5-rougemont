@@ -665,8 +665,8 @@ body.accueil nav.covers::after {
     right: 0;
 }
 
-div.articles .container .ccm-block-page-list-page-entry-horizontal,
-div.articles .container .ccm-block-page-list-page-entry,
+#bib_covers .container .ccm-block-page-list-page-entry-horizontal,
+#bib_covers .container .ccm-block-page-list-page-entry,
 nav.covers a {
     /*
   height: 312px;
@@ -681,7 +681,7 @@ nav.covers a {
     padding: 0 0 2rem 0;
 }
 
-.articles div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title a:hover,
+#bib_covers div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title a:hover,
 .correspondances div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title a:hover {
     color: #cf1308;
     border: 1px solid #eee;
@@ -691,46 +691,46 @@ nav.covers a {
   */
 }
 
-div.articles .container .ccm-block-page-list-page-entry a:hover {
+#bib_covers .container .ccm-block-page-list-page-entry a:hover {
     background: rgba(240, 240, 240, 0.5);
 }
 
-div.articles .container div.ccm-block-page-list-page-entry-horizontal>* {
+#bib_covers .container div.ccm-block-page-list-page-entry-horizontal>* {
     margin: 0;
 }
 
-div.articles .container .ccm-block-page-list-page-entry-text {
+#bib_covers .container .ccm-block-page-list-page-entry-text {
     top: 0;
     display: block;
     height: 100%;
     width: 100%;
 }
 
-div.articles .container .ccm-block-page-list-page-entry-text .ccm-block-page-list-title {
+#bib_covers .container .ccm-block-page-list-page-entry-text .ccm-block-page-list-title {
     display: table;
     width: 100%;
     height: 100%;
 }
 
-div.articles .container .ccm-block-page-list-page-entry-horizontal img,
+#bib_covers .container .ccm-block-page-list-page-entry-horizontal img,
 nav.covers img {
     height: 250px;
     width: auto;
 }
 
-.articles .container div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail,
+#bib_covers .container div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail,
 .correspondances .container div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-page-entry-thumbnail {
     margin: 0;
     position: absolute;
     width: 100%;
 }
 
-.articles .container div.ccm-block-page-list-page-entry-horizontal .ccm-block-page-list-page-entry-text,
+#bib_covers .container div.ccm-block-page-list-page-entry-horizontal .ccm-block-page-list-page-entry-text,
 .correspondances .container div.ccm-block-page-list-page-entry-horizontal .ccm-block-page-list-page-entry-text {
     margin: 0;
 }
 
-div.articles .container .ccm-block-page-list-page-entry-text .ccm-block-page-list-title a {
+#bib_covers .container .ccm-block-page-list-page-entry-text .ccm-block-page-list-title a {
     display: table-cell;
     width: 100%;
     height: 315px;
@@ -740,7 +740,7 @@ div.articles .container .ccm-block-page-list-page-entry-text .ccm-block-page-lis
     border: 1px solid transparent;
 }
 
-div.articles .container .ccm-block-page-list-description {
+#bib_covers .container .ccm-block-page-list-description {
     display: none;
 }
 
@@ -816,7 +816,7 @@ nav.covers .title {
 
 /*# list-pages /articles, /correspondances */
 
-.articles .ccm-block-page-list-pages,
+#bib_covers .ccm-block-page-list-pages,
 .correspondances .ccm-block-page-list-pages {
     display: flex;
     flex-wrap: wrap;

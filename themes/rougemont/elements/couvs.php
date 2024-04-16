@@ -86,7 +86,6 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">L’Amour et l’Occident</em>
       <span class="publisher">Plon</span>
     </a>
-    <!--
     <a id="ddr1939nf" class="suisse" href="livres/ddr1939nf" title="Nicolas de Flue, légende dramatique (1939)">
       <time class="year">1939</time>
       <picture>
@@ -96,7 +95,6 @@ defined('C5_EXECUTE') or die("Access Denied.");
       <em class="title">Nicolas de Flue, légende dramatique</em>
       <span class="publisher">Institut Neuchâtelois</span>
     </a>
-    -->
     <a id="ddr1940mds" class="suisse" href="livres/ddr1940mds" title="Mission ou démission de la Suisse (1940)">
       <time class="year">1940</time>
       <picture>
