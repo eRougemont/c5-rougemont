@@ -17,6 +17,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    text-rendering: optimizeLegibility;
 }
 
 html {
@@ -67,7 +68,7 @@ article::after,
     display: table;
 }
 
-blockquote.quote,
+blockquote,
 dd,
 p.p,
 div.p,
@@ -83,6 +84,7 @@ div.stage {
     text-align: justify;
     text-justify: inter-word;
     hyphens: auto;
+    hyphenate-limit-chars: 8 3 4;
 }
 
 .bookmark,
@@ -183,6 +185,7 @@ aside header {
     padding-right: 1rem;
 }
 
+blockquote.q,
 blockquote.quote {
     margin: 0 0 0 0.5rem;
     padding: 0.4rem 0rem 0.6rem 1rem;
@@ -190,6 +193,14 @@ blockquote.quote {
     color: rgba(0, 0, 0, 0.5);
     border-left: 0.5rem solid rgba(128, 128, 128, 0.1);
     font-size: 120%;
+}
+
+blockquote.q {
+    font-style: italic;
+}
+blockquote.q i,
+blockquote.q em {
+    font-style: normal;
 }
 
 blockquote.quote .p {}
@@ -281,6 +292,37 @@ figure:after {
     height: 0;
 }
 
+figure.w25 {
+    width: 25%;
+    float: left;
+    clear: both;
+}
+
+figure.w33 {
+    width: 33%;
+    float: left;
+    clear: both;
+}
+
+figure.w50 {
+    width: 50%;
+    float: left;
+    clear: both;
+}
+
+figure.w75 {
+    width: 75%;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}   
+
 figure.left {
     float: left;
     margin: 15px 15px 8px 0;
@@ -289,6 +331,7 @@ figure.left {
 figure.right {
     float: right;
     margin: 15px 0 8px 15px;
+    clear: both;
 }
 
 figure img {
@@ -405,10 +448,10 @@ h2 {
 h3 {
     clear: both;
     font-weight: bold;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
-    padding-top: 1rem;
-    text-indent: 2rem;
+    padding-top: 0;
+    text-indent: 0;
 }
 
 h5,
@@ -418,6 +461,24 @@ h6 {
 
 header {
     clear: both;
+}
+
+header.center {
+    text-align: center;
+}
+
+header.center h1 {
+    font-weight: normal;
+    border: none;
+}
+
+
+header.center > * {
+    line-height: 1.2em;
+}
+
+header.center .titleresp {
+    font-size: 150%;
 }
 
 hr {
@@ -459,6 +520,10 @@ li.item {
     line-height: 1.2;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+}
+
+li.item > p:first-child {
+    text-indent: 0;
 }
 
 li.item p {
@@ -642,6 +707,7 @@ samp {
 section {
     display: block;
     clear: both;
+    margin-bottom: 3rem;
 }
 
 small {
@@ -678,7 +744,7 @@ button,
 input,
 optgroup,
 textarea {
-    font-size: inherit;
+    font: inherit;
     margin: 0;
 }
 
@@ -821,6 +887,10 @@ textarea.readonly {
 
 
 /** TEI classes, in TEI element name order */
+
+section.act.verse {
+    width: 27rem;
+}
 
 h1.act,
 h2.act,
@@ -1011,10 +1081,6 @@ h1.collection {
     text-indent: 0;
 }
 
-section {
-    padding-top: 3rem;
-}
-
 div.docAuthor {
     text-align: center;
     hyphens: none;
@@ -1047,17 +1113,8 @@ aside .docDate {
     font-size: 92%;
 }
 
-.epigraph p.p,
-.epigraph .l {
-    font-style: italic;
+.epigraph .bibl {
     text-align: right;
-}
-
-.epigraph .bibl {}
-
-.epigraph .p i,
-.epigraph .p em {
-    font-style: normal;
 }
 
 .entry>* {
@@ -1369,6 +1426,7 @@ div.lg {
     font-size: 90%;
     margin: 1px 0 1rem 0;
     clear: both;
+    position: relative;
 }
 
 .note blockquote {
@@ -1503,11 +1561,10 @@ p.salute {
     margin: 0.5rem 0;
 }
 
-.speaker {
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
+.sp .speaker {
+    margin: 0;
     font-variant: small-caps;
-    text-indent: 3rem;
+    text-align: center;
     font-weight: 250;
 }
 
@@ -1524,7 +1581,7 @@ p.salute {
     font-weight: 300;
 }
 
-*/ .sp .lg {
+.sp .lg {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -1563,8 +1620,23 @@ p.salute {
 
 div.stage {
     text-align: justify;
-    font-size: 90%;
+    text-indent: 2rem;
 }
+
+.scene > .stage {
+    font-size: 1.5rem;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-indent: 0;
+}
+
+.scene > .stage i,
+.scene > .stage em {
+    font-style: italic;
+}
+
+
 
 .sp.center>.stage {
     hyphens: none;
@@ -1584,8 +1656,6 @@ div.stage.sc {
 }
 
 .sp div.stage {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 div.stage.right {
@@ -1616,22 +1686,20 @@ h6.sub {
     padding-top: 0;
 }
 
-.scene h2,
+.act  h2,
 .scene h3 {
+    margin-top: 0;
+    padding: 0;
+    margin-bottom: 1rem;
     font-weight: normal;
-    font-style: italic;
     text-align: center;
     hyphens: none;
     margin-left: auto;
     margin-right: auto;
     text-transform: uppercase;
+    font-size: 2rem;
 }
 
-h2.verse.scene,
-h3.verse.scene {
-    text-align: left;
-    margin-left: 5rem;
-}
 
 .sourceDesc {}
 
@@ -1790,6 +1858,22 @@ p.p {
 ul,
 ol {
     padding-left: 2rem;
+}
+
+li.label { /* non numerated item */
+    list-style-type:none;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+li.label i {
+    font-weight: bold;
+}
+
+ol > li.label {
+    counter-increment:none;
 }
 
 p.p.no {
@@ -2116,6 +2200,14 @@ p.question {
     line-height: inherit;
 }
 
+div.question i,
+p.question i,
+div.question em,
+p.question em {
+    font-style: normal;
+}
+
+
 .l.refrain {
     font-style: italic;
 }
@@ -2168,12 +2260,6 @@ h1.sub {
 
 .title i {
     font-style: normal
-}
-
-.todo {
-    border: #F00 solid 1px;
-    background: #FFC;
-    padding: 0.5rem;
 }
 
 .u,
@@ -2673,6 +2759,7 @@ dl.xml dt {
     .stage {
         font-size: 0.95rem;
     }
+    blockquote.q,
     blockquote.quote {
         margin-left: 1rem;
         margin-right: 0;
