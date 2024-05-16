@@ -1982,13 +1982,6 @@ main.liseuse aside.bibl {
     border-bottom: 1px solid;
 }
 
-.medias div.ccm-block-page-list-page-entry-horizontal div.ccm-block-page-list-title {
-    font-size: 130%;
-    text-align: center;
-    font-weight: 300;
-    padding-bottom: 0.5rem;
-}
-
 #footer address,
 #footer p {
     margin: 0 0 0 2rem;
@@ -2125,6 +2118,14 @@ main.liseuse aside.bibl {
     padding-bottom: 0.5rem;
 }
 
+.medias #bib_covers .container .ccm-block-page-list-page-entry-text .ccm-block-page-list-title a {
+    height: 150px;
+}
+
+.medias #bib_covers .container .ccm-block-page-list-page-entry-horizontal img {
+    width: 100%;
+    height: auto;
+}
 
 /*# divers */
 
