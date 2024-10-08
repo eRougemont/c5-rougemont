@@ -153,13 +153,14 @@ $booktitle = $parent->getCollectionName();
 
 $here = $c->getCollectionLink();
 $id = null;
-if (preg_match('@/articles/@', $here)) {
-    preg_match('@/([^/]+)$@', $here, $matches);
-    $id = $matches[1];
-} 
-else if (preg_match('@/livres/@', $here)) {
+if (preg_match('@/livres/@', $here) || preg_match('@/inedits/ddr19630100cofr/@', $here)) {
     preg_match('@/([^/]+)/(\d+)$@', $here, $matches);
     $id = $matches[1] . '_' . str_pad($matches[2], 3, '0', STR_PAD_LEFT);
+}
+// articles ou inedits
+else {
+  preg_match('@/([^/]+)$@', $here, $matches);
+  $id = $matches[1];
 }
 $url = 'https://oeuvres.unige.ch/ddrlab/data/jsondoc.jsp?callback=seealso&amp;id=' . $id;
 
